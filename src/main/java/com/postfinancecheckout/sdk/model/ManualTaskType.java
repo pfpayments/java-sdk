@@ -37,7 +37,7 @@ import java.time.OffsetDateTime;
  * The manual task type indicates what kind of manual task is required to be executed by the human.
  */
 @ApiModel(description = "The manual task type indicates what kind of manual task is required to be executed by the human.")
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-04-22T15:39:45.321+02:00")
+@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-04-22T16:20:53.522+02:00")
 public class ManualTaskType {
   
   @JsonProperty("description")

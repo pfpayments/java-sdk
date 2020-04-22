@@ -42,7 +42,7 @@ import java.time.OffsetDateTime;
  * The payment method configuration builds the base to connect with different payment method connectors.
  */
 @ApiModel(description = "The payment method configuration builds the base to connect with different payment method connectors.")
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-04-22T15:39:45.321+02:00")
+@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-04-22T16:20:53.522+02:00")
 public class PaymentMethodConfiguration {
   
   @JsonProperty("dataCollectionType")
