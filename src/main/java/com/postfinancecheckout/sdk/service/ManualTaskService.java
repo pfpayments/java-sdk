@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-05-12T11:16:25.794+02:00")
+
 public class ManualTaskService {
     private ApiClient apiClient;
 

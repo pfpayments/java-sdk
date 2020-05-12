@@ -36,7 +36,7 @@ import java.time.OffsetDateTime;
 /**
  * AbstractSpaceUpdate
  */
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-05-12T11:16:25.794+02:00")
+
 public class AbstractSpaceUpdate {
   
   @JsonProperty("name")

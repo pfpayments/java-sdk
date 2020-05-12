@@ -32,7 +32,7 @@ import java.time.OffsetDateTime;
 /**
  * AbstractCustomerCommentActive
  */
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-05-12T11:16:25.794+02:00")
+
 public class AbstractCustomerCommentActive {
   
   @JsonProperty("content")
