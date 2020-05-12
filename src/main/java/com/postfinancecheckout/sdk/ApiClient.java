@@ -15,7 +15,7 @@ import com.google.api.client.json.Json;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-04-22T16:32:51.860+02:00")
+@javax.annotation.Generated(value = "io.wallee.sdk.java.WalleeJavaClientCodegen", date = "2020-05-12T11:16:25.794+02:00")
 public class ApiClient {
     private final String basePath = "https://checkout.postfinance.ch:443/api";
     private final HttpRequestFactory httpRequestFactory;
@@ -92,188 +92,372 @@ public class ApiClient {
 
     // Builder pattern to get API instances for this client.
     
-    public AccountService accountServiceApi() {
-        return new AccountService(this);
+    private AccountService accountService;
+    public AccountService getAccountService() {
+        if (this.accountService == null) {
+            this.accountService = new AccountService(this);
+        }
+        return this.accountService;
     }
     
-    public ApplicationUserService applicationUserServiceApi() {
-        return new ApplicationUserService(this);
+    private ApplicationUserService applicationUserService;
+    public ApplicationUserService getApplicationUserService() {
+        if (this.applicationUserService == null) {
+            this.applicationUserService = new ApplicationUserService(this);
+        }
+        return this.applicationUserService;
     }
     
-    public ChargeAttemptService chargeAttemptServiceApi() {
-        return new ChargeAttemptService(this);
+    private ChargeAttemptService chargeAttemptService;
+    public ChargeAttemptService getChargeAttemptService() {
+        if (this.chargeAttemptService == null) {
+            this.chargeAttemptService = new ChargeAttemptService(this);
+        }
+        return this.chargeAttemptService;
     }
     
-    public ChargeFlowLevelPaymentLinkService chargeFlowLevelPaymentLinkServiceApi() {
-        return new ChargeFlowLevelPaymentLinkService(this);
+    private ChargeFlowLevelPaymentLinkService chargeFlowLevelPaymentLinkService;
+    public ChargeFlowLevelPaymentLinkService getChargeFlowLevelPaymentLinkService() {
+        if (this.chargeFlowLevelPaymentLinkService == null) {
+            this.chargeFlowLevelPaymentLinkService = new ChargeFlowLevelPaymentLinkService(this);
+        }
+        return this.chargeFlowLevelPaymentLinkService;
     }
     
-    public ChargeFlowLevelService chargeFlowLevelServiceApi() {
-        return new ChargeFlowLevelService(this);
+    private ChargeFlowLevelService chargeFlowLevelService;
+    public ChargeFlowLevelService getChargeFlowLevelService() {
+        if (this.chargeFlowLevelService == null) {
+            this.chargeFlowLevelService = new ChargeFlowLevelService(this);
+        }
+        return this.chargeFlowLevelService;
     }
     
-    public ChargeFlowService chargeFlowServiceApi() {
-        return new ChargeFlowService(this);
+    private ChargeFlowService chargeFlowService;
+    public ChargeFlowService getChargeFlowService() {
+        if (this.chargeFlowService == null) {
+            this.chargeFlowService = new ChargeFlowService(this);
+        }
+        return this.chargeFlowService;
     }
     
-    public ConditionTypeService conditionTypeServiceApi() {
-        return new ConditionTypeService(this);
+    private ConditionTypeService conditionTypeService;
+    public ConditionTypeService getConditionTypeService() {
+        if (this.conditionTypeService == null) {
+            this.conditionTypeService = new ConditionTypeService(this);
+        }
+        return this.conditionTypeService;
     }
     
-    public CountryService countryServiceApi() {
-        return new CountryService(this);
+    private CountryService countryService;
+    public CountryService getCountryService() {
+        if (this.countryService == null) {
+            this.countryService = new CountryService(this);
+        }
+        return this.countryService;
     }
     
-    public CountryStateService countryStateServiceApi() {
-        return new CountryStateService(this);
+    private CountryStateService countryStateService;
+    public CountryStateService getCountryStateService() {
+        if (this.countryStateService == null) {
+            this.countryStateService = new CountryStateService(this);
+        }
+        return this.countryStateService;
     }
     
-    public CurrencyService currencyServiceApi() {
-        return new CurrencyService(this);
+    private CurrencyService currencyService;
+    public CurrencyService getCurrencyService() {
+        if (this.currencyService == null) {
+            this.currencyService = new CurrencyService(this);
+        }
+        return this.currencyService;
     }
     
-    public CustomerAddressService customerAddressServiceApi() {
-        return new CustomerAddressService(this);
+    private CustomerAddressService customerAddressService;
+    public CustomerAddressService getCustomerAddressService() {
+        if (this.customerAddressService == null) {
+            this.customerAddressService = new CustomerAddressService(this);
+        }
+        return this.customerAddressService;
     }
     
-    public CustomerCommentService customerCommentServiceApi() {
-        return new CustomerCommentService(this);
+    private CustomerCommentService customerCommentService;
+    public CustomerCommentService getCustomerCommentService() {
+        if (this.customerCommentService == null) {
+            this.customerCommentService = new CustomerCommentService(this);
+        }
+        return this.customerCommentService;
     }
     
-    public CustomerService customerServiceApi() {
-        return new CustomerService(this);
+    private CustomerService customerService;
+    public CustomerService getCustomerService() {
+        if (this.customerService == null) {
+            this.customerService = new CustomerService(this);
+        }
+        return this.customerService;
     }
     
-    public DeliveryIndicationService deliveryIndicationServiceApi() {
-        return new DeliveryIndicationService(this);
+    private DeliveryIndicationService deliveryIndicationService;
+    public DeliveryIndicationService getDeliveryIndicationService() {
+        if (this.deliveryIndicationService == null) {
+            this.deliveryIndicationService = new DeliveryIndicationService(this);
+        }
+        return this.deliveryIndicationService;
     }
     
-    public HumanUserService humanUserServiceApi() {
-        return new HumanUserService(this);
+    private HumanUserService humanUserService;
+    public HumanUserService getHumanUserService() {
+        if (this.humanUserService == null) {
+            this.humanUserService = new HumanUserService(this);
+        }
+        return this.humanUserService;
     }
     
-    public LabelDescriptionGroupService labelDescriptionGroupServiceApi() {
-        return new LabelDescriptionGroupService(this);
+    private LabelDescriptionGroupService labelDescriptionGroupService;
+    public LabelDescriptionGroupService getLabelDescriptionGroupService() {
+        if (this.labelDescriptionGroupService == null) {
+            this.labelDescriptionGroupService = new LabelDescriptionGroupService(this);
+        }
+        return this.labelDescriptionGroupService;
     }
     
-    public LabelDescriptionService labelDescriptionServiceApi() {
-        return new LabelDescriptionService(this);
+    private LabelDescriptionService labelDescriptionService;
+    public LabelDescriptionService getLabelDescriptionService() {
+        if (this.labelDescriptionService == null) {
+            this.labelDescriptionService = new LabelDescriptionService(this);
+        }
+        return this.labelDescriptionService;
     }
     
-    public LanguageService languageServiceApi() {
-        return new LanguageService(this);
+    private LanguageService languageService;
+    public LanguageService getLanguageService() {
+        if (this.languageService == null) {
+            this.languageService = new LanguageService(this);
+        }
+        return this.languageService;
     }
     
-    public LegalOrganizationFormService legalOrganizationFormServiceApi() {
-        return new LegalOrganizationFormService(this);
+    private LegalOrganizationFormService legalOrganizationFormService;
+    public LegalOrganizationFormService getLegalOrganizationFormService() {
+        if (this.legalOrganizationFormService == null) {
+            this.legalOrganizationFormService = new LegalOrganizationFormService(this);
+        }
+        return this.legalOrganizationFormService;
     }
     
-    public ManualTaskService manualTaskServiceApi() {
-        return new ManualTaskService(this);
+    private ManualTaskService manualTaskService;
+    public ManualTaskService getManualTaskService() {
+        if (this.manualTaskService == null) {
+            this.manualTaskService = new ManualTaskService(this);
+        }
+        return this.manualTaskService;
     }
     
-    public PaymentConnectorConfigurationService paymentConnectorConfigurationServiceApi() {
-        return new PaymentConnectorConfigurationService(this);
+    private PaymentConnectorConfigurationService paymentConnectorConfigurationService;
+    public PaymentConnectorConfigurationService getPaymentConnectorConfigurationService() {
+        if (this.paymentConnectorConfigurationService == null) {
+            this.paymentConnectorConfigurationService = new PaymentConnectorConfigurationService(this);
+        }
+        return this.paymentConnectorConfigurationService;
     }
     
-    public PaymentConnectorService paymentConnectorServiceApi() {
-        return new PaymentConnectorService(this);
+    private PaymentConnectorService paymentConnectorService;
+    public PaymentConnectorService getPaymentConnectorService() {
+        if (this.paymentConnectorService == null) {
+            this.paymentConnectorService = new PaymentConnectorService(this);
+        }
+        return this.paymentConnectorService;
     }
     
-    public PaymentMethodBrandService paymentMethodBrandServiceApi() {
-        return new PaymentMethodBrandService(this);
+    private PaymentMethodBrandService paymentMethodBrandService;
+    public PaymentMethodBrandService getPaymentMethodBrandService() {
+        if (this.paymentMethodBrandService == null) {
+            this.paymentMethodBrandService = new PaymentMethodBrandService(this);
+        }
+        return this.paymentMethodBrandService;
     }
     
-    public PaymentMethodConfigurationService paymentMethodConfigurationServiceApi() {
-        return new PaymentMethodConfigurationService(this);
+    private PaymentMethodConfigurationService paymentMethodConfigurationService;
+    public PaymentMethodConfigurationService getPaymentMethodConfigurationService() {
+        if (this.paymentMethodConfigurationService == null) {
+            this.paymentMethodConfigurationService = new PaymentMethodConfigurationService(this);
+        }
+        return this.paymentMethodConfigurationService;
     }
     
-    public PaymentMethodService paymentMethodServiceApi() {
-        return new PaymentMethodService(this);
+    private PaymentMethodService paymentMethodService;
+    public PaymentMethodService getPaymentMethodService() {
+        if (this.paymentMethodService == null) {
+            this.paymentMethodService = new PaymentMethodService(this);
+        }
+        return this.paymentMethodService;
     }
     
-    public PaymentProcessorConfigurationService paymentProcessorConfigurationServiceApi() {
-        return new PaymentProcessorConfigurationService(this);
+    private PaymentProcessorConfigurationService paymentProcessorConfigurationService;
+    public PaymentProcessorConfigurationService getPaymentProcessorConfigurationService() {
+        if (this.paymentProcessorConfigurationService == null) {
+            this.paymentProcessorConfigurationService = new PaymentProcessorConfigurationService(this);
+        }
+        return this.paymentProcessorConfigurationService;
     }
     
-    public PaymentProcessorService paymentProcessorServiceApi() {
-        return new PaymentProcessorService(this);
+    private PaymentProcessorService paymentProcessorService;
+    public PaymentProcessorService getPaymentProcessorService() {
+        if (this.paymentProcessorService == null) {
+            this.paymentProcessorService = new PaymentProcessorService(this);
+        }
+        return this.paymentProcessorService;
     }
     
-    public PermissionService permissionServiceApi() {
-        return new PermissionService(this);
+    private PermissionService permissionService;
+    public PermissionService getPermissionService() {
+        if (this.permissionService == null) {
+            this.permissionService = new PermissionService(this);
+        }
+        return this.permissionService;
     }
     
-    public RefundCommentService refundCommentServiceApi() {
-        return new RefundCommentService(this);
+    private RefundCommentService refundCommentService;
+    public RefundCommentService getRefundCommentService() {
+        if (this.refundCommentService == null) {
+            this.refundCommentService = new RefundCommentService(this);
+        }
+        return this.refundCommentService;
     }
     
-    public RefundService refundServiceApi() {
-        return new RefundService(this);
+    private RefundService refundService;
+    public RefundService getRefundService() {
+        if (this.refundService == null) {
+            this.refundService = new RefundService(this);
+        }
+        return this.refundService;
     }
     
-    public SpaceService spaceServiceApi() {
-        return new SpaceService(this);
+    private SpaceService spaceService;
+    public SpaceService getSpaceService() {
+        if (this.spaceService == null) {
+            this.spaceService = new SpaceService(this);
+        }
+        return this.spaceService;
     }
     
-    public StaticValueService staticValueServiceApi() {
-        return new StaticValueService(this);
+    private StaticValueService staticValueService;
+    public StaticValueService getStaticValueService() {
+        if (this.staticValueService == null) {
+            this.staticValueService = new StaticValueService(this);
+        }
+        return this.staticValueService;
     }
     
-    public TransactionCommentService transactionCommentServiceApi() {
-        return new TransactionCommentService(this);
+    private TransactionCommentService transactionCommentService;
+    public TransactionCommentService getTransactionCommentService() {
+        if (this.transactionCommentService == null) {
+            this.transactionCommentService = new TransactionCommentService(this);
+        }
+        return this.transactionCommentService;
     }
     
-    public TransactionCompletionService transactionCompletionServiceApi() {
-        return new TransactionCompletionService(this);
+    private TransactionCompletionService transactionCompletionService;
+    public TransactionCompletionService getTransactionCompletionService() {
+        if (this.transactionCompletionService == null) {
+            this.transactionCompletionService = new TransactionCompletionService(this);
+        }
+        return this.transactionCompletionService;
     }
     
-    public TransactionIframeService transactionIframeServiceApi() {
-        return new TransactionIframeService(this);
+    private TransactionIframeService transactionIframeService;
+    public TransactionIframeService getTransactionIframeService() {
+        if (this.transactionIframeService == null) {
+            this.transactionIframeService = new TransactionIframeService(this);
+        }
+        return this.transactionIframeService;
     }
     
-    public TransactionInvoiceCommentService transactionInvoiceCommentServiceApi() {
-        return new TransactionInvoiceCommentService(this);
+    private TransactionInvoiceCommentService transactionInvoiceCommentService;
+    public TransactionInvoiceCommentService getTransactionInvoiceCommentService() {
+        if (this.transactionInvoiceCommentService == null) {
+            this.transactionInvoiceCommentService = new TransactionInvoiceCommentService(this);
+        }
+        return this.transactionInvoiceCommentService;
     }
     
-    public TransactionInvoiceService transactionInvoiceServiceApi() {
-        return new TransactionInvoiceService(this);
+    private TransactionInvoiceService transactionInvoiceService;
+    public TransactionInvoiceService getTransactionInvoiceService() {
+        if (this.transactionInvoiceService == null) {
+            this.transactionInvoiceService = new TransactionInvoiceService(this);
+        }
+        return this.transactionInvoiceService;
     }
     
-    public TransactionLightboxService transactionLightboxServiceApi() {
-        return new TransactionLightboxService(this);
+    private TransactionLightboxService transactionLightboxService;
+    public TransactionLightboxService getTransactionLightboxService() {
+        if (this.transactionLightboxService == null) {
+            this.transactionLightboxService = new TransactionLightboxService(this);
+        }
+        return this.transactionLightboxService;
     }
     
-    public TransactionMobileSdkService transactionMobileSdkServiceApi() {
-        return new TransactionMobileSdkService(this);
+    private TransactionMobileSdkService transactionMobileSdkService;
+    public TransactionMobileSdkService getTransactionMobileSdkService() {
+        if (this.transactionMobileSdkService == null) {
+            this.transactionMobileSdkService = new TransactionMobileSdkService(this);
+        }
+        return this.transactionMobileSdkService;
     }
     
-    public TransactionPaymentPageService transactionPaymentPageServiceApi() {
-        return new TransactionPaymentPageService(this);
+    private TransactionPaymentPageService transactionPaymentPageService;
+    public TransactionPaymentPageService getTransactionPaymentPageService() {
+        if (this.transactionPaymentPageService == null) {
+            this.transactionPaymentPageService = new TransactionPaymentPageService(this);
+        }
+        return this.transactionPaymentPageService;
     }
     
-    public TransactionService transactionServiceApi() {
-        return new TransactionService(this);
+    private TransactionService transactionService;
+    public TransactionService getTransactionService() {
+        if (this.transactionService == null) {
+            this.transactionService = new TransactionService(this);
+        }
+        return this.transactionService;
     }
     
-    public TransactionVoidService transactionVoidServiceApi() {
-        return new TransactionVoidService(this);
+    private TransactionVoidService transactionVoidService;
+    public TransactionVoidService getTransactionVoidService() {
+        if (this.transactionVoidService == null) {
+            this.transactionVoidService = new TransactionVoidService(this);
+        }
+        return this.transactionVoidService;
     }
     
-    public UserAccountRoleService userAccountRoleServiceApi() {
-        return new UserAccountRoleService(this);
+    private UserAccountRoleService userAccountRoleService;
+    public UserAccountRoleService getUserAccountRoleService() {
+        if (this.userAccountRoleService == null) {
+            this.userAccountRoleService = new UserAccountRoleService(this);
+        }
+        return this.userAccountRoleService;
     }
     
-    public UserSpaceRoleService userSpaceRoleServiceApi() {
-        return new UserSpaceRoleService(this);
+    private UserSpaceRoleService userSpaceRoleService;
+    public UserSpaceRoleService getUserSpaceRoleService() {
+        if (this.userSpaceRoleService == null) {
+            this.userSpaceRoleService = new UserSpaceRoleService(this);
+        }
+        return this.userSpaceRoleService;
     }
     
-    public WebhookListenerService webhookListenerServiceApi() {
-        return new WebhookListenerService(this);
+    private WebhookListenerService webhookListenerService;
+    public WebhookListenerService getWebhookListenerService() {
+        if (this.webhookListenerService == null) {
+            this.webhookListenerService = new WebhookListenerService(this);
+        }
+        return this.webhookListenerService;
     }
     
-    public WebhookUrlService webhookUrlServiceApi() {
-        return new WebhookUrlService(this);
+    private WebhookUrlService webhookUrlService;
+    public WebhookUrlService getWebhookUrlService() {
+        if (this.webhookUrlService == null) {
+            this.webhookUrlService = new WebhookUrlService(this);
+        }
+        return this.webhookUrlService;
     }
     
 }
