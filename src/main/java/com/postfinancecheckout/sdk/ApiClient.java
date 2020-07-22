@@ -332,6 +332,14 @@ public class ApiClient {
         return this.refundService;
     }
     
+    private ShopifyTransactionService shopifyTransactionService;
+    public ShopifyTransactionService getShopifyTransactionService() {
+        if (this.shopifyTransactionService == null) {
+            this.shopifyTransactionService = new ShopifyTransactionService(this);
+        }
+        return this.shopifyTransactionService;
+    }
+    
     private SpaceService spaceService;
     public SpaceService getSpaceService() {
         if (this.spaceService == null) {
