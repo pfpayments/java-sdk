@@ -218,6 +218,22 @@ public class ApiClient {
         return this.deliveryIndicationService;
     }
     
+    private DocumentTemplateService documentTemplateService;
+    public DocumentTemplateService getDocumentTemplateService() {
+        if (this.documentTemplateService == null) {
+            this.documentTemplateService = new DocumentTemplateService(this);
+        }
+        return this.documentTemplateService;
+    }
+    
+    private DocumentTemplateTypeService documentTemplateTypeService;
+    public DocumentTemplateTypeService getDocumentTemplateTypeService() {
+        if (this.documentTemplateTypeService == null) {
+            this.documentTemplateTypeService = new DocumentTemplateTypeService(this);
+        }
+        return this.documentTemplateTypeService;
+    }
+    
     private HumanUserService humanUserService;
     public HumanUserService getHumanUserService() {
         if (this.humanUserService == null) {
@@ -280,6 +296,14 @@ public class ApiClient {
             this.paymentConnectorService = new PaymentConnectorService(this);
         }
         return this.paymentConnectorService;
+    }
+    
+    private PaymentLinkService paymentLinkService;
+    public PaymentLinkService getPaymentLinkService() {
+        if (this.paymentLinkService == null) {
+            this.paymentLinkService = new PaymentLinkService(this);
+        }
+        return this.paymentLinkService;
     }
     
     private PaymentMethodBrandService paymentMethodBrandService;
@@ -368,6 +392,22 @@ public class ApiClient {
             this.staticValueService = new StaticValueService(this);
         }
         return this.staticValueService;
+    }
+    
+    private TokenService tokenService;
+    public TokenService getTokenService() {
+        if (this.tokenService == null) {
+            this.tokenService = new TokenService(this);
+        }
+        return this.tokenService;
+    }
+    
+    private TokenVersionService tokenVersionService;
+    public TokenVersionService getTokenVersionService() {
+        if (this.tokenVersionService == null) {
+            this.tokenVersionService = new TokenVersionService(this);
+        }
+        return this.tokenVersionService;
     }
     
     private TransactionCommentService transactionCommentService;

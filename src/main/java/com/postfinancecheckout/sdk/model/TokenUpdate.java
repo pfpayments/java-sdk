@@ -24,10 +24,9 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.postfinancecheckout.sdk.model.AbstractSpaceUpdate;
+import com.postfinancecheckout.sdk.model.AbstractTokenUpdate;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
 import java.util.*;
 import java.time.OffsetDateTime;
 
@@ -36,7 +35,7 @@ import java.time.OffsetDateTime;
  */
 @ApiModel(description = "")
 
-public class SpaceUpdate extends AbstractSpaceUpdate {
+public class TokenUpdate extends AbstractTokenUpdate {
   
   @JsonProperty("id")
   protected Long id = null;
@@ -47,7 +46,7 @@ public class SpaceUpdate extends AbstractSpaceUpdate {
 
   
   
-  public SpaceUpdate id(Long id) {
+  public TokenUpdate id(Long id) {
     this.id = id;
     return this;
   }
@@ -66,7 +65,7 @@ public class SpaceUpdate extends AbstractSpaceUpdate {
   }
 
   
-  public SpaceUpdate version(Long version) {
+  public TokenUpdate version(Long version) {
     this.version = version;
     return this;
   }
@@ -94,39 +93,35 @@ public class SpaceUpdate extends AbstractSpaceUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SpaceUpdate spaceUpdate = (SpaceUpdate) o;
-    return Objects.equals(this.lastModifiedDate, spaceUpdate.lastModifiedDate) &&
-        Objects.equals(this.name, spaceUpdate.name) &&
-        Objects.equals(this.postalAddress, spaceUpdate.postalAddress) &&
-        Objects.equals(this.primaryCurrency, spaceUpdate.primaryCurrency) &&
-        Objects.equals(this.requestLimit, spaceUpdate.requestLimit) &&
-        Objects.equals(this.state, spaceUpdate.state) &&
-        Objects.equals(this.technicalContactAddresses, spaceUpdate.technicalContactAddresses) &&
-        Objects.equals(this.timeZone, spaceUpdate.timeZone) &&
-        Objects.equals(this.id, spaceUpdate.id) &&
-        Objects.equals(this.version, spaceUpdate.version) &&
+    TokenUpdate tokenUpdate = (TokenUpdate) o;
+    return Objects.equals(this.customerEmailAddress, tokenUpdate.customerEmailAddress) &&
+        Objects.equals(this.customerId, tokenUpdate.customerId) &&
+        Objects.equals(this.enabledForOneClickPayment, tokenUpdate.enabledForOneClickPayment) &&
+        Objects.equals(this.language, tokenUpdate.language) &&
+        Objects.equals(this.timeZone, tokenUpdate.timeZone) &&
+        Objects.equals(this.tokenReference, tokenUpdate.tokenReference) &&
+        Objects.equals(this.id, tokenUpdate.id) &&
+        Objects.equals(this.version, tokenUpdate.version) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastModifiedDate, name, postalAddress, primaryCurrency, requestLimit, state, technicalContactAddresses, timeZone, id, version, super.hashCode());
+    return Objects.hash(customerEmailAddress, customerId, enabledForOneClickPayment, language, timeZone, tokenReference, id, version, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SpaceUpdate {\n");
+    sb.append("class TokenUpdate {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    postalAddress: ").append(toIndentedString(postalAddress)).append("\n");
-    sb.append("    primaryCurrency: ").append(toIndentedString(primaryCurrency)).append("\n");
-    sb.append("    requestLimit: ").append(toIndentedString(requestLimit)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    technicalContactAddresses: ").append(toIndentedString(technicalContactAddresses)).append("\n");
+    sb.append("    customerEmailAddress: ").append(toIndentedString(customerEmailAddress)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    enabledForOneClickPayment: ").append(toIndentedString(enabledForOneClickPayment)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    timeZone: ").append(toIndentedString(timeZone)).append("\n");
+    sb.append("    tokenReference: ").append(toIndentedString(tokenReference)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
