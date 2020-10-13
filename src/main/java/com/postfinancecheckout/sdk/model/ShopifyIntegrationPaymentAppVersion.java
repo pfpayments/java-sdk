@@ -31,19 +31,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * 
  */
-public enum PaymentTerminalLocationState {
+public enum ShopifyIntegrationPaymentAppVersion {
   
-  CREATE("CREATE"),
-  
-  ACTIVE("ACTIVE"),
-  
-  DELETING("DELETING"),
-  
-  DELETED("DELETED");
+  API_2019_07("API_2019_07");
 
   private String value;
 
-  PaymentTerminalLocationState(String value) {
+  ShopifyIntegrationPaymentAppVersion(String value) {
     this.value = value;
   }
 
@@ -58,8 +52,8 @@ public enum PaymentTerminalLocationState {
   }
 
   @JsonCreator
-  public static PaymentTerminalLocationState fromValue(String text) {
-    for (PaymentTerminalLocationState b : PaymentTerminalLocationState.values()) {
+  public static ShopifyIntegrationPaymentAppVersion fromValue(String text) {
+    for (ShopifyIntegrationPaymentAppVersion b : ShopifyIntegrationPaymentAppVersion.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

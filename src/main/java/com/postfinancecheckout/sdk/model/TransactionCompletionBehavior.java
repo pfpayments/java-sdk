@@ -1,7 +1,7 @@
 /**
-*  SDK
+* PostFinance Checkout SDK
 *
-* This library allows to interact with the  payment service.
+* This library allows to interact with the PostFinance Checkout payment service.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,17 +31,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * 
  */
-public enum ShopifyIntegrationAppVersion {
+public enum TransactionCompletionBehavior {
   
-  BASIC("BASIC"),
+  COMPLETE_IMMEDIATELY("COMPLETE_IMMEDIATELY"),
   
-  SUBSCRIPTION("SUBSCRIPTION"),
+  COMPLETE_DEFERRED("COMPLETE_DEFERRED"),
   
-  API_2019_07("API_2019_07");
+  USE_CONFIGURATION("USE_CONFIGURATION");
 
   private String value;
 
-  ShopifyIntegrationAppVersion(String value) {
+  TransactionCompletionBehavior(String value) {
     this.value = value;
   }
 
@@ -56,8 +56,8 @@ public enum ShopifyIntegrationAppVersion {
   }
 
   @JsonCreator
-  public static ShopifyIntegrationAppVersion fromValue(String text) {
-    for (ShopifyIntegrationAppVersion b : ShopifyIntegrationAppVersion.values()) {
+  public static TransactionCompletionBehavior fromValue(String text) {
+    for (TransactionCompletionBehavior b : TransactionCompletionBehavior.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

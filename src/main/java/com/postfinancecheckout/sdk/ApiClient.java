@@ -23,14 +23,15 @@ public class ApiClient {
     private final ObjectMapper objectMapper;
     private final long userId;
     private final String applicationKey;
+    public final static int READ_TIMEOUT = 20 * 1000;
 
     // A reasonable default object mapper. Client can pass in a chosen ObjectMapper anyway, this is just for reasonable defaults.
     private static ObjectMapper createDefaultObjectMapper() {
         ObjectMapper objectMapper = new ObjectMapper()
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .setDateFormat(new RFC3339DateFormat());
-		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            .setDateFormat(new RFC3339DateFormat())
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.registerModule(new JavaTimeModule());
         return objectMapper;
     }
