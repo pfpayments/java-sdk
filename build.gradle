@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'com.postfinancecheckout'
-version = '2.2.11'
+version = '2.2.12'
 
 buildscript {
     repositories {
