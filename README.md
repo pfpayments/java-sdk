@@ -23,7 +23,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.postfinancecheckout</groupId>
     <artifactId>postfinancecheckout-java-sdk</artifactId>
-    <version>2.2.28</version>
+    <version>3.0.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -33,7 +33,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.postfinancecheckout:postfinancecheckout-java-sdk:2.2.28"
+compile "com.postfinancecheckout:postfinancecheckout-java-sdk:3.0.0"
 ```
 
 ### Others
@@ -46,7 +46,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/postfinancecheckout-java-sdk-2.2.28.jar`
+* `target/postfinancecheckout-java-sdk-3.0.0.jar`
 * `target/lib/*.jar`
 
 ## Usage
