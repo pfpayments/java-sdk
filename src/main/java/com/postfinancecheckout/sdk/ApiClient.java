@@ -397,6 +397,22 @@ public class ApiClient {
         return this.paymentProcessorService;
     }
     
+    private PaymentTerminalService paymentTerminalService;
+    public PaymentTerminalService getPaymentTerminalService() {
+        if (this.paymentTerminalService == null) {
+            this.paymentTerminalService = new PaymentTerminalService(this);
+        }
+        return this.paymentTerminalService;
+    }
+    
+    private PaymentTerminalTillService paymentTerminalTillService;
+    public PaymentTerminalTillService getPaymentTerminalTillService() {
+        if (this.paymentTerminalTillService == null) {
+            this.paymentTerminalTillService = new PaymentTerminalTillService(this);
+        }
+        return this.paymentTerminalTillService;
+    }
+    
     private PermissionService permissionService;
     public PermissionService getPermissionService() {
         if (this.permissionService == null) {
@@ -435,6 +451,54 @@ public class ApiClient {
             this.refundService = new RefundService(this);
         }
         return this.refundService;
+    }
+    
+    private ShopifyRecurringOrderService shopifyRecurringOrderService;
+    public ShopifyRecurringOrderService getShopifyRecurringOrderService() {
+        if (this.shopifyRecurringOrderService == null) {
+            this.shopifyRecurringOrderService = new ShopifyRecurringOrderService(this);
+        }
+        return this.shopifyRecurringOrderService;
+    }
+    
+    private ShopifySubscriberService shopifySubscriberService;
+    public ShopifySubscriberService getShopifySubscriberService() {
+        if (this.shopifySubscriberService == null) {
+            this.shopifySubscriberService = new ShopifySubscriberService(this);
+        }
+        return this.shopifySubscriberService;
+    }
+    
+    private ShopifySubscriptionProductService shopifySubscriptionProductService;
+    public ShopifySubscriptionProductService getShopifySubscriptionProductService() {
+        if (this.shopifySubscriptionProductService == null) {
+            this.shopifySubscriptionProductService = new ShopifySubscriptionProductService(this);
+        }
+        return this.shopifySubscriptionProductService;
+    }
+    
+    private ShopifySubscriptionService shopifySubscriptionService;
+    public ShopifySubscriptionService getShopifySubscriptionService() {
+        if (this.shopifySubscriptionService == null) {
+            this.shopifySubscriptionService = new ShopifySubscriptionService(this);
+        }
+        return this.shopifySubscriptionService;
+    }
+    
+    private ShopifySubscriptionSuspensionService shopifySubscriptionSuspensionService;
+    public ShopifySubscriptionSuspensionService getShopifySubscriptionSuspensionService() {
+        if (this.shopifySubscriptionSuspensionService == null) {
+            this.shopifySubscriptionSuspensionService = new ShopifySubscriptionSuspensionService(this);
+        }
+        return this.shopifySubscriptionSuspensionService;
+    }
+    
+    private ShopifySubscriptionVersionService shopifySubscriptionVersionService;
+    public ShopifySubscriptionVersionService getShopifySubscriptionVersionService() {
+        if (this.shopifySubscriptionVersionService == null) {
+            this.shopifySubscriptionVersionService = new ShopifySubscriptionVersionService(this);
+        }
+        return this.shopifySubscriptionVersionService;
     }
     
     private ShopifyTransactionService shopifyTransactionService;
@@ -547,6 +611,14 @@ public class ApiClient {
             this.transactionService = new TransactionService(this);
         }
         return this.transactionService;
+    }
+    
+    private TransactionTerminalService transactionTerminalService;
+    public TransactionTerminalService getTransactionTerminalService() {
+        if (this.transactionTerminalService == null) {
+            this.transactionTerminalService = new TransactionTerminalService(this);
+        }
+        return this.transactionTerminalService;
     }
     
     private TransactionVoidService transactionVoidService;
