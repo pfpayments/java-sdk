@@ -6,6 +6,6 @@ then
 
 else
 	echo "[INFO] Running before_deploy script. Decrypting 'codesigning.asc.enc'..."
-	openssl aes-256-cbc -K $encrypted_85ed150a0e11_key -iv $encrypted_85ed150a0e11_iv -in codesigning.asc.enc -out codesigning.asc -d && \
+    openssl aes-256-cbc -K $encrypted_81c98acad902_key -iv $encrypted_81c98acad902_iv -in codesigning.asc.enc -out codesigning.asc -d && \
 	gpg --fast-import codesigning.asc;
 fi
