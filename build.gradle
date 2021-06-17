@@ -1,8 +1,8 @@
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
-group = 'ch.postfinance.checkout'
-version = '4.0.5'
+group = 'ch.postfinance'
+version = '4.0.0'
 
 buildscript {
     repositories {

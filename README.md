@@ -21,9 +21,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-    <groupId>ch.postfinance.checkout</groupId>
+    <groupId>ch.postfinance</groupId>
     <artifactId>postfinancecheckout-java-sdk</artifactId>
-    <version>4.0.5</version>
+    <version>4.0.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -33,7 +33,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "ch.postfinance.checkout:postfinancecheckout-java-sdk:4.0.5"
+compile "ch.postfinance:postfinancecheckout-java-sdk:4.0.0"
 ```
 
 ### Others
@@ -46,7 +46,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/postfinancecheckout-java-sdk-4.0.5.jar`
+* `target/postfinancecheckout-java-sdk-4.0.0.jar`
 * `target/lib/*.jar`
 
 ## Usage
@@ -56,10 +56,10 @@ account dashboard](https://checkout.postfinance.ch/account/select). Set `space_i
 ### Configuring a Service
 
 ```java
-package ch.postfinance.checkout.sdk.example;
+package ch.postfinance.sdk.example;
 
-import ch.postfinance.checkout.sdk.ApiClient;
-import ch.postfinance.checkout.sdk.service.TransactionService;
+import ch.postfinance.sdk.ApiClient;
+import ch.postfinance.sdk.service.TransactionService;
 
 public class Example {
 
@@ -81,11 +81,11 @@ public class Example {
 To get started with sending transactions, please review the example below:
 
 ```java
-package ch.postfinance.checkout.sdk.test;
+package ch.postfinance.sdk.test;
 
-import ch.postfinance.checkout.sdk.ApiClient;
-import ch.postfinance.checkout.sdk.model.*;
-import ch.postfinance.checkout.sdk.service.*;
+import ch.postfinance.sdk.ApiClient;
+import ch.postfinance.sdk.model.*;
+import ch.postfinance.sdk.service.*;
 
 import org.junit.Assert;
 import org.junit.Before;
