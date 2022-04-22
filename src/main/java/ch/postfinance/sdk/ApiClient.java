@@ -293,6 +293,14 @@ public class ApiClient {
         return this.internalTransferBankTransactionService;
     }
     
+    private InvoiceReconciliationRecordService invoiceReconciliationRecordService;
+    public InvoiceReconciliationRecordService getInvoiceReconciliationRecordService() {
+        if (this.invoiceReconciliationRecordService == null) {
+            this.invoiceReconciliationRecordService = new InvoiceReconciliationRecordService(this);
+        }
+        return this.invoiceReconciliationRecordService;
+    }
+    
     private LabelDescriptionGroupService labelDescriptionGroupService;
     public LabelDescriptionGroupService getLabelDescriptionGroupService() {
         if (this.labelDescriptionGroupService == null) {
@@ -587,6 +595,14 @@ public class ApiClient {
             this.transactionLightboxService = new TransactionLightboxService(this);
         }
         return this.transactionLightboxService;
+    }
+    
+    private TransactionLineItemVersionService transactionLineItemVersionService;
+    public TransactionLineItemVersionService getTransactionLineItemVersionService() {
+        if (this.transactionLineItemVersionService == null) {
+            this.transactionLineItemVersionService = new TransactionLineItemVersionService(this);
+        }
+        return this.transactionLineItemVersionService;
     }
     
     private TransactionMobileSdkService transactionMobileSdkService;

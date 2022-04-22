@@ -334,6 +334,10 @@ public class Transaction {
   protected String windowWidth = null;
 
   
+  @JsonProperty("yearsToKeep")
+  protected Integer yearsToKeep = null;
+
+  
   
    /**
    * 
@@ -1025,6 +1029,16 @@ public class Transaction {
   }
 
   
+   /**
+   * The number of years the transaction will be stored after it has been authorized.
+   * @return yearsToKeep
+  **/
+  @ApiModelProperty(value = "The number of years the transaction will be stored after it has been authorized.")
+  public Integer getYearsToKeep() {
+    return yearsToKeep;
+  }
+
+  
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -1103,12 +1117,13 @@ public class Transaction {
         Objects.equals(this.userInterfaceType, transaction.userInterfaceType) &&
         Objects.equals(this.version, transaction.version) &&
         Objects.equals(this.windowHeight, transaction.windowHeight) &&
-        Objects.equals(this.windowWidth, transaction.windowWidth);
+        Objects.equals(this.windowWidth, transaction.windowWidth) &&
+        Objects.equals(this.yearsToKeep, transaction.yearsToKeep);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(acceptHeader, acceptLanguageHeader, allowedPaymentMethodBrands, allowedPaymentMethodConfigurations, authorizationAmount, authorizationEnvironment, authorizationSalesChannel, authorizationTimeoutOn, authorizedOn, autoConfirmationEnabled, billingAddress, chargeRetryEnabled, completedAmount, completedOn, completionBehavior, completionTimeoutOn, confirmedBy, confirmedOn, createdBy, createdOn, currency, customerEmailAddress, customerId, customersPresence, deliveryDecisionMadeOn, deviceSessionIdentifier, emailsDisabled, endOfLife, environment, environmentSelectionStrategy, failedOn, failedUrl, failureReason, group, id, internetProtocolAddress, internetProtocolAddressCountry, invoiceMerchantReference, javaEnabled, language, lineItems, linkedSpaceId, merchantReference, metaData, parent, paymentConnectorConfiguration, plannedPurgeDate, processingOn, refundedAmount, screenColorDepth, screenHeight, screenWidth, shippingAddress, shippingMethod, spaceViewId, state, successUrl, terminal, timeZone, token, tokenizationMode, totalAppliedFees, totalSettledAmount, userAgentHeader, userFailureMessage, userInterfaceType, version, windowHeight, windowWidth);
+    return Objects.hash(acceptHeader, acceptLanguageHeader, allowedPaymentMethodBrands, allowedPaymentMethodConfigurations, authorizationAmount, authorizationEnvironment, authorizationSalesChannel, authorizationTimeoutOn, authorizedOn, autoConfirmationEnabled, billingAddress, chargeRetryEnabled, completedAmount, completedOn, completionBehavior, completionTimeoutOn, confirmedBy, confirmedOn, createdBy, createdOn, currency, customerEmailAddress, customerId, customersPresence, deliveryDecisionMadeOn, deviceSessionIdentifier, emailsDisabled, endOfLife, environment, environmentSelectionStrategy, failedOn, failedUrl, failureReason, group, id, internetProtocolAddress, internetProtocolAddressCountry, invoiceMerchantReference, javaEnabled, language, lineItems, linkedSpaceId, merchantReference, metaData, parent, paymentConnectorConfiguration, plannedPurgeDate, processingOn, refundedAmount, screenColorDepth, screenHeight, screenWidth, shippingAddress, shippingMethod, spaceViewId, state, successUrl, terminal, timeZone, token, tokenizationMode, totalAppliedFees, totalSettledAmount, userAgentHeader, userFailureMessage, userInterfaceType, version, windowHeight, windowWidth, yearsToKeep);
   }
 
 
@@ -1186,6 +1201,7 @@ public class Transaction {
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    windowHeight: ").append(toIndentedString(windowHeight)).append("\n");
     sb.append("    windowWidth: ").append(toIndentedString(windowWidth)).append("\n");
+    sb.append("    yearsToKeep: ").append(toIndentedString(yearsToKeep)).append("\n");
     sb.append("}");
     return sb.toString();
   }

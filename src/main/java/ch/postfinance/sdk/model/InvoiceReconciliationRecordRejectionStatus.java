@@ -31,21 +31,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * 
  */
-public enum LineItemType {
+public enum InvoiceReconciliationRecordRejectionStatus {
   
-  SHIPPING("SHIPPING"),
+  NONE("NONE"),
   
-  DISCOUNT("DISCOUNT"),
+  REJECTED("REJECTED"),
   
-  FEE("FEE"),
-  
-  PRODUCT("PRODUCT"),
-  
-  TIP("TIP");
+  BULK_REJECTED("BULK_REJECTED");
 
   private String value;
 
-  LineItemType(String value) {
+  InvoiceReconciliationRecordRejectionStatus(String value) {
     this.value = value;
   }
 
@@ -60,8 +56,8 @@ public enum LineItemType {
   }
 
   @JsonCreator
-  public static LineItemType fromValue(String text) {
-    for (LineItemType b : LineItemType.values()) {
+  public static InvoiceReconciliationRecordRejectionStatus fromValue(String text) {
+    for (InvoiceReconciliationRecordRejectionStatus b : InvoiceReconciliationRecordRejectionStatus.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

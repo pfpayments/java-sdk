@@ -2,12 +2,13 @@ package ch.postfinance.sdk.service;
 
 import ch.postfinance.sdk.ApiClient;
 
-import ch.postfinance.sdk.model.ChargeFlow;
+import java.math.BigDecimal;
 import ch.postfinance.sdk.model.ClientError;
 import ch.postfinance.sdk.model.EntityQuery;
 import ch.postfinance.sdk.model.EntityQueryFilter;
+import ch.postfinance.sdk.model.InvoiceReconciliationRecord;
 import ch.postfinance.sdk.model.ServerError;
-import ch.postfinance.sdk.model.Transaction;
+import ch.postfinance.sdk.model.TransactionInvoice;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.api.client.http.*;
@@ -22,10 +23,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class ChargeFlowService {
+public class InvoiceReconciliationRecordService {
     private ApiClient apiClient;
 
-    public ChargeFlowService(ApiClient apiClient) {
+    public InvoiceReconciliationRecordService(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -35,274 +36,6 @@ public class ChargeFlowService {
 
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
-    }
-
-  /**
-    * applyFlow
-    * 
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
-    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
-    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
-    * @param spaceId 
-    * @param id The transaction id of the transaction which should be process asynchronously.
-    * @return Transaction
-    * @throws IOException if an error occurs while attempting to invoke the API
-    * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--apply-flow">applyFlow Documentation</a>
-
-    **/
-    public Transaction applyFlow(Long spaceId, Long id) throws IOException {
-        HttpResponse response = applyFlowForHttpResponse(spaceId, id);
-        String returnType = "Transaction";
-        if(returnType.equals("String")){
-          return (Transaction) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<Transaction>() {};
-        return (Transaction)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * applyFlow
-    * 
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
-    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
-    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
-    * @param spaceId 
-    * @param id The transaction id of the transaction which should be process asynchronously.
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return Transaction
-    * @throws IOException if an error occurs while attempting to invoke the API
-    * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--apply-flow">applyFlow Documentation</a>
-
-    **/
-    public Transaction applyFlow(Long spaceId, Long id, Map<String, Object> params) throws IOException {
-        HttpResponse response = applyFlowForHttpResponse(spaceId, id, params);
-        String returnType = "Transaction";
-        if(returnType.equals("String")){
-            return (Transaction) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<Transaction>() {};
-        return (Transaction)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse applyFlowForHttpResponse(Long spaceId, Long id) throws IOException {
-        // verify the required parameter 'spaceId' is set
-        if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling applyFlow");
-        }// verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling applyFlow");
-        }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/applyFlow");
-        if (spaceId != null) {
-            String key = "spaceId";
-            Object value = spaceId;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }        if (id != null) {
-            String key = "id";
-            Object value = id;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }
-
-        String url = uriBuilder.build().toString();
-        GenericUrl genericUrl = new GenericUrl(url);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
-        
-        
-        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
-        return httpRequest.execute();
-    }
-
-    public HttpResponse applyFlowForHttpResponse(Long spaceId, Long id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'spaceId' is set
-        if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling applyFlow");
-        }// verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling applyFlow");
-        }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/applyFlow");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-        // Add the required query param 'spaceId' to the map of query params
-        allParams.put("spaceId", spaceId);
-        // Add the required query param 'id' to the map of query params
-        allParams.put("id", id);
-
-        for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
-            String key = entryMap.getKey();
-            Object value = entryMap.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String url = uriBuilder.build().toString();
-        GenericUrl genericUrl = new GenericUrl(url);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
-        
-        
-        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
-        return httpRequest.execute();
-    }
-
-  /**
-    * Cancel Charge Flow
-    * This operation cancels the charge flow that is linked with the transaction indicated by the given ID.
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
-    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
-    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
-    * @param spaceId 
-    * @param id The ID of the transaction for which the charge flow should be canceled.
-    * @return Transaction
-    * @throws IOException if an error occurs while attempting to invoke the API
-    * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--cancel-charge-flow">Cancel Charge Flow Documentation</a>
-
-    **/
-    public Transaction cancelChargeFlow(Long spaceId, Long id) throws IOException {
-        HttpResponse response = cancelChargeFlowForHttpResponse(spaceId, id);
-        String returnType = "Transaction";
-        if(returnType.equals("String")){
-          return (Transaction) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<Transaction>() {};
-        return (Transaction)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-  /**
-    * Cancel Charge Flow
-    * This operation cancels the charge flow that is linked with the transaction indicated by the given ID.
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
-    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
-    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
-    * @param spaceId 
-    * @param id The ID of the transaction for which the charge flow should be canceled.
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return Transaction
-    * @throws IOException if an error occurs while attempting to invoke the API
-    * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--cancel-charge-flow">Cancel Charge Flow Documentation</a>
-
-    **/
-    public Transaction cancelChargeFlow(Long spaceId, Long id, Map<String, Object> params) throws IOException {
-        HttpResponse response = cancelChargeFlowForHttpResponse(spaceId, id, params);
-        String returnType = "Transaction";
-        if(returnType.equals("String")){
-            return (Transaction) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<Transaction>() {};
-        return (Transaction)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
-    }
-
-    public HttpResponse cancelChargeFlowForHttpResponse(Long spaceId, Long id) throws IOException {
-        // verify the required parameter 'spaceId' is set
-        if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling cancelChargeFlow");
-        }// verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling cancelChargeFlow");
-        }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/cancel-charge-flow");
-        if (spaceId != null) {
-            String key = "spaceId";
-            Object value = spaceId;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }        if (id != null) {
-            String key = "id";
-            Object value = id;
-            if (value instanceof Collection) {
-                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-            } else if (value instanceof Object[]) {
-                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-            } else {
-                uriBuilder = uriBuilder.queryParam(key, value);
-            }
-        }
-
-        String url = uriBuilder.build().toString();
-        GenericUrl genericUrl = new GenericUrl(url);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
-        
-        
-        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
-        return httpRequest.execute();
-    }
-
-    public HttpResponse cancelChargeFlowForHttpResponse(Long spaceId, Long id, Map<String, Object> params) throws IOException {
-        // verify the required parameter 'spaceId' is set
-        if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling cancelChargeFlow");
-        }// verify the required parameter 'id' is set
-        if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling cancelChargeFlow");
-        }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/cancel-charge-flow");
-
-        // Copy the params argument if present, to allow passing in immutable maps
-        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
-        // Add the required query param 'spaceId' to the map of query params
-        allParams.put("spaceId", spaceId);
-        // Add the required query param 'id' to the map of query params
-        allParams.put("id", id);
-
-        for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
-            String key = entryMap.getKey();
-            Object value = entryMap.getValue();
-
-            if (key != null && value != null) {
-                if (value instanceof Collection) {
-                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
-                } else if (value instanceof Object[]) {
-                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
-                } else {
-                    uriBuilder = uriBuilder.queryParam(key, value);
-                }
-            }
-        }
-
-        String url = uriBuilder.build().toString();
-        GenericUrl genericUrl = new GenericUrl(url);
-
-        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
-        
-        
-        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
-        return httpRequest.execute();
     }
 
   /**
@@ -316,7 +49,7 @@ public class ChargeFlowService {
     * @return Long
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--count">Count Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--count">Count Documentation</a>
 
     **/
     public Long count(Long spaceId, EntityQueryFilter filter) throws IOException {
@@ -340,7 +73,7 @@ public class ChargeFlowService {
     * @return Long
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--count">Count Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--count">Count Documentation</a>
 
     **/
     public Long count(EntityQueryFilter filter, Long spaceId, Map<String, Object> params) throws IOException {
@@ -358,7 +91,7 @@ public class ChargeFlowService {
         if (spaceId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling count");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/count");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/count");
         if (spaceId != null) {
             String key = "spaceId";
             Object value = spaceId;
@@ -387,7 +120,7 @@ public class ChargeFlowService {
               if (spaceId == null) {
               throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling count");
               }
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/count");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/count");
               if (spaceId != null) {
                   String key = "spaceId";
                   Object value = spaceId;
@@ -417,7 +150,7 @@ public class ChargeFlowService {
         if (spaceId == null) {
             throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling count");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/count");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/count");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -451,63 +184,49 @@ public class ChargeFlowService {
     }
 
   /**
-    * Fetch Charge Flow Payment Page URL
-    * This operation allows to fetch the payment page URL that is been applied on the charge flow linked with the provided transaction. The operation might return an empty result when no payment page is needed or can be invoked.
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
+    * Discard
+    * Discards the invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param id The transaction id of the transaction for which the URL of the charge flow should be fetched.
-    * @return String
+    * @param id The ID of the invoice reconciliation record which should be discarded.
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--fetch-charge-flow-payment-page-url">Fetch Charge Flow Payment Page URL Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--discard">Discard Documentation</a>
 
     **/
-    public String fetchChargeFlowPaymentPageUrl(Long spaceId, Long id) throws IOException {
-        HttpResponse response = fetchChargeFlowPaymentPageUrlForHttpResponse(spaceId, id);
-        String returnType = "String";
-        if(returnType.equals("String")){
-          return (String) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<String>() {};
-        return (String)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void discard(Long spaceId, Long id) throws IOException {
+        discardForHttpResponse(spaceId, id);
     }
 
   /**
-    * Fetch Charge Flow Payment Page URL
-    * This operation allows to fetch the payment page URL that is been applied on the charge flow linked with the provided transaction. The operation might return an empty result when no payment page is needed or can be invoked.
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
+    * Discard
+    * Discards the invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param id The transaction id of the transaction for which the URL of the charge flow should be fetched.
+    * @param id The ID of the invoice reconciliation record which should be discarded.
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return String
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--fetch-charge-flow-payment-page-url">Fetch Charge Flow Payment Page URL Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--discard">Discard Documentation</a>
 
     **/
-    public String fetchChargeFlowPaymentPageUrl(Long spaceId, Long id, Map<String, Object> params) throws IOException {
-        HttpResponse response = fetchChargeFlowPaymentPageUrlForHttpResponse(spaceId, id, params);
-        String returnType = "String";
-        if(returnType.equals("String")){
-            return (String) (Object) response.parseAsString();
-        }
-        TypeReference typeRef = new TypeReference<String>() {};
-        return (String)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    public void discard(Long spaceId, Long id, Map<String, Object> params) throws IOException {
+        discardForHttpResponse(spaceId, id, params);
     }
 
-    public HttpResponse fetchChargeFlowPaymentPageUrlForHttpResponse(Long spaceId, Long id) throws IOException {
+    public HttpResponse discardForHttpResponse(Long spaceId, Long id) throws IOException {
         // verify the required parameter 'spaceId' is set
         if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling fetchChargeFlowPaymentPageUrl");
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling discard");
         }// verify the required parameter 'id' is set
         if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling fetchChargeFlowPaymentPageUrl");
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling discard");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/fetch-charge-flow-payment-page-url");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/discard");
         if (spaceId != null) {
             String key = "spaceId";
             Object value = spaceId;
@@ -533,23 +252,23 @@ public class ChargeFlowService {
         String url = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(url);
 
-        HttpContent content = null;
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
         
         
         httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
         return httpRequest.execute();
     }
 
-    public HttpResponse fetchChargeFlowPaymentPageUrlForHttpResponse(Long spaceId, Long id, Map<String, Object> params) throws IOException {
+    public HttpResponse discardForHttpResponse(Long spaceId, Long id, Map<String, Object> params) throws IOException {
         // verify the required parameter 'spaceId' is set
         if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling fetchChargeFlowPaymentPageUrl");
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling discard");
         }// verify the required parameter 'id' is set
         if (id == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'id' when calling fetchChargeFlowPaymentPageUrl");
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling discard");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/fetch-charge-flow-payment-page-url");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/discard");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -576,8 +295,159 @@ public class ChargeFlowService {
         String url = uriBuilder.build().toString();
         GenericUrl genericUrl = new GenericUrl(url);
 
-        HttpContent content = null;
-        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.GET, genericUrl, content);
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
+    }
+
+  /**
+    * Link transaction
+    * Updates the invoice reconciliation record with the newly selected invoice and amount of its linked completion.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param id The ID of the invoice reconciliation record which should be linked.
+    * @param invoiceId The ID of the transaction invoice which should be linked.
+    * @param amount The amount of the invoice reconciliation record linked completion which should be changed.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--link-transaction">Link transaction Documentation</a>
+
+    **/
+    public void linkTransaction(Long spaceId, Long id, Long invoiceId, BigDecimal amount) throws IOException {
+        linkTransactionForHttpResponse(spaceId, id, invoiceId, amount);
+    }
+
+  /**
+    * Link transaction
+    * Updates the invoice reconciliation record with the newly selected invoice and amount of its linked completion.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param id The ID of the invoice reconciliation record which should be linked.
+    * @param invoiceId The ID of the transaction invoice which should be linked.
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--link-transaction">Link transaction Documentation</a>
+
+    **/
+    public void linkTransaction(Long spaceId, Long id, Long invoiceId, Map<String, Object> params) throws IOException {
+        linkTransactionForHttpResponse(spaceId, id, invoiceId, params);
+    }
+
+    public HttpResponse linkTransactionForHttpResponse(Long spaceId, Long id, Long invoiceId, BigDecimal amount) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling linkTransaction");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling linkTransaction");
+        }// verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'invoiceId' when calling linkTransaction");
+        }
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/link-transaction");
+        if (spaceId != null) {
+            String key = "spaceId";
+            Object value = spaceId;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (id != null) {
+            String key = "id";
+            Object value = id;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (invoiceId != null) {
+            String key = "invoiceId";
+            Object value = invoiceId;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (amount != null) {
+            String key = "amount";
+            Object value = amount;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
+    }
+
+    public HttpResponse linkTransactionForHttpResponse(Long spaceId, Long id, Long invoiceId, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling linkTransaction");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling linkTransaction");
+        }// verify the required parameter 'invoiceId' is set
+        if (invoiceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'invoiceId' when calling linkTransaction");
+        }
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/link-transaction");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+        // Add the required query param 'spaceId' to the map of query params
+        allParams.put("spaceId", spaceId);
+        // Add the required query param 'id' to the map of query params
+        allParams.put("id", id);
+        // Add the required query param 'invoiceId' to the map of query params
+        allParams.put("invoiceId", invoiceId);
+
+        for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
+            String key = entryMap.getKey();
+            Object value = entryMap.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
         
         
         httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
@@ -591,21 +461,21 @@ public class ChargeFlowService {
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param id The id of the charge flow which should be returned.
-    * @return ChargeFlow
+    * @param id The ID of the invoice reconciliation record which should be returned.
+    * @return InvoiceReconciliationRecord
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--read">Read Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--read">Read Documentation</a>
 
     **/
-    public ChargeFlow read(Long spaceId, Long id) throws IOException {
+    public InvoiceReconciliationRecord read(Long spaceId, Long id) throws IOException {
         HttpResponse response = readForHttpResponse(spaceId, id);
-        String returnType = "ChargeFlow";
+        String returnType = "InvoiceReconciliationRecord";
         if(returnType.equals("String")){
-          return (ChargeFlow) (Object) response.parseAsString();
+          return (InvoiceReconciliationRecord) (Object) response.parseAsString();
         }
-        TypeReference typeRef = new TypeReference<ChargeFlow>() {};
-        return (ChargeFlow)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+        TypeReference typeRef = new TypeReference<InvoiceReconciliationRecord>() {};
+        return (InvoiceReconciliationRecord)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
   /**
@@ -615,22 +485,22 @@ public class ChargeFlowService {
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param id The id of the charge flow which should be returned.
+    * @param id The ID of the invoice reconciliation record which should be returned.
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return ChargeFlow
+    * @return InvoiceReconciliationRecord
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--read">Read Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--read">Read Documentation</a>
 
     **/
-    public ChargeFlow read(Long spaceId, Long id, Map<String, Object> params) throws IOException {
+    public InvoiceReconciliationRecord read(Long spaceId, Long id, Map<String, Object> params) throws IOException {
         HttpResponse response = readForHttpResponse(spaceId, id, params);
-        String returnType = "ChargeFlow";
+        String returnType = "InvoiceReconciliationRecord";
         if(returnType.equals("String")){
-            return (ChargeFlow) (Object) response.parseAsString();
+            return (InvoiceReconciliationRecord) (Object) response.parseAsString();
         }
-        TypeReference typeRef = new TypeReference<ChargeFlow>() {};
-        return (ChargeFlow)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+        TypeReference typeRef = new TypeReference<InvoiceReconciliationRecord>() {};
+        return (InvoiceReconciliationRecord)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
     public HttpResponse readForHttpResponse(Long spaceId, Long id) throws IOException {
@@ -641,7 +511,7 @@ public class ChargeFlowService {
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling read");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/read");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/read");
         if (spaceId != null) {
             String key = "spaceId";
             Object value = spaceId;
@@ -683,7 +553,7 @@ public class ChargeFlowService {
         if (id == null) {
             throw new IllegalArgumentException("Missing the required parameter 'id' when calling read");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/read");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/read");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -719,27 +589,123 @@ public class ChargeFlowService {
     }
 
   /**
-    * Search
-    * Searches for the entities as specified by the given query.
-    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
+    * Resolve
+    * Resolves the invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param query The query restricts the charge flows which are returned by the search.
-    * @return List&lt;ChargeFlow&gt;
+    * @param id The ID of the invoice reconciliation record which should be resolved.
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--search">Search Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--resolve">Resolve Documentation</a>
 
     **/
-    public List<ChargeFlow> search(Long spaceId, EntityQuery query) throws IOException {
-        HttpResponse response = searchForHttpResponse(spaceId, query);
-        String returnType = "List&lt;ChargeFlow&gt;";
-        if(returnType.equals("String")){
-          return (List<ChargeFlow>) (Object) response.parseAsString();
+    public void resolve(Long spaceId, Long id) throws IOException {
+        resolveForHttpResponse(spaceId, id);
+    }
+
+  /**
+    * Resolve
+    * Resolves the invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param id The ID of the invoice reconciliation record which should be resolved.
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--resolve">Resolve Documentation</a>
+
+    **/
+    public void resolve(Long spaceId, Long id, Map<String, Object> params) throws IOException {
+        resolveForHttpResponse(spaceId, id, params);
+    }
+
+    public HttpResponse resolveForHttpResponse(Long spaceId, Long id) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling resolve");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling resolve");
         }
-        TypeReference typeRef = new TypeReference<List<ChargeFlow>>() {};
-        return (List<ChargeFlow>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/resolve");
+        if (spaceId != null) {
+            String key = "spaceId";
+            Object value = spaceId;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }        if (id != null) {
+            String key = "id";
+            Object value = id;
+            if (value instanceof Collection) {
+                uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+            } else if (value instanceof Object[]) {
+                uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+            } else {
+                uriBuilder = uriBuilder.queryParam(key, value);
+            }
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
+    }
+
+    public HttpResponse resolveForHttpResponse(Long spaceId, Long id, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling resolve");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling resolve");
+        }
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/resolve");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+        // Add the required query param 'spaceId' to the map of query params
+        allParams.put("spaceId", spaceId);
+        // Add the required query param 'id' to the map of query params
+        allParams.put("id", id);
+
+        for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
+            String key = entryMap.getKey();
+            Object value = entryMap.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(null);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
     }
 
   /**
@@ -749,22 +715,46 @@ public class ChargeFlowService {
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param query The query restricts the charge flows which are returned by the search.
-    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
-    * @return List&lt;ChargeFlow&gt;
+    * @param query The query restricts the invoice reconciliation records which are returned by the search.
+    * @return List&lt;InvoiceReconciliationRecord&gt;
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--search">Search Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--search">Search Documentation</a>
 
     **/
-    public List<ChargeFlow> search(Long spaceId, EntityQuery query, Map<String, Object> params) throws IOException {
-        HttpResponse response = searchForHttpResponse(spaceId, query, params);
-        String returnType = "List&lt;ChargeFlow&gt;";
+    public List<InvoiceReconciliationRecord> search(Long spaceId, EntityQuery query) throws IOException {
+        HttpResponse response = searchForHttpResponse(spaceId, query);
+        String returnType = "List&lt;InvoiceReconciliationRecord&gt;";
         if(returnType.equals("String")){
-            return (List<ChargeFlow>) (Object) response.parseAsString();
+          return (List<InvoiceReconciliationRecord>) (Object) response.parseAsString();
         }
-        TypeReference typeRef = new TypeReference<List<ChargeFlow>>() {};
-        return (List<ChargeFlow>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+        TypeReference typeRef = new TypeReference<List<InvoiceReconciliationRecord>>() {};
+        return (List<InvoiceReconciliationRecord>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
+    }
+
+  /**
+    * Search
+    * Searches for the entities as specified by the given query.
+    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param query The query restricts the invoice reconciliation records which are returned by the search.
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return List&lt;InvoiceReconciliationRecord&gt;
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--search">Search Documentation</a>
+
+    **/
+    public List<InvoiceReconciliationRecord> search(Long spaceId, EntityQuery query, Map<String, Object> params) throws IOException {
+        HttpResponse response = searchForHttpResponse(spaceId, query, params);
+        String returnType = "List&lt;InvoiceReconciliationRecord&gt;";
+        if(returnType.equals("String")){
+            return (List<InvoiceReconciliationRecord>) (Object) response.parseAsString();
+        }
+        TypeReference typeRef = new TypeReference<List<InvoiceReconciliationRecord>>() {};
+        return (List<InvoiceReconciliationRecord>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
     public HttpResponse searchForHttpResponse(Long spaceId, EntityQuery query) throws IOException {
@@ -775,7 +765,7 @@ public class ChargeFlowService {
         if (query == null) {
             throw new IllegalArgumentException("Missing the required parameter 'query' when calling search");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/search");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search");
         if (spaceId != null) {
             String key = "spaceId";
             Object value = spaceId;
@@ -807,7 +797,7 @@ public class ChargeFlowService {
               if (query == null) {
               throw new IllegalArgumentException("Missing the required parameter 'query' when calling search");
               }
-              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/search");
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search");
               if (spaceId != null) {
                   String key = "spaceId";
                   Object value = spaceId;
@@ -840,7 +830,7 @@ public class ChargeFlowService {
         if (query == null) {
             throw new IllegalArgumentException("Missing the required parameter 'query' when calling search");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/search");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
@@ -874,59 +864,65 @@ public class ChargeFlowService {
     }
 
   /**
-    * updateRecipient
-    * 
+    * Search for matchable invoices by query
+    * Searches for transaction invoices by given query.
+    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
     * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param transactionId The transaction id of the transaction whose recipient should be updated.
-    * @param type The id of the charge flow configuration type to recipient should be updated for.
-    * @param recipient The recipient address that should be used to send the payment URL.
+    * @param query The query restricts the invoices which are returned by the search.
+    * @return List&lt;TransactionInvoice&gt;
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--update-recipient">updateRecipient Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--search-for-invoices-by-query">Search for matchable invoices by query Documentation</a>
 
     **/
-    public void updateRecipient(Long spaceId, Long transactionId, Long type, String recipient) throws IOException {
-        updateRecipientForHttpResponse(spaceId, transactionId, type, recipient);
+    public List<TransactionInvoice> searchForInvoicesByQuery(Long spaceId, EntityQuery query) throws IOException {
+        HttpResponse response = searchForInvoicesByQueryForHttpResponse(spaceId, query);
+        String returnType = "List&lt;TransactionInvoice&gt;";
+        if(returnType.equals("String")){
+          return (List<TransactionInvoice>) (Object) response.parseAsString();
+        }
+        TypeReference typeRef = new TypeReference<List<TransactionInvoice>>() {};
+        return (List<TransactionInvoice>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
   /**
-    * updateRecipient
-    * 
+    * Search for matchable invoices by query
+    * Searches for transaction invoices by given query.
+    * <p><b>200</b> - This status code indicates that a client request was successfully received, understood, and accepted.
     * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
     * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
     * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
     * @param spaceId 
-    * @param transactionId The transaction id of the transaction whose recipient should be updated.
-    * @param type The id of the charge flow configuration type to recipient should be updated for.
-    * @param recipient The recipient address that should be used to send the payment URL.
+    * @param query The query restricts the invoices which are returned by the search.
     * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @return List&lt;TransactionInvoice&gt;
     * @throws IOException if an error occurs while attempting to invoke the API
     * For more information visit this link.
-    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#charge-flow-service--update-recipient">updateRecipient Documentation</a>
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--search-for-invoices-by-query">Search for matchable invoices by query Documentation</a>
 
     **/
-    public void updateRecipient(Long spaceId, Long transactionId, Long type, String recipient, Map<String, Object> params) throws IOException {
-        updateRecipientForHttpResponse(spaceId, transactionId, type, recipient, params);
+    public List<TransactionInvoice> searchForInvoicesByQuery(Long spaceId, EntityQuery query, Map<String, Object> params) throws IOException {
+        HttpResponse response = searchForInvoicesByQueryForHttpResponse(spaceId, query, params);
+        String returnType = "List&lt;TransactionInvoice&gt;";
+        if(returnType.equals("String")){
+            return (List<TransactionInvoice>) (Object) response.parseAsString();
+        }
+        TypeReference typeRef = new TypeReference<List<TransactionInvoice>>() {};
+        return (List<TransactionInvoice>)apiClient.getObjectMapper().readValue(response.getContent(), typeRef);
     }
 
-    public HttpResponse updateRecipientForHttpResponse(Long spaceId, Long transactionId, Long type, String recipient) throws IOException {
+    public HttpResponse searchForInvoicesByQueryForHttpResponse(Long spaceId, EntityQuery query) throws IOException {
         // verify the required parameter 'spaceId' is set
         if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling updateRecipient");
-        }// verify the required parameter 'transactionId' is set
-        if (transactionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'transactionId' when calling updateRecipient");
-        }// verify the required parameter 'type' is set
-        if (type == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'type' when calling updateRecipient");
-        }// verify the required parameter 'recipient' is set
-        if (recipient == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'recipient' when calling updateRecipient");
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling searchForInvoicesByQuery");
+        }// verify the required parameter 'query' is set
+        if (query == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'query' when calling searchForInvoicesByQuery");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/updateRecipient");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search-for-invoices-by-query");
         if (spaceId != null) {
             String key = "spaceId";
             Object value = spaceId;
@@ -937,9 +933,145 @@ public class ChargeFlowService {
             } else {
                 uriBuilder = uriBuilder.queryParam(key, value);
             }
-        }        if (transactionId != null) {
-            String key = "transactionId";
-            Object value = transactionId;
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(query);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
+    }
+
+      public HttpResponse searchForInvoicesByQueryForHttpResponse(Long spaceId, java.io.InputStream query, String mediaType) throws IOException {
+          // verify the required parameter 'spaceId' is set
+              if (spaceId == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling searchForInvoicesByQuery");
+              }// verify the required parameter 'query' is set
+              if (query == null) {
+              throw new IllegalArgumentException("Missing the required parameter 'query' when calling searchForInvoicesByQuery");
+              }
+              UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search-for-invoices-by-query");
+              if (spaceId != null) {
+                  String key = "spaceId";
+                  Object value = spaceId;
+                  if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                  } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                  } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                  }
+              }
+
+              String url = uriBuilder.build().toString();
+              GenericUrl genericUrl = new GenericUrl(url);
+
+              HttpContent content = query == null ?
+                apiClient.new JacksonJsonHttpContent(null) :
+                new InputStreamContent(mediaType == null ? Json.MEDIA_TYPE : mediaType, query);
+              HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+              
+              httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+              return httpRequest.execute();
+      }
+
+    public HttpResponse searchForInvoicesByQueryForHttpResponse(Long spaceId, EntityQuery query, Map<String, Object> params) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling searchForInvoicesByQuery");
+        }// verify the required parameter 'query' is set
+        if (query == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'query' when calling searchForInvoicesByQuery");
+        }
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/search-for-invoices-by-query");
+
+        // Copy the params argument if present, to allow passing in immutable maps
+        Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
+        // Add the required query param 'spaceId' to the map of query params
+        allParams.put("spaceId", spaceId);
+
+        for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
+            String key = entryMap.getKey();
+            Object value = entryMap.getValue();
+
+            if (key != null && value != null) {
+                if (value instanceof Collection) {
+                    uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
+                } else if (value instanceof Object[]) {
+                    uriBuilder = uriBuilder.queryParam(key, (Object[]) value);
+                } else {
+                    uriBuilder = uriBuilder.queryParam(key, value);
+                }
+            }
+        }
+
+        String url = uriBuilder.build().toString();
+        GenericUrl genericUrl = new GenericUrl(url);
+
+        HttpContent content = apiClient.new JacksonJsonHttpContent(query);
+        HttpRequest httpRequest = apiClient.getHttpRequestFactory().buildRequest(HttpMethods.POST, genericUrl, content);
+        
+        
+        httpRequest.setReadTimeout(ApiClient.READ_TIMEOUT);
+        return httpRequest.execute();
+    }
+
+  /**
+    * Unlink transaction
+    * Unlinks the invoice reconciliation record linked completion from invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param id The ID of the invoice reconciliation record which should be unlinked.
+    * @param linkedCompletionId The ID of the invoice reconciliation record linked completion which should be unlinked.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--unlink-transaction">Unlink transaction Documentation</a>
+
+    **/
+    public void unlinkTransaction(Long spaceId, Long id, Long linkedCompletionId) throws IOException {
+        unlinkTransactionForHttpResponse(spaceId, id, linkedCompletionId);
+    }
+
+  /**
+    * Unlink transaction
+    * Unlinks the invoice reconciliation record linked completion from invoice reconciliation record.
+    * <p><b>409</b> - This status code indicates that there was a conflict with the current version of the data in the database and the provided data in the request.
+    * <p><b>442</b> - This status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.
+    * <p><b>542</b> - This status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the client request.
+    * @param spaceId 
+    * @param id The ID of the invoice reconciliation record which should be unlinked.
+    * @param linkedCompletionId The ID of the invoice reconciliation record linked completion which should be unlinked.
+    * @param params Map of query params. A collection will be interpreted as passing in multiple instances of the same query param.
+    * @throws IOException if an error occurs while attempting to invoke the API
+    * For more information visit this link.
+    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#invoice-reconciliation-record-service--unlink-transaction">Unlink transaction Documentation</a>
+
+    **/
+    public void unlinkTransaction(Long spaceId, Long id, Long linkedCompletionId, Map<String, Object> params) throws IOException {
+        unlinkTransactionForHttpResponse(spaceId, id, linkedCompletionId, params);
+    }
+
+    public HttpResponse unlinkTransactionForHttpResponse(Long spaceId, Long id, Long linkedCompletionId) throws IOException {
+        // verify the required parameter 'spaceId' is set
+        if (spaceId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling unlinkTransaction");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling unlinkTransaction");
+        }// verify the required parameter 'linkedCompletionId' is set
+        if (linkedCompletionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'linkedCompletionId' when calling unlinkTransaction");
+        }
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/unlink-transaction");
+        if (spaceId != null) {
+            String key = "spaceId";
+            Object value = spaceId;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -947,9 +1079,9 @@ public class ChargeFlowService {
             } else {
                 uriBuilder = uriBuilder.queryParam(key, value);
             }
-        }        if (type != null) {
-            String key = "type";
-            Object value = type;
+        }        if (id != null) {
+            String key = "id";
+            Object value = id;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -957,9 +1089,9 @@ public class ChargeFlowService {
             } else {
                 uriBuilder = uriBuilder.queryParam(key, value);
             }
-        }        if (recipient != null) {
-            String key = "recipient";
-            Object value = recipient;
+        }        if (linkedCompletionId != null) {
+            String key = "linkedCompletionId";
+            Object value = linkedCompletionId;
             if (value instanceof Collection) {
                 uriBuilder = uriBuilder.queryParam(key, ((Collection) value).toArray());
             } else if (value instanceof Object[]) {
@@ -980,32 +1112,27 @@ public class ChargeFlowService {
         return httpRequest.execute();
     }
 
-    public HttpResponse updateRecipientForHttpResponse(Long spaceId, Long transactionId, Long type, String recipient, Map<String, Object> params) throws IOException {
+    public HttpResponse unlinkTransactionForHttpResponse(Long spaceId, Long id, Long linkedCompletionId, Map<String, Object> params) throws IOException {
         // verify the required parameter 'spaceId' is set
         if (spaceId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling updateRecipient");
-        }// verify the required parameter 'transactionId' is set
-        if (transactionId == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'transactionId' when calling updateRecipient");
-        }// verify the required parameter 'type' is set
-        if (type == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'type' when calling updateRecipient");
-        }// verify the required parameter 'recipient' is set
-        if (recipient == null) {
-            throw new IllegalArgumentException("Missing the required parameter 'recipient' when calling updateRecipient");
+            throw new IllegalArgumentException("Missing the required parameter 'spaceId' when calling unlinkTransaction");
+        }// verify the required parameter 'id' is set
+        if (id == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'id' when calling unlinkTransaction");
+        }// verify the required parameter 'linkedCompletionId' is set
+        if (linkedCompletionId == null) {
+            throw new IllegalArgumentException("Missing the required parameter 'linkedCompletionId' when calling unlinkTransaction");
         }
-        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/charge-flow/updateRecipient");
+        UriBuilder uriBuilder = UriBuilder.fromUri(apiClient.getBasePath() + "/invoice-reconciliation-record-service/unlink-transaction");
 
         // Copy the params argument if present, to allow passing in immutable maps
         Map<String, Object> allParams = params == null ? new HashMap<String, Object>() : new HashMap<String, Object>(params);
         // Add the required query param 'spaceId' to the map of query params
         allParams.put("spaceId", spaceId);
-        // Add the required query param 'transactionId' to the map of query params
-        allParams.put("transactionId", transactionId);
-        // Add the required query param 'type' to the map of query params
-        allParams.put("type", type);
-        // Add the required query param 'recipient' to the map of query params
-        allParams.put("recipient", recipient);
+        // Add the required query param 'id' to the map of query params
+        allParams.put("id", id);
+        // Add the required query param 'linkedCompletionId' to the map of query params
+        allParams.put("linkedCompletionId", linkedCompletionId);
 
         for (Map.Entry<String, Object> entryMap: allParams.entrySet()) {
             String key = entryMap.getKey();
