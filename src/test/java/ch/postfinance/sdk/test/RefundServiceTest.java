@@ -188,7 +188,7 @@ public class RefundServiceTest {
                     RefundState.SUCCESSFUL
             );
 		} else {
-            System.err.println(e.getMessage());
+            System.err.println("API response timeout");
         }
     }
 
