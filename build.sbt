@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "ch.postfinance",
     name := "postfinancecheckout-java-sdk",
-    version := "4.1.2",
+    version := "4.1.3",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
