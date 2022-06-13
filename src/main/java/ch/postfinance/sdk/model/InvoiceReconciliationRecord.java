@@ -21,10 +21,11 @@ package ch.postfinance.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinance.sdk.model.ChargeAttemptEnvironment;
 import ch.postfinance.sdk.model.FailureReason;
 import ch.postfinance.sdk.model.InvoiceReconciliationRecordRejectionStatus;
 import ch.postfinance.sdk.model.InvoiceReconciliationRecordState;
-import ch.postfinance.sdk.model.Transaction;
+import ch.postfinance.sdk.model.InvoiceReconciliationRecordType;
 import ch.postfinance.sdk.model.TransactionAwareEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -73,6 +74,10 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
   
   @JsonProperty("discardedOn")
   protected OffsetDateTime discardedOn = null;
+
+  
+  @JsonProperty("environment")
+  protected ChargeAttemptEnvironment environment = null;
 
   
   @JsonProperty("familyName")
@@ -139,8 +144,8 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
   protected String street = null;
 
   
-  @JsonProperty("transaction")
-  protected Transaction transaction = null;
+  @JsonProperty("type")
+  protected InvoiceReconciliationRecordType type = null;
 
   
   @JsonProperty("uniqueId")
@@ -233,6 +238,16 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
   @ApiModelProperty(value = "The discarded on date indicates when the bank transaction has been discarded.")
   public OffsetDateTime getDiscardedOn() {
     return discardedOn;
+  }
+
+  
+   /**
+   * 
+   * @return environment
+  **/
+  @ApiModelProperty(value = "")
+  public ChargeAttemptEnvironment getEnvironment() {
+    return environment;
   }
 
   
@@ -398,11 +413,11 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
   
    /**
    * 
-   * @return transaction
+   * @return type
   **/
   @ApiModelProperty(value = "")
-  public Transaction getTransaction() {
-    return transaction;
+  public InvoiceReconciliationRecordType getType() {
+    return type;
   }
 
   
@@ -457,6 +472,7 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
         Objects.equals(this.currency, invoiceReconciliationRecord.currency) &&
         Objects.equals(this.discardedBy, invoiceReconciliationRecord.discardedBy) &&
         Objects.equals(this.discardedOn, invoiceReconciliationRecord.discardedOn) &&
+        Objects.equals(this.environment, invoiceReconciliationRecord.environment) &&
         Objects.equals(this.familyName, invoiceReconciliationRecord.familyName) &&
         Objects.equals(this.givenName, invoiceReconciliationRecord.givenName) &&
         Objects.equals(this.iban, invoiceReconciliationRecord.iban) &&
@@ -473,7 +489,7 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
         Objects.equals(this.senderBankAccount, invoiceReconciliationRecord.senderBankAccount) &&
         Objects.equals(this.state, invoiceReconciliationRecord.state) &&
         Objects.equals(this.street, invoiceReconciliationRecord.street) &&
-        Objects.equals(this.transaction, invoiceReconciliationRecord.transaction) &&
+        Objects.equals(this.type, invoiceReconciliationRecord.type) &&
         Objects.equals(this.uniqueId, invoiceReconciliationRecord.uniqueId) &&
         Objects.equals(this.valueDate, invoiceReconciliationRecord.valueDate) &&
         Objects.equals(this.version, invoiceReconciliationRecord.version) &&
@@ -482,7 +498,7 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, linkedSpaceId, linkedTransaction, address, amount, city, country, createdOn, currency, discardedBy, discardedOn, familyName, givenName, iban, lastResolutionFailure, participantNumber, paymentFeeAmount, paymentFeeCurrency, plannedPurgeDate, postCode, referenceNumber, rejectionStatus, resolvedBy, resolvedOn, senderBankAccount, state, street, transaction, uniqueId, valueDate, version, super.hashCode());
+    return Objects.hash(id, linkedSpaceId, linkedTransaction, address, amount, city, country, createdOn, currency, discardedBy, discardedOn, environment, familyName, givenName, iban, lastResolutionFailure, participantNumber, paymentFeeAmount, paymentFeeCurrency, plannedPurgeDate, postCode, referenceNumber, rejectionStatus, resolvedBy, resolvedOn, senderBankAccount, state, street, type, uniqueId, valueDate, version, super.hashCode());
   }
 
 
@@ -502,6 +518,7 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    discardedBy: ").append(toIndentedString(discardedBy)).append("\n");
     sb.append("    discardedOn: ").append(toIndentedString(discardedOn)).append("\n");
+    sb.append("    environment: ").append(toIndentedString(environment)).append("\n");
     sb.append("    familyName: ").append(toIndentedString(familyName)).append("\n");
     sb.append("    givenName: ").append(toIndentedString(givenName)).append("\n");
     sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
@@ -518,7 +535,7 @@ public class InvoiceReconciliationRecord extends TransactionAwareEntity {
     sb.append("    senderBankAccount: ").append(toIndentedString(senderBankAccount)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
-    sb.append("    transaction: ").append(toIndentedString(transaction)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    uniqueId: ").append(toIndentedString(uniqueId)).append("\n");
     sb.append("    valueDate: ").append(toIndentedString(valueDate)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");

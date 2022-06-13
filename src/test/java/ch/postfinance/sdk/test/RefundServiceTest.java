@@ -169,27 +169,23 @@ public class RefundServiceTest {
 			}
 			transaction = this.apiClient.getTransactionService().read(this.spaceId, transaction.getId());
 		}
+		Assert.assertEquals(TransactionState.FULFILL, transaction.getState());
+ 
+		TransactionCompletion transactionCompletion = this.apiClient.getTransactionCompletionService().completeOffline(this.spaceId, transaction.getId());
+		Assert.assertEquals(
+				"Transaction completion successful",
+				transactionCompletion.getState(),
+				TransactionCompletionState.SUCCESSFUL
+		);
 
-        if (transaction.getState() == TransactionState.FULFILL) {
-            TransactionCompletion transactionCompletion = this.apiClient.getTransactionCompletionService().completeOffline(this.spaceId, transaction.getId());
+		transaction = this.apiClient.getTransactionService().read(transaction.getLinkedSpaceId(), transactionCompletion.getLinkedTransaction());
+		Refund refund = this.apiClient.getRefundService().refund(this.spaceId, getRefundPayload(transaction));
 
-            Assert.assertEquals(
-                    "Transaction completion successful",
-                    transactionCompletion.getState(),
-                    TransactionCompletionState.SUCCESSFUL
-            );
-
-            transaction = this.apiClient.getTransactionService().read(transaction.getLinkedSpaceId(), transactionCompletion.getLinkedTransaction());
-            Refund refund = this.apiClient.getRefundService().refund(this.spaceId, getRefundPayload(transaction));
-
-            Assert.assertEquals(
-                    "Refund successful",
-                    refund.getState(),
-                    RefundState.SUCCESSFUL
-            );
-		} else {
-            System.err.println("API response timeout");
-        }
+		Assert.assertEquals(
+				"Refund successful",
+				refund.getState(),
+				RefundState.SUCCESSFUL
+		);
     }
 
     /**

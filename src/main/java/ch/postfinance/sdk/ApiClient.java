@@ -301,6 +301,14 @@ public class ApiClient {
         return this.invoiceReconciliationRecordService;
     }
     
+    private InvoiceReimbursementService invoiceReimbursementService;
+    public InvoiceReimbursementService getInvoiceReimbursementService() {
+        if (this.invoiceReimbursementService == null) {
+            this.invoiceReimbursementService = new InvoiceReimbursementService(this);
+        }
+        return this.invoiceReimbursementService;
+    }
+    
     private LabelDescriptionGroupService labelDescriptionGroupService;
     public LabelDescriptionGroupService getLabelDescriptionGroupService() {
         if (this.labelDescriptionGroupService == null) {
@@ -419,6 +427,14 @@ public class ApiClient {
             this.paymentTerminalTillService = new PaymentTerminalTillService(this);
         }
         return this.paymentTerminalTillService;
+    }
+    
+    private PaymentTerminalTransactionSummaryService paymentTerminalTransactionSummaryService;
+    public PaymentTerminalTransactionSummaryService getPaymentTerminalTransactionSummaryService() {
+        if (this.paymentTerminalTransactionSummaryService == null) {
+            this.paymentTerminalTransactionSummaryService = new PaymentTerminalTransactionSummaryService(this);
+        }
+        return this.paymentTerminalTransactionSummaryService;
     }
     
     private PermissionService permissionService;
