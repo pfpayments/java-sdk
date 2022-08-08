@@ -28,7 +28,6 @@ import ch.postfinance.sdk.model.Environment;
 import ch.postfinance.sdk.model.FailureReason;
 import ch.postfinance.sdk.model.LineItem;
 import ch.postfinance.sdk.model.PaymentConnectorConfiguration;
-import ch.postfinance.sdk.model.PaymentMethodBrand;
 import ch.postfinance.sdk.model.PaymentTerminal;
 import ch.postfinance.sdk.model.Token;
 import ch.postfinance.sdk.model.TokenizationMode;
@@ -67,7 +66,7 @@ public class Transaction {
 
   
   @JsonProperty("allowedPaymentMethodBrands")
-  protected List<PaymentMethodBrand> allowedPaymentMethodBrands = null;
+  protected List<Long> allowedPaymentMethodBrands = null;
 
   
   @JsonProperty("allowedPaymentMethodConfigurations")
@@ -364,7 +363,7 @@ public class Transaction {
    * @return allowedPaymentMethodBrands
   **/
   @ApiModelProperty(value = "")
-  public List<PaymentMethodBrand> getAllowedPaymentMethodBrands() {
+  public List<Long> getAllowedPaymentMethodBrands() {
     return allowedPaymentMethodBrands;
   }
 

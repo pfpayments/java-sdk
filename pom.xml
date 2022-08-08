@@ -5,8 +5,8 @@
     <artifactId>postfinancecheckout-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>postfinancecheckout-java-sdk</name>
-    <version>4.0.6</version>
-    <url>https://www.postfinance.ch/checkout</url>
+    <version>4.0.7</version>
+    <url>https://postfinance.ch/en/business/products/e-commerce/postfinance-checkout-all-in-one.html</url>
     <description>The SDK for simplifying the integration with PostFinance Checkout API.</description>
     <scm>
         <connection>scm:git:git@github.com:pfpayments/java-sdk.git</connection>
