@@ -26,16 +26,36 @@ public class PostFinanceCheckoutSdkException extends RuntimeException {
 
     private static final long serialVersionUID = 1675383192982547616L;
 
+    private final ErrorCode code;
+
+    private final String message;
+
 	/**
 	 * Constructor.
 	 *
-	 * @param errorCode
+	 * @param code
 	 *            the PostFinanceCheckout SDK error code
 	 * @param message
 	 *            the exception message details
 	 */
-    public PostFinanceCheckoutSdkException(ErrorCode errorCode, String message) {
-        super(String.format("Error code: %d. %s", errorCode.getCode(), message));
+    public PostFinanceCheckoutSdkException(ErrorCode code, String message) {
+        super();
+        this.code = code;
+        this.message = String.format("Error code: %d. %s", code.getCode(), message);
     }
 
+    /**
+	 * @return the PostFinanceCheckout SDK error code
+	 */
+	public ErrorCode getCode() {
+		return this.code;
+	}
+
+	/**
+	 * @return the PostFinanceCheckout SDK error message
+	 */
+	public String getMessage() {
+		return this.message;
+	}
+    
 }
