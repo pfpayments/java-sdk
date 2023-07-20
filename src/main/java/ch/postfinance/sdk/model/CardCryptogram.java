@@ -21,64 +21,48 @@ package ch.postfinance.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinance.sdk.model.DatabaseTranslatedStringItem;
+import ch.postfinance.sdk.model.CardCryptogramType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.*;
 import java.time.OffsetDateTime;
 
 /**
- * 
+ * This model holds the additional card authentication.
  */
-@ApiModel(description = "")
+@ApiModel(description = "This model holds the additional card authentication.")
 
-public class DatabaseTranslatedString {
+public class CardCryptogram {
   
-  @JsonProperty("availableLanguages")
-  protected List<String> availableLanguages = null;
-
-  
-  @JsonProperty("displayName")
-  protected String displayName = null;
+  @JsonProperty("type")
+  protected CardCryptogramType type = null;
 
   
-  @JsonProperty("items")
-  protected List<DatabaseTranslatedStringItem> items = null;
+  @JsonProperty("value")
+  protected String value = null;
 
   
   
    /**
    * 
-   * @return availableLanguages
+   * @return type
   **/
   @ApiModelProperty(value = "")
-  public List<String> getAvailableLanguages() {
-    return availableLanguages;
+  public CardCryptogramType getType() {
+    return type;
   }
 
   
    /**
    * 
-   * @return displayName
+   * @return value
   **/
   @ApiModelProperty(value = "")
-  public String getDisplayName() {
-    return displayName;
-  }
-
-  
-   /**
-   * 
-   * @return items
-  **/
-  @ApiModelProperty(value = "")
-  public List<DatabaseTranslatedStringItem> getItems() {
-    return items;
+  public String getValue() {
+    return value;
   }
 
   
@@ -91,26 +75,24 @@ public class DatabaseTranslatedString {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DatabaseTranslatedString databaseTranslatedString = (DatabaseTranslatedString) o;
-    return Objects.equals(this.availableLanguages, databaseTranslatedString.availableLanguages) &&
-        Objects.equals(this.displayName, databaseTranslatedString.displayName) &&
-        Objects.equals(this.items, databaseTranslatedString.items);
+    CardCryptogram cardCryptogram = (CardCryptogram) o;
+    return Objects.equals(this.type, cardCryptogram.type) &&
+        Objects.equals(this.value, cardCryptogram.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(availableLanguages, displayName, items);
+    return Objects.hash(type, value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DatabaseTranslatedString {\n");
+    sb.append("class CardCryptogram {\n");
     
-    sb.append("    availableLanguages: ").append(toIndentedString(availableLanguages)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

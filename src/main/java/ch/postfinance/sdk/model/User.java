@@ -22,7 +22,6 @@ package ch.postfinance.sdk.model;
 import java.util.Objects;
 import java.util.Arrays;
 import ch.postfinance.sdk.model.CreationEntityState;
-import ch.postfinance.sdk.model.Scope;
 import ch.postfinance.sdk.model.UserType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -49,7 +48,7 @@ public class User {
 
   
   @JsonProperty("scope")
-  protected Scope scope = null;
+  protected Long scope = null;
 
   
   @JsonProperty("state")
@@ -86,11 +85,11 @@ public class User {
 
   
    /**
-   * 
+   * The scope that the user belongs to.
    * @return scope
   **/
-  @ApiModelProperty(value = "")
-  public Scope getScope() {
+  @ApiModelProperty(value = "The scope that the user belongs to.")
+  public Long getScope() {
     return scope;
   }
 
@@ -106,10 +105,10 @@ public class User {
 
   
    /**
-   * 
+   * The user&#39;s type which defines its role and capabilities.
    * @return userType
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The user's type which defines its role and capabilities.")
   public UserType getUserType() {
     return userType;
   }

@@ -167,6 +167,14 @@ public class ApiClient {
         return this.bankTransactionService;
     }
     
+    private CardProcessingService cardProcessingService;
+    public CardProcessingService getCardProcessingService() {
+        if (this.cardProcessingService == null) {
+            this.cardProcessingService = new CardProcessingService(this);
+        }
+        return this.cardProcessingService;
+    }
+    
     private ChargeAttemptService chargeAttemptService;
     public ChargeAttemptService getChargeAttemptService() {
         if (this.chargeAttemptService == null) {

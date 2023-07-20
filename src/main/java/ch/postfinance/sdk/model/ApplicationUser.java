@@ -21,7 +21,6 @@ package ch.postfinance.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinance.sdk.model.Account;
 import ch.postfinance.sdk.model.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -43,7 +42,7 @@ public class ApplicationUser extends User {
 
   
   @JsonProperty("primaryAccount")
-  protected Account primaryAccount = null;
+  protected Long primaryAccount = null;
 
   
   @JsonProperty("requestLimit")
@@ -52,30 +51,30 @@ public class ApplicationUser extends User {
   
   
    /**
-   * The user name is used to identify the application user in administrative interfaces.
+   * The name used to identify the application user.
    * @return name
   **/
-  @ApiModelProperty(value = "The user name is used to identify the application user in administrative interfaces.")
+  @ApiModelProperty(value = "The name used to identify the application user.")
   public String getName() {
     return name;
   }
 
   
    /**
-   * The account that this user is associated with. The account owner will be able to manage this user.
+   * The primary account that the user belongs to.
    * @return primaryAccount
   **/
-  @ApiModelProperty(value = "The account that this user is associated with. The account owner will be able to manage this user.")
-  public Account getPrimaryAccount() {
+  @ApiModelProperty(value = "The primary account that the user belongs to.")
+  public Long getPrimaryAccount() {
     return primaryAccount;
   }
 
   
    /**
-   * The request limit defines the maximum number of API request accepted within 2 minutes. This limit can only be changed with special privileges.
+   * The maximum number of API requests that are accepted every 2 minutes.
    * @return requestLimit
   **/
-  @ApiModelProperty(value = "The request limit defines the maximum number of API request accepted within 2 minutes. This limit can only be changed with special privileges.")
+  @ApiModelProperty(value = "The maximum number of API requests that are accepted every 2 minutes.")
   public Long getRequestLimit() {
     return requestLimit;
   }

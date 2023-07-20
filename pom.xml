@@ -5,7 +5,7 @@
     <artifactId>postfinancecheckout-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>postfinancecheckout-java-sdk</name>
-    <version>5.1.0</version>
+    <version>6.0.0</version>
     <url>https://postfinance.ch/en/business/products/e-commerce/postfinance-checkout-all-in-one.html</url>
     <description>The SDK for simplifying the integration with PostFinance Checkout API.</description>
     <scm>
@@ -69,7 +69,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>(,3.6)</version>
+                                    <version>(,3.9)</version>
                                     <message>Invalid Maven version. It should, at least, be 2.0</message>
                                 </requireMavenVersion>
                             </rules>

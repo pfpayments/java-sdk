@@ -23,7 +23,6 @@ import java.util.Objects;
 import java.util.Arrays;
 import ch.postfinance.sdk.model.CreationEntityState;
 import ch.postfinance.sdk.model.DataCollectionType;
-import ch.postfinance.sdk.model.DatabaseTranslatedString;
 import ch.postfinance.sdk.model.OneClickPaymentMode;
 import ch.postfinance.sdk.model.ResourcePath;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -50,7 +49,7 @@ public class PaymentMethodConfiguration {
 
   
   @JsonProperty("description")
-  protected DatabaseTranslatedString description = null;
+  protected Map<String, String> description = null;
 
   
   @JsonProperty("id")
@@ -106,7 +105,7 @@ public class PaymentMethodConfiguration {
 
   
   @JsonProperty("title")
-  protected DatabaseTranslatedString title = null;
+  protected Map<String, String> title = null;
 
   
   @JsonProperty("version")
@@ -129,7 +128,7 @@ public class PaymentMethodConfiguration {
    * @return description
   **/
   @ApiModelProperty(value = "The payment method configuration description can be used to show a text during the payment process. Choose an appropriate description as it will be displayed to your customer.")
-  public DatabaseTranslatedString getDescription() {
+  public Map<String, String> getDescription() {
     return description;
   }
 
@@ -269,7 +268,7 @@ public class PaymentMethodConfiguration {
    * @return title
   **/
   @ApiModelProperty(value = "The title of the payment method configuration is used within the payment process. The title is visible to the customer.")
-  public DatabaseTranslatedString getTitle() {
+  public Map<String, String> getTitle() {
     return title;
   }
 
