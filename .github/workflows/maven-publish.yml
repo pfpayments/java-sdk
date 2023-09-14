@@ -2,9 +2,7 @@
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
 
 name: Maven Package
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
   build:
@@ -20,10 +18,10 @@ jobs:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '8'
         server-id: 'ossrh'
-        server-username: ${{ secrets.OSSRH_USERNAME }}
-        server-password: ${{ secrets.OSSRH_TOKEN }}
+        server-username: OSSRH_USERNAME
+        server-password: OSSRH_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-        gpg-passphrase : ${{ secrets.SIGN_KEY_PASS }}
+        gpg-passphrase : SIGN_KEY_PASS
         
     - name: Build with Maven
       id: build
