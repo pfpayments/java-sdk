@@ -719,6 +719,14 @@ public class ApiClient {
         return this.userSpaceRoleService;
     }
     
+    private WebAppService webAppService;
+    public WebAppService getWebAppService() {
+        if (this.webAppService == null) {
+            this.webAppService = new WebAppService(this);
+        }
+        return this.webAppService;
+    }
+    
     private WebhookListenerService webhookListenerService;
     public WebhookListenerService getWebhookListenerService() {
         if (this.webhookListenerService == null) {
