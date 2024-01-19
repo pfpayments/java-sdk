@@ -1,9 +1,12 @@
 package ch.postfinance.sdk.service;
 
+import static ch.postfinance.sdk.ErrorCode.*;
+
 import ch.postfinance.sdk.ApiClient;
 import ch.postfinance.sdk.ErrorCode;
 import ch.postfinance.sdk.PostFinanceCheckoutSdkException;
 import ch.postfinance.sdk.URIBuilderUtil;
+import ch.postfinance.sdk.StringUtil;
 
 import ch.postfinance.sdk.model.ClientError;
 import ch.postfinance.sdk.model.ServerError;
@@ -22,13 +25,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
+
 
 
 public class PaymentTerminalTillService {
     private ApiClient apiClient;
 
     public PaymentTerminalTillService(ApiClient apiClient) {
-        this.apiClient = apiClient;
+        this.apiClient = Objects.requireNonNull(apiClient, "ApiClient must be non null");
     }
 
     public ApiClient getApiClient() {
@@ -36,7 +41,7 @@ public class PaymentTerminalTillService {
     }
 
     public void setApiClient(ApiClient apiClient) {
-        this.apiClient = apiClient;
+        this.apiClient = Objects.requireNonNull(apiClient, "ApiClient must be non null");
     }
 
   /**
@@ -344,6 +349,7 @@ public class PaymentTerminalTillService {
         httpRequest.setReadTimeout(readTimeOut);
         return httpRequest.execute();
     }
+
 
 
     private boolean isNoBodyResponse(HttpResponse response) throws IOException {

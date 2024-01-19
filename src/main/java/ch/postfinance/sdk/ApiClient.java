@@ -804,6 +804,14 @@ public class ApiClient {
         return this.webAppService;
     }
     
+    private WebhookEncryptionService webhookEncryptionService;
+    public WebhookEncryptionService getWebhookEncryptionService() {
+        if (this.webhookEncryptionService == null) {
+            this.webhookEncryptionService = new WebhookEncryptionService(this);
+        }
+        return this.webhookEncryptionService;
+    }
+    
     private WebhookListenerService webhookListenerService;
     public WebhookListenerService getWebhookListenerService() {
         if (this.webhookListenerService == null) {

@@ -1,9 +1,12 @@
 package ch.postfinance.sdk.service;
 
+import static ch.postfinance.sdk.ErrorCode.*;
+
 import ch.postfinance.sdk.ApiClient;
 import ch.postfinance.sdk.ErrorCode;
 import ch.postfinance.sdk.PostFinanceCheckoutSdkException;
 import ch.postfinance.sdk.URIBuilderUtil;
+import ch.postfinance.sdk.StringUtil;
 
 import ch.postfinance.sdk.model.ChargeFlowLevelPaymentLink;
 import ch.postfinance.sdk.model.ClientError;
@@ -24,13 +27,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
+
 
 
 public class ChargeFlowLevelPaymentLinkService {
     private ApiClient apiClient;
 
     public ChargeFlowLevelPaymentLinkService(ApiClient apiClient) {
-        this.apiClient = apiClient;
+        this.apiClient = Objects.requireNonNull(apiClient, "ApiClient must be non null");
     }
 
     public ApiClient getApiClient() {
@@ -38,7 +43,7 @@ public class ChargeFlowLevelPaymentLinkService {
     }
 
     public void setApiClient(ApiClient apiClient) {
-        this.apiClient = apiClient;
+        this.apiClient = Objects.requireNonNull(apiClient, "ApiClient must be non null");
     }
 
   /**
@@ -447,6 +452,7 @@ public class ChargeFlowLevelPaymentLinkService {
         httpRequest.setReadTimeout(readTimeOut);
         return httpRequest.execute();
     }
+
 
 
     private boolean isNoBodyResponse(HttpResponse response) throws IOException {
