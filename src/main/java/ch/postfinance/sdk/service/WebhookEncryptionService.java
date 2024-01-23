@@ -186,11 +186,11 @@ public class WebhookEncryptionService {
                 try {
                     publicKey = this.read(publicKeyId);
                 } catch (IOException e) {
-                    throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
+                    throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
                         "Could not retrieve public key with ID: " + publicKeyId);
-                } catch (WalleeSdkException e) {
+                } catch (PostFinanceCheckoutSdkException e) {
                     if (e.getCode() == ENTITY_NOT_FOUND) {
-                        throw new WalleeSdkException(
+                        throw new PostFinanceCheckoutSdkException(
                             ErrorCode.WEBHOOK_ENCRYPTION_PUBLIC_KEY_UNKNOWN,
                             "Unknown public key with ID: " + publicKeyId);
                     }
@@ -200,7 +200,7 @@ public class WebhookEncryptionService {
             }
             return EncryptionUtil.isContentValid(contentToVerify, contentSignature, publicKey, encryptionProviderName, signatureAlgorithm);
         } else {
-            throw new WalleeSdkException(WEBHOOK_ENCRYPTION_SIGNATURE_HEADER_INVALID, "Invalid webhook signature header. Expected format: 'algorithm=<algorithm>, keyId=<keyId>, signature=<signature>'");
+            throw new PostFinanceCheckoutSdkException(WEBHOOK_ENCRYPTION_SIGNATURE_HEADER_INVALID, "Invalid webhook signature header. Expected format: 'algorithm=<algorithm>, keyId=<keyId>, signature=<signature>'");
         }
     }
 

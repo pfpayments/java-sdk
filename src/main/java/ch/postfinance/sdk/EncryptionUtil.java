@@ -31,7 +31,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-import com.wallee.sdk.model.WebhookEncryptionPublicKey;
+import ch.postfinance.sdk.model.WebhookEncryptionPublicKey;
 
 /**
  * Helper class to verify content body with signature
@@ -57,19 +57,19 @@ public class EncryptionUtil {
     try {
       verifier.initVerify(publicKey);
     } catch (InvalidKeyException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
           "Could not verify content due to public key issue: " + e.getLocalizedMessage());
     }
     try {
       verifier.update(contentToVerify.getBytes(StandardCharsets.UTF_8));
     } catch (SignatureException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
           "Could not verify content due to verifier issue: " + e.getLocalizedMessage());
     }
     try {
       return verifier.verify(Base64.getDecoder().decode(contentSignature));
     } catch (SignatureException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
           "Could not verify content due to unknown issue: " + e.getLocalizedMessage());
 
     }
@@ -83,13 +83,13 @@ public class EncryptionUtil {
           .generatePublic(
               new X509EncodedKeySpec(publicKeyBytes));
     } catch (InvalidKeySpecException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
           "Invalid public key with ID: " + publicKeyId);
     } catch (NoSuchAlgorithmException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
           "Unknown webhook signature encryption algorithm: " + signatureAlgorithm);
     } catch (NoSuchProviderException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_PROVIDER,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_PROVIDER,
           "Unknown webhook signature encryption provider: " + encryptionProvider);
     }
   }
@@ -98,7 +98,7 @@ public class EncryptionUtil {
     try {
       return Signature.getInstance(signatureAlgorithm);
     } catch (NoSuchAlgorithmException e) {
-      throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
+      throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
           "Unknown signature algorithm: " + signatureAlgorithm);
     }
   }
@@ -110,7 +110,7 @@ public class EncryptionUtil {
           publicKeyAlgorithm = "ECDSA";
           break;
         default:
-          throw new WalleeSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
+          throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_UNKNOWN_ALGORITHM,
             "Unknown webhook signature encryption algorithm: " + signatureAlgorithm);
       }
       return publicKeyAlgorithm;
