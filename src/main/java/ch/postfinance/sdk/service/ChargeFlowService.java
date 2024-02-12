@@ -4,8 +4,8 @@ import static ch.postfinance.sdk.ErrorCode.*;
 
 import ch.postfinance.sdk.ApiClient;
 import ch.postfinance.sdk.ErrorCode;
-import ch.postfinance.sdk.PostFinanceCheckoutSdkException;
-import ch.postfinance.sdk.URIBuilderUtil;
+import ch.postfinance.sdk.exception.PostFinanceCheckoutSdkException;
+import ch.postfinance.sdk.util.URIBuilderUtil;
 import ch.postfinance.sdk.StringUtil;
 
 import ch.postfinance.sdk.model.ChargeFlow;

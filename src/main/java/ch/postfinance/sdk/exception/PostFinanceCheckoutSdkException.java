@@ -17,10 +17,12 @@
 */
 
 
-package ch.postfinance.sdk;
+package ch.postfinance.sdk.exception;
+
+import ch.postfinance.sdk.ErrorCode;
 
 /**
- * Exception thrown when the PostFinanceCheckout SDK API call results in an invalid response.
+ * Exception thrown when the SDK API call results in an invalid response.
  */
 public class PostFinanceCheckoutSdkException extends RuntimeException {
 
@@ -33,10 +35,8 @@ public class PostFinanceCheckoutSdkException extends RuntimeException {
 	/**
 	 * Constructor.
 	 *
-	 * @param code
-	 *            the PostFinanceCheckout SDK error code
-	 * @param message
-	 *            the exception message details
+	 * @param code    SDK error code
+	 * @param message  exception message details
 	 */
     public PostFinanceCheckoutSdkException(ErrorCode code, String message) {
         super();
@@ -45,14 +45,14 @@ public class PostFinanceCheckoutSdkException extends RuntimeException {
     }
 
     /**
-	 * @return the PostFinanceCheckout SDK error code
+	 * @return SDK error code
 	 */
 	public ErrorCode getCode() {
 		return this.code;
 	}
 
 	/**
-	 * @return the PostFinanceCheckout SDK error message
+	 * @return SDK error message
 	 */
 	public String getMessage() {
 		return this.message;

@@ -17,7 +17,10 @@
 */
 
 
-package ch.postfinance.sdk;
+package ch.postfinance.sdk.util;
+
+import ch.postfinance.sdk.ErrorCode;
+import ch.postfinance.sdk.exception.PostFinanceCheckoutSdkException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -71,7 +74,6 @@ public class EncryptionUtil {
     } catch (SignatureException e) {
       throw new PostFinanceCheckoutSdkException(ErrorCode.WEBHOOK_ENCRYPTION_GENERAL_ERROR,
           "Could not verify content due to unknown issue: " + e.getLocalizedMessage());
-
     }
   }
 

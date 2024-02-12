@@ -5,7 +5,7 @@
     <artifactId>postfinancecheckout-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>postfinancecheckout-java-sdk</name>
-    <version>7.2.0</version>
+    <version>8.0.0</version>
     <url>https://postfinance.ch/en/business/products/e-commerce/postfinance-checkout-all-in-one.html</url>
     <description>The SDK for simplifying the integration with PostFinance Checkout API.</description>
     <scm>
@@ -82,12 +82,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12</version>
                 <configuration>
-                    <systemProperties>
+                    <systemPropertyVariables>
                         <property>
                             <name>loggerPath</name>
                             <value>conf/log4j.properties</value>
                         </property>
-                    </systemProperties>
+                    </systemPropertyVariables>
                     <argLine>-Xms512m -Xmx1500m</argLine>
                     <parallel>methods</parallel>
                     <forkMode>pertest</forkMode>
@@ -172,6 +172,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.4</version>
+                <configuration>
+                    <additionalparam>-Xdoclint:-missing</additionalparam>
+                    <quiet>true</quiet>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>

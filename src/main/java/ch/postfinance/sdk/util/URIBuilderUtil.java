@@ -17,7 +17,7 @@
 */
 
 
-package ch.postfinance.sdk;
+package ch.postfinance.sdk.util;
 
 import com.google.api.client.http.UriTemplate;
 import java.net.URI;

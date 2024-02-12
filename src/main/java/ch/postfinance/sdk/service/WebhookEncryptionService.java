@@ -4,8 +4,8 @@ import static ch.postfinance.sdk.ErrorCode.*;
 
 import ch.postfinance.sdk.ApiClient;
 import ch.postfinance.sdk.ErrorCode;
-import ch.postfinance.sdk.PostFinanceCheckoutSdkException;
-import ch.postfinance.sdk.URIBuilderUtil;
+import ch.postfinance.sdk.exception.PostFinanceCheckoutSdkException;
+import ch.postfinance.sdk.util.URIBuilderUtil;
 import ch.postfinance.sdk.StringUtil;
 
 import ch.postfinance.sdk.model.ClientError;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import java.util.concurrent.ConcurrentHashMap;
-import ch.postfinance.sdk.EncryptionUtil;
+import ch.postfinance.sdk.util.EncryptionUtil;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.security.Security;

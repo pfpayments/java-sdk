@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/pfpayments/java-sdk.svg?branch=master)](https://travis-ci.org/pfpayments/java-sdk)
-
 # PostFinance Checkout Java Library
 
 The PostFinance Checkout Java library wraps around the PostFinance Checkout API. This library facilitates your interaction with various services such as transactions, accounts, and subscriptions.
@@ -23,7 +21,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>ch.postfinance</groupId>
     <artifactId>postfinancecheckout-java-sdk</artifactId>
-    <version>7.2.0</version>
+    <version>8.0.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -33,7 +31,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "ch.postfinance:postfinancecheckout-java-sdk:7.2.0"
+compile "ch.postfinance:postfinancecheckout-java-sdk:8.0.0"
 ```
 
 ### Others
@@ -46,7 +44,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/postfinancecheckout-java-sdk-7.2.0.jar`
+* `target/postfinancecheckout-java-sdk-8.0.0.jar`
 * `target/lib/*.jar`
 
 ## Usage
