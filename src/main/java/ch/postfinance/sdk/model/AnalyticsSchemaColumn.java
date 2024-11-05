@@ -93,10 +93,10 @@ public class AnalyticsSchemaColumn {
 
   
    /**
-   * A human readable description of the property contained in this column or null if this is a synthetic column which is the result of some SQL expression.
+   * The localized description of the property contained in this column or null if this is a synthetic column which is the result of some SQL expression.
    * @return description
   **/
-  @ApiModelProperty(value = "A human readable description of the property contained in this column or null if this is a synthetic column which is the result of some SQL expression.")
+  @ApiModelProperty(value = "The localized description of the property contained in this column or null if this is a synthetic column which is the result of some SQL expression.")
   public Map<String, String> getDescription() {
     return description;
   }
@@ -113,30 +113,30 @@ public class AnalyticsSchemaColumn {
 
   
    /**
-   * The name of the referenced table if this column represents a foreign-key relation to the IDs of another table, otherwise null.
+   * The name of the referenced table if this column represents a foreign-key relation to another table, otherwise null.
    * @return referencedTable
   **/
-  @ApiModelProperty(value = "The name of the referenced table if this column represents a foreign-key relation to the IDs of another table, otherwise null.")
+  @ApiModelProperty(value = "The name of the referenced table if this column represents a foreign-key relation to another table, otherwise null.")
   public String getReferencedTable() {
     return referencedTable;
   }
 
   
    /**
-   * The scale (maximal number number of digits in the fractional part) in case of a decimal data type, otherwise 0.
+   * The scale (maximal number of digits in the fractional part) in case of a decimal data type, otherwise 0.
    * @return scale
   **/
-  @ApiModelProperty(value = "The scale (maximal number number of digits in the fractional part) in case of a decimal data type, otherwise 0.")
+  @ApiModelProperty(value = "The scale (maximal number of digits in the fractional part) in case of a decimal data type, otherwise 0.")
   public Integer getScale() {
     return scale;
   }
 
   
    /**
-   * The name of the table which defines this column.
+   * The name of the table that the column belongs to.
    * @return tableName
   **/
-  @ApiModelProperty(value = "The name of the table which defines this column.")
+  @ApiModelProperty(value = "The name of the table that the column belongs to.")
   public String getTableName() {
     return tableName;
   }

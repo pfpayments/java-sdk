@@ -33,9 +33,9 @@ import java.util.*;
 import java.time.OffsetDateTime;
 
 /**
- * Represents a query to be submitted for execution in Analytics.
+ * 
  */
-@ApiModel(description = "Represents a query to be submitted for execution in Analytics.")
+@ApiModel(description = "")
 
 public class AnalyticsQuery {
   
@@ -70,10 +70,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * The mandatory ID of an account in which the query shall be executed. Must be a valid account ID greater than 0.
+   * The ID of the account in which the query is to be executed.
    * @return accountId
   **/
-  @ApiModelProperty(required = true, value = "The mandatory ID of an account in which the query shall be executed. Must be a valid account ID greater than 0.")
+  @ApiModelProperty(required = true, value = "The ID of the account in which the query is to be executed.")
   public Long getAccountId() {
     return accountId;
   }
@@ -89,10 +89,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * A client generated nonce which uniquely identifies the query to be executed. Subsequent submissions with the same external ID will not re-execute the query but instead return the existing execution with that ID. Either the External ID or a Maximal Cache Age greater than 0 must be specified. If both are specified the External ID will have precedence and the Maximal Cache Age will be ignored.
+   * A client-generated nonce which uniquely identifies some action to be executed. Subsequent requests with the same external ID do not execute the action again, but return the original result.
    * @return externalId
   **/
-  @ApiModelProperty(value = "A client generated nonce which uniquely identifies the query to be executed. Subsequent submissions with the same external ID will not re-execute the query but instead return the existing execution with that ID. Either the External ID or a Maximal Cache Age greater than 0 must be specified. If both are specified the External ID will have precedence and the Maximal Cache Age will be ignored.")
+  @ApiModelProperty(value = "A client-generated nonce which uniquely identifies some action to be executed. Subsequent requests with the same external ID do not execute the action again, but return the original result.")
   public String getExternalId() {
     return externalId;
   }
@@ -108,10 +108,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * The maximal age in minutes of cached query executions to return. If an equivalent query execution with the same Query String, Account ID and Spaces parameters not older than the specified age is already available that execution will be returned instead of a newly started execution. Set to 0 or null (and set a unique, previously unused External ID) to force a new query execution irrespective of previous executions. Either the External ID or a Cache Duration greater than 0 must be specified. If both are specified, the External ID will be preferred (and the Maximal Cache Age ignored).
+   * The maximum age (in minutes) of queries already executed that are to be taken into account. If an equivalent query is already available and not older than the specified age, its result will be returned instead of re-executing it. To force a new execution, specify a new, unique external ID and no maximum cache age.
    * @return maxCacheAge
   **/
-  @ApiModelProperty(value = "The maximal age in minutes of cached query executions to return. If an equivalent query execution with the same Query String, Account ID and Spaces parameters not older than the specified age is already available that execution will be returned instead of a newly started execution. Set to 0 or null (and set a unique, previously unused External ID) to force a new query execution irrespective of previous executions. Either the External ID or a Cache Duration greater than 0 must be specified. If both are specified, the External ID will be preferred (and the Maximal Cache Age ignored).")
+  @ApiModelProperty(value = "The maximum age (in minutes) of queries already executed that are to be taken into account. If an equivalent query is already available and not older than the specified age, its result will be returned instead of re-executing it. To force a new execution, specify a new, unique external ID and no maximum cache age.")
   public Integer getMaxCacheAge() {
     return maxCacheAge;
   }
@@ -127,10 +127,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * The SQL statement which is being submitted for execution. Must be a valid PrestoDB/Athena SQL statement.
+   * The PrestoDB/Athena SQL statement to be executed.
    * @return queryString
   **/
-  @ApiModelProperty(value = "The SQL statement which is being submitted for execution. Must be a valid PrestoDB/Athena SQL statement.")
+  @ApiModelProperty(value = "The PrestoDB/Athena SQL statement to be executed.")
   public String getQueryString() {
     return queryString;
   }
@@ -146,10 +146,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * The maximal amount of scanned data that this query is allowed to scan. After this limit is reached query will be canceled by the system. 
+   * The maximum amount of data that the query is allowed to scan. After the limit is reached, the query will be canceled.
    * @return scannedDataLimit
   **/
-  @ApiModelProperty(value = "The maximal amount of scanned data that this query is allowed to scan. After this limit is reached query will be canceled by the system. ")
+  @ApiModelProperty(value = "The maximum amount of data that the query is allowed to scan. After the limit is reached, the query will be canceled.")
   public BigDecimal getScannedDataLimit() {
     return scannedDataLimit;
   }
@@ -173,10 +173,10 @@ public class AnalyticsQuery {
   }
 
    /**
-   * The IDs of the spaces in which the query shall be executed. At most 5 space IDs may be specified. All specified spaces must be owned by the account specified by the accountId property. The spaces property may be missing or empty to query all spaces of the specified account.
+   * The IDs of the spaces belonging to the specified account in which the query is to be executed. Do not provide any value to query all spaces in the specified account.
    * @return spaceIds
   **/
-  @ApiModelProperty(value = "The IDs of the spaces in which the query shall be executed. At most 5 space IDs may be specified. All specified spaces must be owned by the account specified by the accountId property. The spaces property may be missing or empty to query all spaces of the specified account.")
+  @ApiModelProperty(value = "The IDs of the spaces belonging to the specified account in which the query is to be executed. Do not provide any value to query all spaces in the specified account.")
   public List<Long> getSpaceIds() {
     return spaceIds;
   }

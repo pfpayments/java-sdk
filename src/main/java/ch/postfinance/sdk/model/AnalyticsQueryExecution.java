@@ -92,40 +92,40 @@ public class AnalyticsQueryExecution {
   
   
    /**
-   * The account in which the query has been executed.
+   * The account in which the query is executed.
    * @return account
   **/
-  @ApiModelProperty(value = "The account in which the query has been executed.")
+  @ApiModelProperty(value = "The account in which the query is executed.")
   public Long getAccount() {
     return account;
   }
 
   
    /**
-   * The error message if and only if the query has failed, otherwise null.
+   * The error message that describes the reason for the failure of the query execution.
    * @return errorMessage
   **/
-  @ApiModelProperty(value = "The error message if and only if the query has failed, otherwise null.")
+  @ApiModelProperty(value = "The error message that describes the reason for the failure of the query execution.")
   public String getErrorMessage() {
     return errorMessage;
   }
 
   
    /**
-   * The External ID of the query if one had been specified; otherwise null.
+   * The external ID of the query if one was specified, otherwise null.
    * @return externalId
   **/
-  @ApiModelProperty(value = "The External ID of the query if one had been specified; otherwise null.")
+  @ApiModelProperty(value = "The external ID of the query if one was specified, otherwise null.")
   public String getExternalId() {
     return externalId;
   }
 
   
    /**
-   * The reason of the failure if and only if the query has failed, otherwise null.
+   * The reason for the failure of query execution.
    * @return failureReason
   **/
-  @ApiModelProperty(value = "The reason of the failure if and only if the query has failed, otherwise null.")
+  @ApiModelProperty(value = "The reason for the failure of query execution.")
   public FailureReason getFailureReason() {
     return failureReason;
   }
@@ -142,20 +142,20 @@ public class AnalyticsQueryExecution {
 
   
    /**
-   * The time at which processing of the query has finished (either successfully or by failure or by cancelation). Will be null if the query execution has not finished yet.
+   * The date and time when the processing of the query was completed. Null if the query execution has not yet been completed.
    * @return processingEndTime
   **/
-  @ApiModelProperty(value = "The time at which processing of the query has finished (either successfully or by failure or by cancelation). Will be null if the query execution has not finished yet.")
+  @ApiModelProperty(value = "The date and time when the processing of the query was completed. Null if the query execution has not yet been completed.")
   public OffsetDateTime getProcessingEndTime() {
     return processingEndTime;
   }
 
   
    /**
-   * The time at which processing of the query has started (never null).
+   * The date and time when the processing of the query was started.
    * @return processingStartTime
   **/
-  @ApiModelProperty(value = "The time at which processing of the query has started (never null).")
+  @ApiModelProperty(value = "The date and time when the processing of the query was started.")
   public OffsetDateTime getProcessingStartTime() {
     return processingStartTime;
   }
@@ -172,30 +172,30 @@ public class AnalyticsQueryExecution {
 
   
    /**
-   * The amount of data scanned while processing the query (in GB). (Note that this amount may increase over time while the query is still being processed and not finished yet.)
+   * The amount of data that was scanned when processing the query (in GB).
    * @return scannedDataInGb
   **/
-  @ApiModelProperty(value = "The amount of data scanned while processing the query (in GB). (Note that this amount may increase over time while the query is still being processed and not finished yet.)")
+  @ApiModelProperty(value = "The amount of data that was scanned when processing the query (in GB).")
   public BigDecimal getScannedDataInGb() {
     return scannedDataInGb;
   }
 
   
    /**
-   * The maximal amount of scanned data that this query is allowed to scan. After this limit is reached query will be canceled by the system. 
+   * The maximal amount of data that this query is allowed to scan (in GB). If this limit is reached, the query will be canceled.
    * @return scannedDataLimit
   **/
-  @ApiModelProperty(value = "The maximal amount of scanned data that this query is allowed to scan. After this limit is reached query will be canceled by the system. ")
+  @ApiModelProperty(value = "The maximal amount of data that this query is allowed to scan (in GB). If this limit is reached, the query will be canceled.")
   public BigDecimal getScannedDataLimit() {
     return scannedDataLimit;
   }
 
   
    /**
-   * The spaces in which the query has been executed. May be empty if all spaces of the specified account have been queried.
+   * The spaces in which the query is executed. May be empty if all spaces of the specified account have been queried.
    * @return spaces
   **/
-  @ApiModelProperty(value = "The spaces in which the query has been executed. May be empty if all spaces of the specified account have been queried.")
+  @ApiModelProperty(value = "The spaces in which the query is executed. May be empty if all spaces of the specified account have been queried.")
   public List<Long> getSpaces() {
     return spaces;
   }

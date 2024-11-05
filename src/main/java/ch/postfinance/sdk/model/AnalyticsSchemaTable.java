@@ -55,30 +55,30 @@ public class AnalyticsSchemaTable {
   
   
    /**
-   * The schemas of all columns of this table.
+   * The schemas of all columns of the table.
    * @return columns
   **/
-  @ApiModelProperty(value = "The schemas of all columns of this table.")
+  @ApiModelProperty(value = "The schemas of all columns of the table.")
   public List<AnalyticsSchemaColumn> getColumns() {
     return columns;
   }
 
   
    /**
-   * A human readable description of the entity type contained in this table.
+   * The localized description of the table.
    * @return description
   **/
-  @ApiModelProperty(value = "A human readable description of the entity type contained in this table.")
+  @ApiModelProperty(value = "The localized description of the table.")
   public Map<String, String> getDescription() {
     return description;
   }
 
   
    /**
-   * The name of this table.
+   * The name of the table.
    * @return tableName
   **/
-  @ApiModelProperty(value = "The name of this table.")
+  @ApiModelProperty(value = "The name of the table.")
   public String getTableName() {
     return tableName;
   }

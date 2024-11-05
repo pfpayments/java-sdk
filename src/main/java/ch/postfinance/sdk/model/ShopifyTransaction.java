@@ -21,8 +21,8 @@ package ch.postfinance.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinance.sdk.model.ShopifyIntegration;
 import ch.postfinance.sdk.model.ShopifyTransactionState;
+import ch.postfinance.sdk.model.ShopifyV1Integration;
 import ch.postfinance.sdk.model.Transaction;
 import ch.postfinance.sdk.model.TransactionAwareEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -50,7 +50,7 @@ public class ShopifyTransaction extends TransactionAwareEntity {
 
   
   @JsonProperty("integration")
-  protected ShopifyIntegration integration = null;
+  protected ShopifyV1Integration integration = null;
 
   
   @JsonProperty("orderId")
@@ -103,7 +103,7 @@ public class ShopifyTransaction extends TransactionAwareEntity {
    * @return integration
   **/
   @ApiModelProperty(value = "")
-  public ShopifyIntegration getIntegration() {
+  public ShopifyV1Integration getIntegration() {
     return integration;
   }
 

@@ -58,40 +58,40 @@ public class AnalyticsQueryResultBatch {
   
   
    /**
-   * The schemas of the columns returned by the query (in order). Will be null if the results of the query are not (yet) available.
+   * The schemas of the columns returned by the query (in order).
    * @return columns
   **/
-  @ApiModelProperty(value = "The schemas of the columns returned by the query (in order). Will be null if the results of the query are not (yet) available.")
+  @ApiModelProperty(value = "The schemas of the columns returned by the query (in order).")
   public List<AnalyticsSchemaColumn> getColumns() {
     return columns;
   }
 
   
    /**
-   * The token to be provided to fetch the next batch of results. May be null if no more result batches are available.
+   * The token to fetch the next batch of results. Null if no more results are available.
    * @return nextToken
   **/
-  @ApiModelProperty(value = "The token to be provided to fetch the next batch of results. May be null if no more result batches are available.")
+  @ApiModelProperty(value = "The token to fetch the next batch of results. Null if no more results are available.")
   public String getNextToken() {
     return nextToken;
   }
 
   
    /**
-   * The query execution which produced the result.
+   * The query execution that produced the result.
    * @return queryExecution
   **/
-  @ApiModelProperty(value = "The query execution which produced the result.")
+  @ApiModelProperty(value = "The query execution that produced the result.")
   public AnalyticsQueryExecution getQueryExecution() {
     return queryExecution;
   }
 
   
    /**
-   * The rows of the result set contained in this batch where each row is a list of column values (in order of the columns specified in the query). Will be null if the results of the query are not (yet) available.
+   * The resulting rows contained in this batch where each row is a list of column values.
    * @return rows
   **/
-  @ApiModelProperty(value = "The rows of the result set contained in this batch where each row is a list of column values (in order of the columns specified in the query). Will be null if the results of the query are not (yet) available.")
+  @ApiModelProperty(value = "The resulting rows contained in this batch where each row is a list of column values.")
   public List<List<String>> getRows() {
     return rows;
   }
