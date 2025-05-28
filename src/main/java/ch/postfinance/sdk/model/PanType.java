@@ -29,15 +29,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * This model defines the card cryptogram types.
+ * 
  */
-public enum CardCryptogramType {
+public enum PanType {
   
-  SCHEME_TOKEN("SCHEME_TOKEN");
+  PLAIN("PLAIN"),
+  
+  SCHEME_TOKEN("SCHEME_TOKEN"),
+  
+  SCHEME_TOKEN_CLICK_TO_PAY("SCHEME_TOKEN_CLICK_TO_PAY"),
+  
+  DEVICE_TOKEN_APPLE_PAY("DEVICE_TOKEN_APPLE_PAY"),
+  
+  DEVICE_TOKEN_GOOGLE_PAY("DEVICE_TOKEN_GOOGLE_PAY"),
+  
+  DEVICE_TOKEN_SAMSUNG_PAY("DEVICE_TOKEN_SAMSUNG_PAY"),
+  
+  DEVICE_TOKEN_ANDROID_PAY("DEVICE_TOKEN_ANDROID_PAY");
 
   private String value;
 
-  CardCryptogramType(String value) {
+  PanType(String value) {
     this.value = value;
   }
 
@@ -52,8 +64,8 @@ public enum CardCryptogramType {
   }
 
   @JsonCreator
-  public static CardCryptogramType fromValue(String text) {
-    for (CardCryptogramType b : CardCryptogramType.values()) {
+  public static PanType fromValue(String text) {
+    for (PanType b : PanType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

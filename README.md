@@ -21,7 +21,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>ch.postfinance</groupId>
     <artifactId>postfinancecheckout-java-sdk</artifactId>
-    <version>8.2.1</version>
+    <version>8.7.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -31,7 +31,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "ch.postfinance:postfinancecheckout-java-sdk:8.2.1"
+compile "ch.postfinance:postfinancecheckout-java-sdk:8.7.0"
 ```
 
 ### Others
@@ -44,7 +44,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/postfinancecheckout-java-sdk-8.2.1.jar`
+* `target/postfinancecheckout-java-sdk-8.7.0.jar`
 * `target/lib/*.jar`
 
 ## Usage
