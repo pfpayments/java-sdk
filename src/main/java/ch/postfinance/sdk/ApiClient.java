@@ -372,6 +372,38 @@ public class ApiClient {
         return this.documentTemplateTypeService;
     }
     
+    private DunningCaseLevelService dunningCaseLevelService;
+    public DunningCaseLevelService getDunningCaseLevelService() {
+        if (this.dunningCaseLevelService == null) {
+            this.dunningCaseLevelService = new DunningCaseLevelService(this);
+        }
+        return this.dunningCaseLevelService;
+    }
+    
+    private DunningCaseService dunningCaseService;
+    public DunningCaseService getDunningCaseService() {
+        if (this.dunningCaseService == null) {
+            this.dunningCaseService = new DunningCaseService(this);
+        }
+        return this.dunningCaseService;
+    }
+    
+    private DunningFlowLevelService dunningFlowLevelService;
+    public DunningFlowLevelService getDunningFlowLevelService() {
+        if (this.dunningFlowLevelService == null) {
+            this.dunningFlowLevelService = new DunningFlowLevelService(this);
+        }
+        return this.dunningFlowLevelService;
+    }
+    
+    private DunningFlowService dunningFlowService;
+    public DunningFlowService getDunningFlowService() {
+        if (this.dunningFlowService == null) {
+            this.dunningFlowService = new DunningFlowService(this);
+        }
+        return this.dunningFlowService;
+    }
+    
     private ExternalTransferBankTransactionService externalTransferBankTransactionService;
     public ExternalTransferBankTransactionService getExternalTransferBankTransactionService() {
         if (this.externalTransferBankTransactionService == null) {
@@ -658,6 +690,166 @@ public class ApiClient {
             this.staticValueService = new StaticValueService(this);
         }
         return this.staticValueService;
+    }
+    
+    private SubscriberService subscriberService;
+    public SubscriberService getSubscriberService() {
+        if (this.subscriberService == null) {
+            this.subscriberService = new SubscriberService(this);
+        }
+        return this.subscriberService;
+    }
+    
+    private SubscriptionAffiliateService subscriptionAffiliateService;
+    public SubscriptionAffiliateService getSubscriptionAffiliateService() {
+        if (this.subscriptionAffiliateService == null) {
+            this.subscriptionAffiliateService = new SubscriptionAffiliateService(this);
+        }
+        return this.subscriptionAffiliateService;
+    }
+    
+    private SubscriptionChargeService subscriptionChargeService;
+    public SubscriptionChargeService getSubscriptionChargeService() {
+        if (this.subscriptionChargeService == null) {
+            this.subscriptionChargeService = new SubscriptionChargeService(this);
+        }
+        return this.subscriptionChargeService;
+    }
+    
+    private SubscriptionLedgerEntryService subscriptionLedgerEntryService;
+    public SubscriptionLedgerEntryService getSubscriptionLedgerEntryService() {
+        if (this.subscriptionLedgerEntryService == null) {
+            this.subscriptionLedgerEntryService = new SubscriptionLedgerEntryService(this);
+        }
+        return this.subscriptionLedgerEntryService;
+    }
+    
+    private SubscriptionMetricService subscriptionMetricService;
+    public SubscriptionMetricService getSubscriptionMetricService() {
+        if (this.subscriptionMetricService == null) {
+            this.subscriptionMetricService = new SubscriptionMetricService(this);
+        }
+        return this.subscriptionMetricService;
+    }
+    
+    private SubscriptionMetricUsageService subscriptionMetricUsageService;
+    public SubscriptionMetricUsageService getSubscriptionMetricUsageService() {
+        if (this.subscriptionMetricUsageService == null) {
+            this.subscriptionMetricUsageService = new SubscriptionMetricUsageService(this);
+        }
+        return this.subscriptionMetricUsageService;
+    }
+    
+    private SubscriptionPeriodBillService subscriptionPeriodBillService;
+    public SubscriptionPeriodBillService getSubscriptionPeriodBillService() {
+        if (this.subscriptionPeriodBillService == null) {
+            this.subscriptionPeriodBillService = new SubscriptionPeriodBillService(this);
+        }
+        return this.subscriptionPeriodBillService;
+    }
+    
+    private SubscriptionProductComponentGroupService subscriptionProductComponentGroupService;
+    public SubscriptionProductComponentGroupService getSubscriptionProductComponentGroupService() {
+        if (this.subscriptionProductComponentGroupService == null) {
+            this.subscriptionProductComponentGroupService = new SubscriptionProductComponentGroupService(this);
+        }
+        return this.subscriptionProductComponentGroupService;
+    }
+    
+    private SubscriptionProductComponentService subscriptionProductComponentService;
+    public SubscriptionProductComponentService getSubscriptionProductComponentService() {
+        if (this.subscriptionProductComponentService == null) {
+            this.subscriptionProductComponentService = new SubscriptionProductComponentService(this);
+        }
+        return this.subscriptionProductComponentService;
+    }
+    
+    private SubscriptionProductFeeTierService subscriptionProductFeeTierService;
+    public SubscriptionProductFeeTierService getSubscriptionProductFeeTierService() {
+        if (this.subscriptionProductFeeTierService == null) {
+            this.subscriptionProductFeeTierService = new SubscriptionProductFeeTierService(this);
+        }
+        return this.subscriptionProductFeeTierService;
+    }
+    
+    private SubscriptionProductMeteredFeeService subscriptionProductMeteredFeeService;
+    public SubscriptionProductMeteredFeeService getSubscriptionProductMeteredFeeService() {
+        if (this.subscriptionProductMeteredFeeService == null) {
+            this.subscriptionProductMeteredFeeService = new SubscriptionProductMeteredFeeService(this);
+        }
+        return this.subscriptionProductMeteredFeeService;
+    }
+    
+    private SubscriptionProductPeriodFeeService subscriptionProductPeriodFeeService;
+    public SubscriptionProductPeriodFeeService getSubscriptionProductPeriodFeeService() {
+        if (this.subscriptionProductPeriodFeeService == null) {
+            this.subscriptionProductPeriodFeeService = new SubscriptionProductPeriodFeeService(this);
+        }
+        return this.subscriptionProductPeriodFeeService;
+    }
+    
+    private SubscriptionProductRetirementService subscriptionProductRetirementService;
+    public SubscriptionProductRetirementService getSubscriptionProductRetirementService() {
+        if (this.subscriptionProductRetirementService == null) {
+            this.subscriptionProductRetirementService = new SubscriptionProductRetirementService(this);
+        }
+        return this.subscriptionProductRetirementService;
+    }
+    
+    private SubscriptionProductService subscriptionProductService;
+    public SubscriptionProductService getSubscriptionProductService() {
+        if (this.subscriptionProductService == null) {
+            this.subscriptionProductService = new SubscriptionProductService(this);
+        }
+        return this.subscriptionProductService;
+    }
+    
+    private SubscriptionProductSetupFeeService subscriptionProductSetupFeeService;
+    public SubscriptionProductSetupFeeService getSubscriptionProductSetupFeeService() {
+        if (this.subscriptionProductSetupFeeService == null) {
+            this.subscriptionProductSetupFeeService = new SubscriptionProductSetupFeeService(this);
+        }
+        return this.subscriptionProductSetupFeeService;
+    }
+    
+    private SubscriptionProductVersionRetirementService subscriptionProductVersionRetirementService;
+    public SubscriptionProductVersionRetirementService getSubscriptionProductVersionRetirementService() {
+        if (this.subscriptionProductVersionRetirementService == null) {
+            this.subscriptionProductVersionRetirementService = new SubscriptionProductVersionRetirementService(this);
+        }
+        return this.subscriptionProductVersionRetirementService;
+    }
+    
+    private SubscriptionProductVersionService subscriptionProductVersionService;
+    public SubscriptionProductVersionService getSubscriptionProductVersionService() {
+        if (this.subscriptionProductVersionService == null) {
+            this.subscriptionProductVersionService = new SubscriptionProductVersionService(this);
+        }
+        return this.subscriptionProductVersionService;
+    }
+    
+    private SubscriptionService subscriptionService;
+    public SubscriptionService getSubscriptionService() {
+        if (this.subscriptionService == null) {
+            this.subscriptionService = new SubscriptionService(this);
+        }
+        return this.subscriptionService;
+    }
+    
+    private SubscriptionSuspensionService subscriptionSuspensionService;
+    public SubscriptionSuspensionService getSubscriptionSuspensionService() {
+        if (this.subscriptionSuspensionService == null) {
+            this.subscriptionSuspensionService = new SubscriptionSuspensionService(this);
+        }
+        return this.subscriptionSuspensionService;
+    }
+    
+    private SubscriptionVersionService subscriptionVersionService;
+    public SubscriptionVersionService getSubscriptionVersionService() {
+        if (this.subscriptionVersionService == null) {
+            this.subscriptionVersionService = new SubscriptionVersionService(this);
+        }
+        return this.subscriptionVersionService;
     }
     
     private TokenService tokenService;
