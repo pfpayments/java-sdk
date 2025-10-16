@@ -8,7 +8,7 @@
     <artifactId>postfinancecheckout-java-sdk</artifactId>
     <packaging>jar</packaging>
     <name>postfinancecheckout-java-sdk</name>
-    <version>8.8.1</version>
+    <version>8.8.3</version>
     <url>https://postfinance.ch/en/business/products/e-commerce/postfinance-checkout-all-in-one.html</url>
     <description>The SDK for simplifying the integration with PostFinance Checkout API.</description>
 
