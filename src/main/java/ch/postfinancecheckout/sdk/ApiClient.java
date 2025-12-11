@@ -92,7 +92,7 @@ import ch.postfinancecheckout.sdk.auth.HttpBearerAuth;
 
 
 public class ApiClient extends JavaTimeFormatter {
-  public static final String VERSION = "9.2.0";
+  public static final String VERSION = "9.3.0";
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
   private String basePath = "https://checkout.postfinance.ch/api/v2.0";
@@ -1009,7 +1009,7 @@ public class ApiClient extends JavaTimeFormatter {
   }
 
   private void addMetaHeaders(ClassicRequestBuilder builder) {
-      builder.addHeader("x-meta-sdk-version", "9.2.0");
+      builder.addHeader("x-meta-sdk-version", "9.3.0");
       builder.addHeader("x-meta-sdk-language", "java");
       builder.addHeader("x-meta-sdk-provider", "postfinancecheckout");
       builder.addHeader("x-meta-sdk-language-version", System.getProperty("java.version"));
