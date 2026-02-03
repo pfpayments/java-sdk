@@ -20,7 +20,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>ch.postfinance</groupId>
   <artifactId>postfinancecheckout-java-sdk</artifactId>
-  <version>9.3.0</version>
+  <version>9.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -35,7 +35,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "ch.postfinance:postfinancecheckout-java-sdk:9.3.0"
+     implementation "ch.postfinance:postfinancecheckout-java-sdk:9.4.0"
   }
 ```
 
@@ -275,6 +275,11 @@ Web Api client: [*link*](https://checkout.postfinance.ch//api/client)<br>
   &nbsp;&nbsp;* <code>getPaymentBankTransactionsSearch</code>
   &nbsp;&nbsp;&nbsp;&nbsp;<strong>GET</strong> /payment/bank-transactions/search
   &nbsp;&nbsp;&nbsp;&nbsp;Search bank transactions
+  <br><br>
+  - <strong>BogusExpressCheckoutService</strong><br>
+  &nbsp;&nbsp;* <code>postBogusExpressCheckoutOnApprove</code>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>POST</strong> /bogus-express-checkout/on-approve
+  &nbsp;&nbsp;&nbsp;&nbsp;Approve express checkout wallet payment
   <br><br>
   - <strong>ChargeAttemptsService</strong><br>
   &nbsp;&nbsp;* <code>getPaymentChargeAttempts</code>
@@ -670,6 +675,16 @@ Web Api client: [*link*](https://checkout.postfinance.ch//api/client)<br>
   &nbsp;&nbsp;* <code>getPaymentDunningFlowsSearch</code>
   &nbsp;&nbsp;&nbsp;&nbsp;<strong>GET</strong> /payment/dunning-flows/search
   &nbsp;&nbsp;&nbsp;&nbsp;Search dunning flows
+  <br><br>
+  - <strong>ExpressCheckoutService</strong><br>
+  &nbsp;&nbsp;* <code>patchExpressCheckoutShippingAddressChange</code>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>PATCH</strong> /express-checkout/shipping/address-change
+  &nbsp;&nbsp;&nbsp;&nbsp;Change shipping address
+  <br><br>
+  - <strong>ExpressCheckoutService</strong><br>
+  &nbsp;&nbsp;* <code>patchExpressCheckoutShippingMethodChange</code>
+  &nbsp;&nbsp;&nbsp;&nbsp;<strong>PATCH</strong> /express-checkout/shipping/method-change
+  &nbsp;&nbsp;&nbsp;&nbsp;Change shipping method
   <br><br>
   - <strong>ExpressCheckoutService</strong><br>
   &nbsp;&nbsp;* <code>postExpressCheckoutCreateSession</code>
@@ -2543,6 +2558,8 @@ Additional Api models documentation: [*link*](https://checkout.postfinance.ch/en
 * <strong>BillingCycleModel</strong>
 * <strong>BillingCycleType</strong>
 * <strong>BillingDayCustomization</strong>
+* <strong>BogusExpressCheckoutApprovalRequest</strong>
+* <strong>BogusExpressCheckoutPaymentData</strong>
 * <strong>CardAuthenticationResponse</strong>
 * <strong>CardAuthenticationVersion</strong>
 * <strong>CardCryptogram</strong>
@@ -2642,10 +2659,15 @@ Additional Api models documentation: [*link*](https://checkout.postfinance.ch/en
 * <strong>DunningFlowSearchResponse</strong>
 * <strong>DunningFlowType</strong>
 * <strong>Environment</strong>
+* <strong>ExpressCheckoutApprovalResponse</strong>
 * <strong>ExpressCheckoutCreateResponse</strong>
 * <strong>ExpressCheckoutSession</strong>
 * <strong>ExpressCheckoutSessionCreate</strong>
 * <strong>ExpressCheckoutSessionState</strong>
+* <strong>ExpressCheckoutShippingAddressChangeRequest</strong>
+* <strong>ExpressCheckoutShippingAddressChangeResponse</strong>
+* <strong>ExpressCheckoutShippingMethodChangeRequest</strong>
+* <strong>ExpressCheckoutShippingMethodChangeResponse</strong>
 * <strong>ExpressCheckoutShippingOption</strong>
 * <strong>ExpressCheckoutWalletType</strong>
 * <strong>ExternalTransferBankTransaction</strong>
