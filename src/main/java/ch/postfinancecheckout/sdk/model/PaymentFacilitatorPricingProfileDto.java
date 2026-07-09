@@ -24,7 +24,6 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.BogusExpressCheckoutPaymentData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,43 +36,73 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * BogusExpressCheckoutApprovalRequest
+ * PaymentFacilitatorPricingProfileDto
  */
 @JsonPropertyOrder({
-  BogusExpressCheckoutApprovalRequest.JSON_PROPERTY_PAYMENT_DATA
+  PaymentFacilitatorPricingProfileDto.JSON_PROPERTY_NAME,
+  PaymentFacilitatorPricingProfileDto.JSON_PROPERTY_ID
 })
 
-public class BogusExpressCheckoutApprovalRequest {
-  public static final String JSON_PROPERTY_PAYMENT_DATA = "paymentData";
+public class PaymentFacilitatorPricingProfileDto {
+  public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
-  private BogusExpressCheckoutPaymentData paymentData;
+  private String name;
 
-  public BogusExpressCheckoutApprovalRequest() {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nullable
+  private Long id;
+
+  public PaymentFacilitatorPricingProfileDto() {
   }
 
-  public BogusExpressCheckoutApprovalRequest paymentData(@javax.annotation.Nullable BogusExpressCheckoutPaymentData paymentData) {
+  public PaymentFacilitatorPricingProfileDto name(@javax.annotation.Nullable String name) {
     
-    this.paymentData = paymentData;
+    this.name = name;
     return this;
   }
 
   /**
-   * Get paymentData
-   * @return paymentData
+   * Get name
+   * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYMENT_DATA)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BogusExpressCheckoutPaymentData getPaymentData() {
-    return paymentData;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PAYMENT_DATA)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentData(@javax.annotation.Nullable BogusExpressCheckoutPaymentData paymentData) {
-    this.paymentData = paymentData;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+  public PaymentFacilitatorPricingProfileDto id(@javax.annotation.Nullable Long id) {
+    
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable Long id) {
+    this.id = id;
   }
 
   @Override
@@ -84,20 +113,22 @@ public class BogusExpressCheckoutApprovalRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BogusExpressCheckoutApprovalRequest bogusExpressCheckoutApprovalRequest = (BogusExpressCheckoutApprovalRequest) o;
-    return Objects.equals(this.paymentData, bogusExpressCheckoutApprovalRequest.paymentData);
+    PaymentFacilitatorPricingProfileDto paymentFacilitatorPricingProfileDto = (PaymentFacilitatorPricingProfileDto) o;
+    return Objects.equals(this.name, paymentFacilitatorPricingProfileDto.name) &&
+        Objects.equals(this.id, paymentFacilitatorPricingProfileDto.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentData);
+    return Objects.hash(name, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BogusExpressCheckoutApprovalRequest {\n");
-    sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
+    sb.append("class PaymentFacilitatorPricingProfileDto {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -145,9 +176,24 @@ public class BogusExpressCheckoutApprovalRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `paymentData` to the URL query string
-    if (getPaymentData() != null) {
-      joiner.add(getPaymentData().toUrlQueryString(prefix + "paymentData" + suffix));
+    // add `name` to the URL query string
+    if (getName() != null) {
+      try {
+        joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
+      }
+    }
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      try {
+        joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
+      }
     }
 
     return joiner.toString();

@@ -24,6 +24,7 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinancecheckout.sdk.model.Setter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -36,64 +37,44 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * BogusExpressCheckoutPaymentData
+ * BoardingStrategyInformationRequest
  */
 @JsonPropertyOrder({
-  BogusExpressCheckoutPaymentData.JSON_PROPERTY_PAYMENT_TOKEN,
-  BogusExpressCheckoutPaymentData.JSON_PROPERTY_CRYPTOGRAM
+  BoardingStrategyInformationRequest.JSON_PROPERTY_BILLING_ADDRESS
 })
 
-public class BogusExpressCheckoutPaymentData {
-  public static final String JSON_PROPERTY_PAYMENT_TOKEN = "paymentToken";
-  @javax.annotation.Nullable
-  private String paymentToken;
+public class BoardingStrategyInformationRequest {
+  public static final String JSON_PROPERTY_BILLING_ADDRESS = "billingAddress";
+  @javax.annotation.Nonnull
+  private Setter billingAddress;
 
-  public static final String JSON_PROPERTY_CRYPTOGRAM = "cryptogram";
-  @javax.annotation.Nullable
-  private String cryptogram;
-
-  public BogusExpressCheckoutPaymentData() {
+  public BoardingStrategyInformationRequest() {
   }
-  /**
-   * Constructor with only readonly parameters
-   */
-  @JsonCreator
-  public BogusExpressCheckoutPaymentData(
-    @JsonProperty(JSON_PROPERTY_PAYMENT_TOKEN) String paymentToken, 
-    @JsonProperty(JSON_PROPERTY_CRYPTOGRAM) String cryptogram
-  ) {
-    this();
-    this.paymentToken = paymentToken;
-    this.cryptogram = cryptogram;
+
+  public BoardingStrategyInformationRequest billingAddress(@javax.annotation.Nonnull Setter billingAddress) {
+    
+    this.billingAddress = billingAddress;
+    return this;
   }
 
   /**
-   * Wallet-generated payment token collected during approval.
-   * @return paymentToken
+   * Get billingAddress
+   * @return billingAddress
    */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYMENT_TOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_BILLING_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getPaymentToken() {
-    return paymentToken;
+  public Setter getBillingAddress() {
+    return billingAddress;
   }
 
 
-
-  /**
-   * Wallet-generated cryptogram collected during approval.
-   * @return cryptogram
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CRYPTOGRAM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCryptogram() {
-    return cryptogram;
+  @JsonProperty(JSON_PROPERTY_BILLING_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setBillingAddress(@javax.annotation.Nonnull Setter billingAddress) {
+    this.billingAddress = billingAddress;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -103,22 +84,20 @@ public class BogusExpressCheckoutPaymentData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BogusExpressCheckoutPaymentData bogusExpressCheckoutPaymentData = (BogusExpressCheckoutPaymentData) o;
-    return Objects.equals(this.paymentToken, bogusExpressCheckoutPaymentData.paymentToken) &&
-        Objects.equals(this.cryptogram, bogusExpressCheckoutPaymentData.cryptogram);
+    BoardingStrategyInformationRequest boardingStrategyInformationRequest = (BoardingStrategyInformationRequest) o;
+    return Objects.equals(this.billingAddress, boardingStrategyInformationRequest.billingAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(paymentToken, cryptogram);
+    return Objects.hash(billingAddress);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BogusExpressCheckoutPaymentData {\n");
-    sb.append("    paymentToken: ").append(toIndentedString(paymentToken)).append("\n");
-    sb.append("    cryptogram: ").append(toIndentedString(cryptogram)).append("\n");
+    sb.append("class BoardingStrategyInformationRequest {\n");
+    sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -166,24 +145,9 @@ public class BogusExpressCheckoutPaymentData {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `paymentToken` to the URL query string
-    if (getPaymentToken() != null) {
-      try {
-        joiner.add(String.format("%spaymentToken%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getPaymentToken()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `cryptogram` to the URL query string
-    if (getCryptogram() != null) {
-      try {
-        joiner.add(String.format("%scryptogram%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCryptogram()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
+    // add `billingAddress` to the URL query string
+    if (getBillingAddress() != null) {
+      joiner.add(getBillingAddress().toUrlQueryString(prefix + "billingAddress" + suffix));
     }
 
     return joiner.toString();

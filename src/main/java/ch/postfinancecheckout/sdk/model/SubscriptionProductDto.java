@@ -24,7 +24,6 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.ExpressCheckoutSessionState;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -37,93 +36,73 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutApprovalResponse
+ * SubscriptionProductDto
  */
 @JsonPropertyOrder({
-  ExpressCheckoutApprovalResponse.JSON_PROPERTY_MERCHANT_REDIRECT_URL,
-  ExpressCheckoutApprovalResponse.JSON_PROPERTY_SESSION_ID,
-  ExpressCheckoutApprovalResponse.JSON_PROPERTY_STATE
+  SubscriptionProductDto.JSON_PROPERTY_NAME,
+  SubscriptionProductDto.JSON_PROPERTY_ID
 })
 
-public class ExpressCheckoutApprovalResponse {
-  public static final String JSON_PROPERTY_MERCHANT_REDIRECT_URL = "merchantRedirectUrl";
+public class SubscriptionProductDto {
+  public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
-  private String merchantRedirectUrl;
+  private String name;
 
-  public static final String JSON_PROPERTY_SESSION_ID = "sessionId";
+  public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
-  private Long sessionId;
+  private Long id;
 
-  public static final String JSON_PROPERTY_STATE = "state";
-  @javax.annotation.Nullable
-  private ExpressCheckoutSessionState state;
-
-  public ExpressCheckoutApprovalResponse() {
-  }
-  /**
-   * Constructor with only readonly parameters
-   */
-  @JsonCreator
-  public ExpressCheckoutApprovalResponse(
-    @JsonProperty(JSON_PROPERTY_MERCHANT_REDIRECT_URL) String merchantRedirectUrl, 
-    @JsonProperty(JSON_PROPERTY_SESSION_ID) Long sessionId
-  ) {
-    this();
-    this.merchantRedirectUrl = merchantRedirectUrl;
-    this.sessionId = sessionId;
+  public SubscriptionProductDto() {
   }
 
-  /**
-   * Get merchantRedirectUrl
-   * @return merchantRedirectUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MERCHANT_REDIRECT_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMerchantRedirectUrl() {
-    return merchantRedirectUrl;
-  }
-
-
-
-  /**
-   * Get sessionId
-   * @return sessionId
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SESSION_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getSessionId() {
-    return sessionId;
-  }
-
-
-
-  public ExpressCheckoutApprovalResponse state(@javax.annotation.Nullable ExpressCheckoutSessionState state) {
+  public SubscriptionProductDto name(@javax.annotation.Nullable String name) {
     
-    this.state = state;
+    this.name = name;
     return this;
   }
 
   /**
-   * Get state
-   * @return state
+   * Get name
+   * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ExpressCheckoutSessionState getState() {
-    return state;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(@javax.annotation.Nullable ExpressCheckoutSessionState state) {
-    this.state = state;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+  public SubscriptionProductDto id(@javax.annotation.Nullable Long id) {
+    
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable Long id) {
+    this.id = id;
   }
 
   @Override
@@ -134,24 +113,22 @@ public class ExpressCheckoutApprovalResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutApprovalResponse expressCheckoutApprovalResponse = (ExpressCheckoutApprovalResponse) o;
-    return Objects.equals(this.merchantRedirectUrl, expressCheckoutApprovalResponse.merchantRedirectUrl) &&
-        Objects.equals(this.sessionId, expressCheckoutApprovalResponse.sessionId) &&
-        Objects.equals(this.state, expressCheckoutApprovalResponse.state);
+    SubscriptionProductDto subscriptionProductDto = (SubscriptionProductDto) o;
+    return Objects.equals(this.name, subscriptionProductDto.name) &&
+        Objects.equals(this.id, subscriptionProductDto.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(merchantRedirectUrl, sessionId, state);
+    return Objects.hash(name, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutApprovalResponse {\n");
-    sb.append("    merchantRedirectUrl: ").append(toIndentedString(merchantRedirectUrl)).append("\n");
-    sb.append("    sessionId: ").append(toIndentedString(sessionId)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("class SubscriptionProductDto {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -199,30 +176,20 @@ public class ExpressCheckoutApprovalResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `merchantRedirectUrl` to the URL query string
-    if (getMerchantRedirectUrl() != null) {
+    // add `name` to the URL query string
+    if (getName() != null) {
       try {
-        joiner.add(String.format("%smerchantRedirectUrl%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getMerchantRedirectUrl()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
       }
     }
 
-    // add `sessionId` to the URL query string
-    if (getSessionId() != null) {
+    // add `id` to the URL query string
+    if (getId() != null) {
       try {
-        joiner.add(String.format("%ssessionId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSessionId()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `state` to the URL query string
-    if (getState() != null) {
-      try {
-        joiner.add(String.format("%sstate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getState()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

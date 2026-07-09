@@ -24,13 +24,12 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.ExpressCheckoutShippingOption;
+import ch.postfinancecheckout.sdk.model.RestCountryState;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,61 +40,83 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutShippingAddressChangeResponse
+ * StateListResponse
  */
 @JsonPropertyOrder({
-  ExpressCheckoutShippingAddressChangeResponse.JSON_PROPERTY_ORDER_TOTAL,
-  ExpressCheckoutShippingAddressChangeResponse.JSON_PROPERTY_SHIPPING_OPTIONS
+  StateListResponse.JSON_PROPERTY_DATA,
+  StateListResponse.JSON_PROPERTY_HAS_MORE,
+  StateListResponse.JSON_PROPERTY_LIMIT
 })
+@JsonTypeName("State_List_Response")
 
-public class ExpressCheckoutShippingAddressChangeResponse {
-  public static final String JSON_PROPERTY_ORDER_TOTAL = "orderTotal";
+public class StateListResponse {
+  public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
-  private BigDecimal orderTotal;
+  private List<RestCountryState> data = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_SHIPPING_OPTIONS = "shippingOptions";
+  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
-  private List<ExpressCheckoutShippingOption> shippingOptions = new ArrayList<>();
+  private Boolean hasMore;
 
-  public ExpressCheckoutShippingAddressChangeResponse() {
+  public static final String JSON_PROPERTY_LIMIT = "limit";
+  @javax.annotation.Nullable
+  private Integer limit;
+
+  public StateListResponse() {
   }
   /**
    * Constructor with only readonly parameters
    */
   @JsonCreator
-  public ExpressCheckoutShippingAddressChangeResponse(
-    @JsonProperty(JSON_PROPERTY_ORDER_TOTAL) BigDecimal orderTotal, 
-    @JsonProperty(JSON_PROPERTY_SHIPPING_OPTIONS) List<ExpressCheckoutShippingOption> shippingOptions
+  public StateListResponse(
+    @JsonProperty(JSON_PROPERTY_DATA) List<RestCountryState> data, 
+    @JsonProperty(JSON_PROPERTY_HAS_MORE) Boolean hasMore, 
+    @JsonProperty(JSON_PROPERTY_LIMIT) Integer limit
   ) {
     this();
-    this.orderTotal = orderTotal;
-    this.shippingOptions = shippingOptions;
+    this.data = data;
+    this.hasMore = hasMore;
+    this.limit = limit;
   }
 
   /**
-   * Get orderTotal
-   * @return orderTotal
+   * An array containing the actual response objects.
+   * @return data
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ORDER_TOTAL)
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getOrderTotal() {
-    return orderTotal;
+  public List<RestCountryState> getData() {
+    return data;
   }
 
 
 
   /**
-   * Get shippingOptions
-   * @return shippingOptions
+   * Whether there are more objects available after this set. If false, there are no more objects to retrieve.
+   * @return hasMore
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHIPPING_OPTIONS)
+  @JsonProperty(JSON_PROPERTY_HAS_MORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ExpressCheckoutShippingOption> getShippingOptions() {
-    return shippingOptions;
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+
+
+  /**
+   * The applied limit on the number of objects returned.
+   * @return limit
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getLimit() {
+    return limit;
   }
 
 
@@ -108,22 +129,24 @@ public class ExpressCheckoutShippingAddressChangeResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutShippingAddressChangeResponse expressCheckoutShippingAddressChangeResponse = (ExpressCheckoutShippingAddressChangeResponse) o;
-    return Objects.equals(this.orderTotal, expressCheckoutShippingAddressChangeResponse.orderTotal) &&
-        Objects.equals(this.shippingOptions, expressCheckoutShippingAddressChangeResponse.shippingOptions);
+    StateListResponse stateListResponse = (StateListResponse) o;
+    return Objects.equals(this.data, stateListResponse.data) &&
+        Objects.equals(this.hasMore, stateListResponse.hasMore) &&
+        Objects.equals(this.limit, stateListResponse.limit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderTotal, shippingOptions);
+    return Objects.hash(data, hasMore, limit);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutShippingAddressChangeResponse {\n");
-    sb.append("    orderTotal: ").append(toIndentedString(orderTotal)).append("\n");
-    sb.append("    shippingOptions: ").append(toIndentedString(shippingOptions)).append("\n");
+    sb.append("class StateListResponse {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,23 +194,33 @@ public class ExpressCheckoutShippingAddressChangeResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `orderTotal` to the URL query string
-    if (getOrderTotal() != null) {
+    // add `data` to the URL query string
+    if (getData() != null) {
+      for (int i = 0; i < getData().size(); i++) {
+        if (getData().get(i) != null) {
+          joiner.add(getData().get(i).toUrlQueryString(String.format("%sdata%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `hasMore` to the URL query string
+    if (getHasMore() != null) {
       try {
-        joiner.add(String.format("%sorderTotal%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOrderTotal()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%shasMore%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHasMore()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
       }
     }
 
-    // add `shippingOptions` to the URL query string
-    if (getShippingOptions() != null) {
-      for (int i = 0; i < getShippingOptions().size(); i++) {
-        if (getShippingOptions().get(i) != null) {
-          joiner.add(getShippingOptions().get(i).toUrlQueryString(String.format("%sshippingOptions%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
-        }
+    // add `limit` to the URL query string
+    if (getLimit() != null) {
+      try {
+        joiner.add(String.format("%slimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLimit()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
       }
     }
 

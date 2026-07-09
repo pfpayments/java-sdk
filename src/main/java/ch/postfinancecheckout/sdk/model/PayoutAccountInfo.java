@@ -36,103 +36,133 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutCreateResponse
+ * PayoutAccountInfo
  */
 @JsonPropertyOrder({
-  ExpressCheckoutCreateResponse.JSON_PROPERTY_IFRAME_SRC,
-  ExpressCheckoutCreateResponse.JSON_PROPERTY_SESSION,
-  ExpressCheckoutCreateResponse.JSON_PROPERTY_SESSION_TOKEN
+  PayoutAccountInfo.JSON_PROPERTY_IBAN,
+  PayoutAccountInfo.JSON_PROPERTY_BANK_NAME,
+  PayoutAccountInfo.JSON_PROPERTY_CURRENCY,
+  PayoutAccountInfo.JSON_PROPERTY_BIC
 })
 
-public class ExpressCheckoutCreateResponse {
-  public static final String JSON_PROPERTY_IFRAME_SRC = "iframeSrc";
+public class PayoutAccountInfo {
+  public static final String JSON_PROPERTY_IBAN = "iban";
   @javax.annotation.Nullable
-  private String iframeSrc;
+  private String iban;
 
-  public static final String JSON_PROPERTY_SESSION = "session";
+  public static final String JSON_PROPERTY_BANK_NAME = "bankName";
   @javax.annotation.Nullable
-  private Long session;
+  private String bankName;
 
-  public static final String JSON_PROPERTY_SESSION_TOKEN = "sessionToken";
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
-  private String sessionToken;
+  private String currency;
 
-  public ExpressCheckoutCreateResponse() {
+  public static final String JSON_PROPERTY_BIC = "bic";
+  @javax.annotation.Nullable
+  private String bic;
+
+  public PayoutAccountInfo() {
   }
 
-  public ExpressCheckoutCreateResponse iframeSrc(@javax.annotation.Nullable String iframeSrc) {
+  public PayoutAccountInfo iban(@javax.annotation.Nullable String iban) {
     
-    this.iframeSrc = iframeSrc;
+    this.iban = iban;
     return this;
   }
 
   /**
-   * Get iframeSrc
-   * @return iframeSrc
+   * Get iban
+   * @return iban
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IFRAME_SRC)
+  @JsonProperty(JSON_PROPERTY_IBAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIframeSrc() {
-    return iframeSrc;
+  public String getIban() {
+    return iban;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IFRAME_SRC)
+  @JsonProperty(JSON_PROPERTY_IBAN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIframeSrc(@javax.annotation.Nullable String iframeSrc) {
-    this.iframeSrc = iframeSrc;
+  public void setIban(@javax.annotation.Nullable String iban) {
+    this.iban = iban;
   }
 
-  public ExpressCheckoutCreateResponse session(@javax.annotation.Nullable Long session) {
+  public PayoutAccountInfo bankName(@javax.annotation.Nullable String bankName) {
     
-    this.session = session;
+    this.bankName = bankName;
     return this;
   }
 
   /**
-   * Get session
-   * @return session
+   * Get bankName
+   * @return bankName
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SESSION)
+  @JsonProperty(JSON_PROPERTY_BANK_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getSession() {
-    return session;
+  public String getBankName() {
+    return bankName;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SESSION)
+  @JsonProperty(JSON_PROPERTY_BANK_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSession(@javax.annotation.Nullable Long session) {
-    this.session = session;
+  public void setBankName(@javax.annotation.Nullable String bankName) {
+    this.bankName = bankName;
   }
 
-  public ExpressCheckoutCreateResponse sessionToken(@javax.annotation.Nullable String sessionToken) {
+  public PayoutAccountInfo currency(@javax.annotation.Nullable String currency) {
     
-    this.sessionToken = sessionToken;
+    this.currency = currency;
     return this;
   }
 
   /**
-   * Get sessionToken
-   * @return sessionToken
+   * Get currency
+   * @return currency
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SESSION_TOKEN)
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSessionToken() {
-    return sessionToken;
+  public String getCurrency() {
+    return currency;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SESSION_TOKEN)
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSessionToken(@javax.annotation.Nullable String sessionToken) {
-    this.sessionToken = sessionToken;
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+  }
+
+  public PayoutAccountInfo bic(@javax.annotation.Nullable String bic) {
+    
+    this.bic = bic;
+    return this;
+  }
+
+  /**
+   * Get bic
+   * @return bic
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_BIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBic() {
+    return bic;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBic(@javax.annotation.Nullable String bic) {
+    this.bic = bic;
   }
 
   @Override
@@ -143,24 +173,26 @@ public class ExpressCheckoutCreateResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutCreateResponse expressCheckoutCreateResponse = (ExpressCheckoutCreateResponse) o;
-    return Objects.equals(this.iframeSrc, expressCheckoutCreateResponse.iframeSrc) &&
-        Objects.equals(this.session, expressCheckoutCreateResponse.session) &&
-        Objects.equals(this.sessionToken, expressCheckoutCreateResponse.sessionToken);
+    PayoutAccountInfo payoutAccountInfo = (PayoutAccountInfo) o;
+    return Objects.equals(this.iban, payoutAccountInfo.iban) &&
+        Objects.equals(this.bankName, payoutAccountInfo.bankName) &&
+        Objects.equals(this.currency, payoutAccountInfo.currency) &&
+        Objects.equals(this.bic, payoutAccountInfo.bic);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(iframeSrc, session, sessionToken);
+    return Objects.hash(iban, bankName, currency, bic);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutCreateResponse {\n");
-    sb.append("    iframeSrc: ").append(toIndentedString(iframeSrc)).append("\n");
-    sb.append("    session: ").append(toIndentedString(session)).append("\n");
-    sb.append("    sessionToken: ").append(toIndentedString(sessionToken)).append("\n");
+    sb.append("class PayoutAccountInfo {\n");
+    sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
+    sb.append("    bankName: ").append(toIndentedString(bankName)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -208,30 +240,40 @@ public class ExpressCheckoutCreateResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `iframeSrc` to the URL query string
-    if (getIframeSrc() != null) {
+    // add `iban` to the URL query string
+    if (getIban() != null) {
       try {
-        joiner.add(String.format("%siframeSrc%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIframeSrc()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%siban%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getIban()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
       }
     }
 
-    // add `session` to the URL query string
-    if (getSession() != null) {
+    // add `bankName` to the URL query string
+    if (getBankName() != null) {
       try {
-        joiner.add(String.format("%ssession%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSession()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sbankName%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getBankName()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
       }
     }
 
-    // add `sessionToken` to the URL query string
-    if (getSessionToken() != null) {
+    // add `currency` to the URL query string
+    if (getCurrency() != null) {
       try {
-        joiner.add(String.format("%ssessionToken%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSessionToken()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%scurrency%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCurrency()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
+      }
+    }
+
+    // add `bic` to the URL query string
+    if (getBic() != null) {
+      try {
+        joiner.add(String.format("%sbic%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getBic()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

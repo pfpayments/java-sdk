@@ -24,16 +24,11 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.LineItem;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.UnsupportedEncodingException;
@@ -41,64 +36,44 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutShippingMethodChangeResponse
+ * WebUiAccountTheme
  */
 @JsonPropertyOrder({
-  ExpressCheckoutShippingMethodChangeResponse.JSON_PROPERTY_LINE_ITEMS,
-  ExpressCheckoutShippingMethodChangeResponse.JSON_PROPERTY_ORDER_TOTAL
+  WebUiAccountTheme.JSON_PROPERTY_PROPERTIES
 })
 
-public class ExpressCheckoutShippingMethodChangeResponse {
-  public static final String JSON_PROPERTY_LINE_ITEMS = "lineItems";
+public class WebUiAccountTheme {
+  public static final String JSON_PROPERTY_PROPERTIES = "properties";
   @javax.annotation.Nullable
-  private List<LineItem> lineItems = new ArrayList<>();
+  private String properties;
 
-  public static final String JSON_PROPERTY_ORDER_TOTAL = "orderTotal";
-  @javax.annotation.Nullable
-  private BigDecimal orderTotal;
-
-  public ExpressCheckoutShippingMethodChangeResponse() {
+  public WebUiAccountTheme() {
   }
-  /**
-   * Constructor with only readonly parameters
-   */
-  @JsonCreator
-  public ExpressCheckoutShippingMethodChangeResponse(
-    @JsonProperty(JSON_PROPERTY_LINE_ITEMS) List<LineItem> lineItems, 
-    @JsonProperty(JSON_PROPERTY_ORDER_TOTAL) BigDecimal orderTotal
-  ) {
-    this();
-    this.lineItems = lineItems;
-    this.orderTotal = orderTotal;
+
+  public WebUiAccountTheme properties(@javax.annotation.Nullable String properties) {
+    
+    this.properties = properties;
+    return this;
   }
 
   /**
-   * Get lineItems
-   * @return lineItems
+   * Get properties
+   * @return properties
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
+  @JsonProperty(JSON_PROPERTY_PROPERTIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<LineItem> getLineItems() {
-    return lineItems;
+  public String getProperties() {
+    return properties;
   }
 
 
-
-  /**
-   * Get orderTotal
-   * @return orderTotal
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ORDER_TOTAL)
+  @JsonProperty(JSON_PROPERTY_PROPERTIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getOrderTotal() {
-    return orderTotal;
+  public void setProperties(@javax.annotation.Nullable String properties) {
+    this.properties = properties;
   }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -108,22 +83,20 @@ public class ExpressCheckoutShippingMethodChangeResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutShippingMethodChangeResponse expressCheckoutShippingMethodChangeResponse = (ExpressCheckoutShippingMethodChangeResponse) o;
-    return Objects.equals(this.lineItems, expressCheckoutShippingMethodChangeResponse.lineItems) &&
-        Objects.equals(this.orderTotal, expressCheckoutShippingMethodChangeResponse.orderTotal);
+    WebUiAccountTheme webUiAccountTheme = (WebUiAccountTheme) o;
+    return Objects.equals(this.properties, webUiAccountTheme.properties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lineItems, orderTotal);
+    return Objects.hash(properties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutShippingMethodChangeResponse {\n");
-    sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
-    sb.append("    orderTotal: ").append(toIndentedString(orderTotal)).append("\n");
+    sb.append("class WebUiAccountTheme {\n");
+    sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,20 +144,10 @@ public class ExpressCheckoutShippingMethodChangeResponse {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `lineItems` to the URL query string
-    if (getLineItems() != null) {
-      for (int i = 0; i < getLineItems().size(); i++) {
-        if (getLineItems().get(i) != null) {
-          joiner.add(getLineItems().get(i).toUrlQueryString(String.format("%slineItems%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
-    }
-
-    // add `orderTotal` to the URL query string
-    if (getOrderTotal() != null) {
+    // add `properties` to the URL query string
+    if (getProperties() != null) {
       try {
-        joiner.add(String.format("%sorderTotal%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOrderTotal()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sproperties%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getProperties()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

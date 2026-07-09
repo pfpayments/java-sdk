@@ -24,13 +24,15 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinancecheckout.sdk.model.WalleejoinPartnershipResponseDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.UnsupportedEncodingException;
@@ -38,82 +40,83 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutWalletType
+ * WalleejoinPartnershipResponseDtoListResponse
  */
 @JsonPropertyOrder({
-  ExpressCheckoutWalletType.JSON_PROPERTY_NAME,
-  ExpressCheckoutWalletType.JSON_PROPERTY_DESCRIPTION,
-  ExpressCheckoutWalletType.JSON_PROPERTY_ID
+  WalleejoinPartnershipResponseDtoListResponse.JSON_PROPERTY_DATA,
+  WalleejoinPartnershipResponseDtoListResponse.JSON_PROPERTY_HAS_MORE,
+  WalleejoinPartnershipResponseDtoListResponse.JSON_PROPERTY_LIMIT
 })
+@JsonTypeName("Walleejoin_Partnership_Response_Dto_List_Response")
 
-public class ExpressCheckoutWalletType {
-  public static final String JSON_PROPERTY_NAME = "name";
+public class WalleejoinPartnershipResponseDtoListResponse {
+  public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
-  private Map<String, String> name = new HashMap<>();
+  private List<WalleejoinPartnershipResponseDto> data = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
-  private Map<String, String> description = new HashMap<>();
+  private Boolean hasMore;
 
-  public static final String JSON_PROPERTY_ID = "id";
+  public static final String JSON_PROPERTY_LIMIT = "limit";
   @javax.annotation.Nullable
-  private Long id;
+  private Integer limit;
 
-  public ExpressCheckoutWalletType() {
+  public WalleejoinPartnershipResponseDtoListResponse() {
   }
   /**
    * Constructor with only readonly parameters
    */
   @JsonCreator
-  public ExpressCheckoutWalletType(
-    @JsonProperty(JSON_PROPERTY_NAME) Map<String, String> name, 
-    @JsonProperty(JSON_PROPERTY_DESCRIPTION) Map<String, String> description, 
-    @JsonProperty(JSON_PROPERTY_ID) Long id
+  public WalleejoinPartnershipResponseDtoListResponse(
+    @JsonProperty(JSON_PROPERTY_DATA) List<WalleejoinPartnershipResponseDto> data, 
+    @JsonProperty(JSON_PROPERTY_HAS_MORE) Boolean hasMore, 
+    @JsonProperty(JSON_PROPERTY_LIMIT) Integer limit
   ) {
     this();
-    this.name = name;
-    this.description = description;
-    this.id = id;
+    this.data = data;
+    this.hasMore = hasMore;
+    this.limit = limit;
   }
 
   /**
-   * The localized name of the object.
-   * @return name
+   * An array containing the actual response objects.
+   * @return data
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, String> getName() {
-    return name;
-  }
-
-
-
-  /**
-   * The localized description of the object.
-   * @return description
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getDescription() {
-    return description;
+  public List<WalleejoinPartnershipResponseDto> getData() {
+    return data;
   }
 
 
 
   /**
-   * A unique identifier for the object.
-   * @return id
+   * Whether there are more objects available after this set. If false, there are no more objects to retrieve.
+   * @return hasMore
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_HAS_MORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getId() {
-    return id;
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+
+
+  /**
+   * The applied limit on the number of objects returned.
+   * @return limit
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getLimit() {
+    return limit;
   }
 
 
@@ -126,24 +129,24 @@ public class ExpressCheckoutWalletType {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutWalletType expressCheckoutWalletType = (ExpressCheckoutWalletType) o;
-    return Objects.equals(this.name, expressCheckoutWalletType.name) &&
-        Objects.equals(this.description, expressCheckoutWalletType.description) &&
-        Objects.equals(this.id, expressCheckoutWalletType.id);
+    WalleejoinPartnershipResponseDtoListResponse walleejoinPartnershipResponseDtoListResponse = (WalleejoinPartnershipResponseDtoListResponse) o;
+    return Objects.equals(this.data, walleejoinPartnershipResponseDtoListResponse.data) &&
+        Objects.equals(this.hasMore, walleejoinPartnershipResponseDtoListResponse.hasMore) &&
+        Objects.equals(this.limit, walleejoinPartnershipResponseDtoListResponse.limit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, id);
+    return Objects.hash(data, hasMore, limit);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutWalletType {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class WalleejoinPartnershipResponseDtoListResponse {\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -191,38 +194,30 @@ public class ExpressCheckoutWalletType {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      for (String _key : getName().keySet()) {
-        try {
-          joiner.add(String.format("%sname%s%s=%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-              getName().get(_key), URLEncoder.encode(String.valueOf(getName().get(_key)), "UTF-8").replaceAll("\\+", "%20")));
-        } catch (UnsupportedEncodingException e) {
-          // Should never happen, UTF-8 is always supported
-          throw new RuntimeException(e);
+    // add `data` to the URL query string
+    if (getData() != null) {
+      for (int i = 0; i < getData().size(); i++) {
+        if (getData().get(i) != null) {
+          joiner.add(getData().get(i).toUrlQueryString(String.format("%sdata%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
-    // add `description` to the URL query string
-    if (getDescription() != null) {
-      for (String _key : getDescription().keySet()) {
-        try {
-          joiner.add(String.format("%sdescription%s%s=%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-              getDescription().get(_key), URLEncoder.encode(String.valueOf(getDescription().get(_key)), "UTF-8").replaceAll("\\+", "%20")));
-        } catch (UnsupportedEncodingException e) {
-          // Should never happen, UTF-8 is always supported
-          throw new RuntimeException(e);
-        }
-      }
-    }
-
-    // add `id` to the URL query string
-    if (getId() != null) {
+    // add `hasMore` to the URL query string
+    if (getHasMore() != null) {
       try {
-        joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%shasMore%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getHasMore()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
+      }
+    }
+
+    // add `limit` to the URL query string
+    if (getLimit() != null) {
+      try {
+        joiner.add(String.format("%slimit%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getLimit()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

@@ -24,11 +24,15 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinancecheckout.sdk.model.RelatedPerson;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.UnsupportedEncodingException;
@@ -36,43 +40,53 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * ExpressCheckoutShippingMethodChangeRequest
+ * MerchantRelatedPersonsDto
  */
 @JsonPropertyOrder({
-  ExpressCheckoutShippingMethodChangeRequest.JSON_PROPERTY_SHIPPING_METHOD_ID
+  MerchantRelatedPersonsDto.JSON_PROPERTY_RELATED_PERSONS
 })
 
-public class ExpressCheckoutShippingMethodChangeRequest {
-  public static final String JSON_PROPERTY_SHIPPING_METHOD_ID = "shippingMethodId";
+public class MerchantRelatedPersonsDto {
+  public static final String JSON_PROPERTY_RELATED_PERSONS = "relatedPersons";
   @javax.annotation.Nullable
-  private String shippingMethodId;
+  private Set<RelatedPerson> relatedPersons = new LinkedHashSet<>();
 
-  public ExpressCheckoutShippingMethodChangeRequest() {
-  }
-  /**
-   * Constructor with only readonly parameters
-   */
-  @JsonCreator
-  public ExpressCheckoutShippingMethodChangeRequest(
-    @JsonProperty(JSON_PROPERTY_SHIPPING_METHOD_ID) String shippingMethodId
-  ) {
-    this();
-    this.shippingMethodId = shippingMethodId;
+  public MerchantRelatedPersonsDto() {
   }
 
+  public MerchantRelatedPersonsDto relatedPersons(@javax.annotation.Nullable Set<RelatedPerson> relatedPersons) {
+    
+    this.relatedPersons = relatedPersons;
+    return this;
+  }
+
+  public MerchantRelatedPersonsDto addRelatedPersonsItem(RelatedPerson relatedPersonsItem) {
+    if (this.relatedPersons == null) {
+      this.relatedPersons = new LinkedHashSet<>();
+    }
+    this.relatedPersons.add(relatedPersonsItem);
+    return this;
+  }
+
   /**
-   * Identifier of the selected shipping option.
-   * @return shippingMethodId
+   * The people who own, control, direct, or represent the merchant company.
+   * @return relatedPersons
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHIPPING_METHOD_ID)
+  @JsonProperty(JSON_PROPERTY_RELATED_PERSONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getShippingMethodId() {
-    return shippingMethodId;
+  public Set<RelatedPerson> getRelatedPersons() {
+    return relatedPersons;
   }
 
 
+  @JsonDeserialize(as = LinkedHashSet.class)
+  @JsonProperty(JSON_PROPERTY_RELATED_PERSONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRelatedPersons(@javax.annotation.Nullable Set<RelatedPerson> relatedPersons) {
+    this.relatedPersons = relatedPersons;
+  }
 
   @Override
   public boolean equals(Object o) {
@@ -82,20 +96,20 @@ public class ExpressCheckoutShippingMethodChangeRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExpressCheckoutShippingMethodChangeRequest expressCheckoutShippingMethodChangeRequest = (ExpressCheckoutShippingMethodChangeRequest) o;
-    return Objects.equals(this.shippingMethodId, expressCheckoutShippingMethodChangeRequest.shippingMethodId);
+    MerchantRelatedPersonsDto merchantRelatedPersonsDto = (MerchantRelatedPersonsDto) o;
+    return Objects.equals(this.relatedPersons, merchantRelatedPersonsDto.relatedPersons);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shippingMethodId);
+    return Objects.hash(relatedPersons);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExpressCheckoutShippingMethodChangeRequest {\n");
-    sb.append("    shippingMethodId: ").append(toIndentedString(shippingMethodId)).append("\n");
+    sb.append("class MerchantRelatedPersonsDto {\n");
+    sb.append("    relatedPersons: ").append(toIndentedString(relatedPersons)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -143,14 +157,16 @@ public class ExpressCheckoutShippingMethodChangeRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `shippingMethodId` to the URL query string
-    if (getShippingMethodId() != null) {
-      try {
-        joiner.add(String.format("%sshippingMethodId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getShippingMethodId()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
+    // add `relatedPersons` to the URL query string
+    if (getRelatedPersons() != null) {
+      int i = 0;
+      for (RelatedPerson _item : getRelatedPersons()) {
+        if (_item != null) {
+          joiner.add(_item.toUrlQueryString(String.format("%srelatedPersons%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
+      i++;
     }
 
     return joiner.toString();

@@ -34,23 +34,37 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets ExpressCheckoutSessionState
+ * Gets or Sets DeliveryDaysRange
  */
-public enum ExpressCheckoutSessionState {
+public enum DeliveryDaysRange {
   
-  PENDING("PENDING"),
+  ZERO_DAYS("ZERO_DAYS"),
   
-  APPROVED("APPROVED"),
+  ONE_TO_THREE_DAYS("ONE_TO_THREE_DAYS"),
   
-  PROCESSING("PROCESSING"),
+  THREE_TO_FIVE_DAYS("THREE_TO_FIVE_DAYS"),
   
-  AUTHORIZED("AUTHORIZED"),
+  FIVE_TO_TEN_DAYS("FIVE_TO_TEN_DAYS"),
   
-  FAILED("FAILED");
+  TEN_TO_FIFTEEN_DAYS("TEN_TO_FIFTEEN_DAYS"),
+  
+  FIFTEEN_TO_TWENTY_DAYS("FIFTEEN_TO_TWENTY_DAYS"),
+  
+  TWENTY_TO_THIRTY_DAYS("TWENTY_TO_THIRTY_DAYS"),
+  
+  THIRTY_TO_FORTY_DAYS("THIRTY_TO_FORTY_DAYS"),
+  
+  FORTY_TO_FIFTY_DAYS("FORTY_TO_FIFTY_DAYS"),
+  
+  FIFTY_TO_SIXTY_DAYS("FIFTY_TO_SIXTY_DAYS"),
+  
+  SIXTY_TO_NINETY_DAYS("SIXTY_TO_NINETY_DAYS"),
+  
+  OVER_NINETY_DAYS("OVER_NINETY_DAYS");
 
   private String value;
 
-  ExpressCheckoutSessionState(String value) {
+  DeliveryDaysRange(String value) {
     this.value = value;
   }
 
@@ -65,8 +79,8 @@ public enum ExpressCheckoutSessionState {
   }
 
   @JsonCreator
-  public static ExpressCheckoutSessionState fromValue(String value) {
-    for (ExpressCheckoutSessionState b : ExpressCheckoutSessionState.values()) {
+  public static DeliveryDaysRange fromValue(String value) {
+    for (DeliveryDaysRange b : DeliveryDaysRange.values()) {
       if (b.value.equals(value)) {
         return b;
       }
