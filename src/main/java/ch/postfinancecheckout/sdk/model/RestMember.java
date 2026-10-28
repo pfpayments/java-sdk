@@ -24,11 +24,16 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinancecheckout.sdk.model.RoleRef;
+import ch.postfinancecheckout.sdk.model.UserType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.UnsupportedEncodingException;
@@ -36,68 +41,73 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * UserSpaceRole
+ * RestMember
  */
 @JsonPropertyOrder({
-  UserSpaceRole.JSON_PROPERTY_ROLE,
-  UserSpaceRole.JSON_PROPERTY_ID,
-  UserSpaceRole.JSON_PROPERTY_USER,
-  UserSpaceRole.JSON_PROPERTY_VERSION,
-  UserSpaceRole.JSON_PROPERTY_SPACE
+  RestMember.JSON_PROPERTY_ROLES,
+  RestMember.JSON_PROPERTY_NAME,
+  RestMember.JSON_PROPERTY_ID,
+  RestMember.JSON_PROPERTY_USER_TYPE
 })
 
-public class UserSpaceRole {
-  public static final String JSON_PROPERTY_ROLE = "role";
+public class RestMember {
+  public static final String JSON_PROPERTY_ROLES = "roles";
   @javax.annotation.Nullable
-  private Long role;
+  private List<RoleRef> roles = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
+  private String name;
 
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private Long id;
 
-  public static final String JSON_PROPERTY_USER = "user";
+  public static final String JSON_PROPERTY_USER_TYPE = "userType";
   @javax.annotation.Nullable
-  private Long user;
+  private UserType userType;
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  @javax.annotation.Nullable
-  private Integer version;
-
-  public static final String JSON_PROPERTY_SPACE = "space";
-  @javax.annotation.Nullable
-  private Long space;
-
-  public UserSpaceRole() {
+  public RestMember() {
   }
   /**
    * Constructor with only readonly parameters
    */
   @JsonCreator
-  public UserSpaceRole(
-    @JsonProperty(JSON_PROPERTY_ROLE) Long role, 
-    @JsonProperty(JSON_PROPERTY_ID) Long id, 
-    @JsonProperty(JSON_PROPERTY_USER) Long user, 
-    @JsonProperty(JSON_PROPERTY_VERSION) Integer version, 
-    @JsonProperty(JSON_PROPERTY_SPACE) Long space
+  public RestMember(
+    @JsonProperty(JSON_PROPERTY_ROLES) List<RoleRef> roles, 
+    @JsonProperty(JSON_PROPERTY_NAME) String name, 
+    @JsonProperty(JSON_PROPERTY_ID) Long id
   ) {
     this();
-    this.role = role;
+    this.roles = roles;
+    this.name = name;
     this.id = id;
-    this.user = user;
-    this.version = version;
-    this.space = space;
   }
 
   /**
-   * The role that is assigned to the user.
-   * @return role
+   * The roles the user holds.
+   * @return roles
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonProperty(JSON_PROPERTY_ROLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getRole() {
-    return role;
+  public List<RoleRef> getRoles() {
+    return roles;
+  }
+
+
+
+  /**
+   * The name used to identify the user.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
   }
 
 
@@ -116,47 +126,30 @@ public class UserSpaceRole {
 
 
 
+  public RestMember userType(@javax.annotation.Nullable UserType userType) {
+    
+    this.userType = userType;
+    return this;
+  }
+
   /**
-   * The user whose role this defines.
-   * @return user
+   * Get userType
+   * @return userType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonProperty(JSON_PROPERTY_USER_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getUser() {
-    return user;
+  public UserType getUserType() {
+    return userType;
   }
 
 
-
-  /**
-   * The version is used for optimistic locking and incremented whenever the object is updated.
-   * @return version
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(JSON_PROPERTY_USER_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getVersion() {
-    return version;
+  public void setUserType(@javax.annotation.Nullable UserType userType) {
+    this.userType = userType;
   }
-
-
-
-  /**
-   * The space in which the role is assigned to the user.
-   * @return space
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SPACE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getSpace() {
-    return space;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -166,28 +159,26 @@ public class UserSpaceRole {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserSpaceRole userSpaceRole = (UserSpaceRole) o;
-    return Objects.equals(this.role, userSpaceRole.role) &&
-        Objects.equals(this.id, userSpaceRole.id) &&
-        Objects.equals(this.user, userSpaceRole.user) &&
-        Objects.equals(this.version, userSpaceRole.version) &&
-        Objects.equals(this.space, userSpaceRole.space);
+    RestMember restMember = (RestMember) o;
+    return Objects.equals(this.roles, restMember.roles) &&
+        Objects.equals(this.name, restMember.name) &&
+        Objects.equals(this.id, restMember.id) &&
+        Objects.equals(this.userType, restMember.userType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role, id, user, version, space);
+    return Objects.hash(roles, name, id, userType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserSpaceRole {\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("class RestMember {\n");
+    sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("    space: ").append(toIndentedString(space)).append("\n");
+    sb.append("    userType: ").append(toIndentedString(userType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -235,10 +226,20 @@ public class UserSpaceRole {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `role` to the URL query string
-    if (getRole() != null) {
+    // add `roles` to the URL query string
+    if (getRoles() != null) {
+      for (int i = 0; i < getRoles().size(); i++) {
+        if (getRoles().get(i) != null) {
+          joiner.add(getRoles().get(i).toUrlQueryString(String.format("%sroles%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
       try {
-        joiner.add(String.format("%srole%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRole()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
@@ -255,30 +256,10 @@ public class UserSpaceRole {
       }
     }
 
-    // add `user` to the URL query string
-    if (getUser() != null) {
+    // add `userType` to the URL query string
+    if (getUserType() != null) {
       try {
-        joiner.add(String.format("%suser%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUser()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `version` to the URL query string
-    if (getVersion() != null) {
-      try {
-        joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getVersion()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `space` to the URL query string
-    if (getSpace() != null) {
-      try {
-        joiner.add(String.format("%sspace%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getSpace()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%suserType%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getUserType()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

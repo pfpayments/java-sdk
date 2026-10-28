@@ -24,7 +24,7 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.UserSpaceRole;
+import ch.postfinancecheckout.sdk.model.InvoiceReconciliationRecord;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -40,19 +40,19 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * UserSpaceRoleListResponse
+ * InvoiceReconciliationRecordListResponse
  */
 @JsonPropertyOrder({
-  UserSpaceRoleListResponse.JSON_PROPERTY_DATA,
-  UserSpaceRoleListResponse.JSON_PROPERTY_HAS_MORE,
-  UserSpaceRoleListResponse.JSON_PROPERTY_LIMIT
+  InvoiceReconciliationRecordListResponse.JSON_PROPERTY_DATA,
+  InvoiceReconciliationRecordListResponse.JSON_PROPERTY_HAS_MORE,
+  InvoiceReconciliationRecordListResponse.JSON_PROPERTY_LIMIT
 })
-@JsonTypeName("User_Space_Role_List_Response")
+@JsonTypeName("Invoice_Reconciliation_Record_List_Response")
 
-public class UserSpaceRoleListResponse {
+public class InvoiceReconciliationRecordListResponse {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
-  private List<UserSpaceRole> data = new ArrayList<>();
+  private List<InvoiceReconciliationRecord> data = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
@@ -62,14 +62,14 @@ public class UserSpaceRoleListResponse {
   @javax.annotation.Nullable
   private Integer limit;
 
-  public UserSpaceRoleListResponse() {
+  public InvoiceReconciliationRecordListResponse() {
   }
   /**
    * Constructor with only readonly parameters
    */
   @JsonCreator
-  public UserSpaceRoleListResponse(
-    @JsonProperty(JSON_PROPERTY_DATA) List<UserSpaceRole> data, 
+  public InvoiceReconciliationRecordListResponse(
+    @JsonProperty(JSON_PROPERTY_DATA) List<InvoiceReconciliationRecord> data, 
     @JsonProperty(JSON_PROPERTY_HAS_MORE) Boolean hasMore, 
     @JsonProperty(JSON_PROPERTY_LIMIT) Integer limit
   ) {
@@ -87,7 +87,7 @@ public class UserSpaceRoleListResponse {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<UserSpaceRole> getData() {
+  public List<InvoiceReconciliationRecord> getData() {
     return data;
   }
 
@@ -129,10 +129,10 @@ public class UserSpaceRoleListResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserSpaceRoleListResponse userSpaceRoleListResponse = (UserSpaceRoleListResponse) o;
-    return Objects.equals(this.data, userSpaceRoleListResponse.data) &&
-        Objects.equals(this.hasMore, userSpaceRoleListResponse.hasMore) &&
-        Objects.equals(this.limit, userSpaceRoleListResponse.limit);
+    InvoiceReconciliationRecordListResponse invoiceReconciliationRecordListResponse = (InvoiceReconciliationRecordListResponse) o;
+    return Objects.equals(this.data, invoiceReconciliationRecordListResponse.data) &&
+        Objects.equals(this.hasMore, invoiceReconciliationRecordListResponse.hasMore) &&
+        Objects.equals(this.limit, invoiceReconciliationRecordListResponse.limit);
   }
 
   @Override
@@ -143,7 +143,7 @@ public class UserSpaceRoleListResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserSpaceRoleListResponse {\n");
+    sb.append("class InvoiceReconciliationRecordListResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");

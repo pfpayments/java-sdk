@@ -36,39 +36,39 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * PaymentTerminalPreparing
+ * RoleRef
  */
 @JsonPropertyOrder({
-  PaymentTerminalPreparing.JSON_PROPERTY_NAME,
-  PaymentTerminalPreparing.JSON_PROPERTY_VERSION,
-  PaymentTerminalPreparing.JSON_PROPERTY_EXTERNAL_ID
+  RoleRef.JSON_PROPERTY_NAME,
+  RoleRef.JSON_PROPERTY_ID
 })
-@JsonTypeName("PaymentTerminal.Preparing")
 
-public class PaymentTerminalPreparing {
+public class RoleRef {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  @javax.annotation.Nonnull
-  private Integer version;
-
-  public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
+  public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
-  private String externalId;
+  private Long id;
 
-  public PaymentTerminalPreparing() {
+  public RoleRef() {
   }
-
-  public PaymentTerminalPreparing name(@javax.annotation.Nullable String name) {
-    
+  /**
+   * Constructor with only readonly parameters
+   */
+  @JsonCreator
+  public RoleRef(
+    @JsonProperty(JSON_PROPERTY_NAME) String name, 
+    @JsonProperty(JSON_PROPERTY_ID) Long id
+  ) {
+    this();
     this.name = name;
-    return this;
+    this.id = id;
   }
 
   /**
-   * The name used to identify the payment terminal.
+   * The name used to identify the role.
    * @return name
    */
   @javax.annotation.Nullable
@@ -80,61 +80,20 @@ public class PaymentTerminalPreparing {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
-    this.name = name;
-  }
-
-  public PaymentTerminalPreparing version(@javax.annotation.Nonnull Integer version) {
-    
-    this.version = version;
-    return this;
-  }
 
   /**
-   * The version number indicates the version of the entity. The version is incremented whenever the entity is changed.
-   * @return version
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Integer getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVersion(@javax.annotation.Nonnull Integer version) {
-    this.version = version;
-  }
-
-  public PaymentTerminalPreparing externalId(@javax.annotation.Nullable String externalId) {
-    
-    this.externalId = externalId;
-    return this;
-  }
-
-  /**
-   * A client-generated nonce which uniquely identifies some action to be executed. Subsequent requests with the same external ID do not execute the action again, but return the original result.
-   * @return externalId
+   * A unique identifier for the object.
+   * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXTERNAL_ID)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getExternalId() {
-    return externalId;
+  public Long getId() {
+    return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EXTERNAL_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExternalId(@javax.annotation.Nullable String externalId) {
-    this.externalId = externalId;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -144,24 +103,22 @@ public class PaymentTerminalPreparing {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaymentTerminalPreparing paymentTerminalPreparing = (PaymentTerminalPreparing) o;
-    return Objects.equals(this.name, paymentTerminalPreparing.name) &&
-        Objects.equals(this.version, paymentTerminalPreparing.version) &&
-        Objects.equals(this.externalId, paymentTerminalPreparing.externalId);
+    RoleRef roleRef = (RoleRef) o;
+    return Objects.equals(this.name, roleRef.name) &&
+        Objects.equals(this.id, roleRef.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, version, externalId);
+    return Objects.hash(name, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentTerminalPreparing {\n");
+    sb.append("class RoleRef {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -219,20 +176,10 @@ public class PaymentTerminalPreparing {
       }
     }
 
-    // add `version` to the URL query string
-    if (getVersion() != null) {
+    // add `id` to the URL query string
+    if (getId() != null) {
       try {
-        joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getVersion()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `externalId` to the URL query string
-    if (getExternalId() != null) {
-      try {
-        joiner.add(String.format("%sexternalId%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getExternalId()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sid%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getId()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);

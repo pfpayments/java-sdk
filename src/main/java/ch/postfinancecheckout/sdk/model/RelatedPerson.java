@@ -24,7 +24,7 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.Address;
+import ch.postfinancecheckout.sdk.model.BasicAddress;
 import ch.postfinancecheckout.sdk.model.IdentityInfo;
 import ch.postfinancecheckout.sdk.model.RepresentativeInfo;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -104,7 +104,7 @@ public class RelatedPerson {
 
   public static final String JSON_PROPERTY_RESIDENCE_ADDRESS = "residenceAddress";
   @javax.annotation.Nullable
-  private Address residenceAddress;
+  private BasicAddress residenceAddress;
 
   public RelatedPerson() {
   }
@@ -384,7 +384,7 @@ public class RelatedPerson {
     this.companyShare = companyShare;
   }
 
-  public RelatedPerson residenceAddress(@javax.annotation.Nullable Address residenceAddress) {
+  public RelatedPerson residenceAddress(@javax.annotation.Nullable BasicAddress residenceAddress) {
     
     this.residenceAddress = residenceAddress;
     return this;
@@ -398,14 +398,14 @@ public class RelatedPerson {
   @JsonProperty(JSON_PROPERTY_RESIDENCE_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Address getResidenceAddress() {
+  public BasicAddress getResidenceAddress() {
     return residenceAddress;
   }
 
 
   @JsonProperty(JSON_PROPERTY_RESIDENCE_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResidenceAddress(@javax.annotation.Nullable Address residenceAddress) {
+  public void setResidenceAddress(@javax.annotation.Nullable BasicAddress residenceAddress) {
     this.residenceAddress = residenceAddress;
   }
 

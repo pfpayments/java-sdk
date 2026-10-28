@@ -24,6 +24,8 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import ch.postfinancecheckout.sdk.model.ChargeAttemptProjection;
+import ch.postfinancecheckout.sdk.model.TransactionProjection;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -36,44 +38,73 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * AbstractPaymentTerminalUpdate
+ * ChargeAttemptLookupResult
  */
 @JsonPropertyOrder({
-  AbstractPaymentTerminalUpdate.JSON_PROPERTY_NAME
+  ChargeAttemptLookupResult.JSON_PROPERTY_SUCCESSFUL_CHARGE_ATTEMPT,
+  ChargeAttemptLookupResult.JSON_PROPERTY_TRANSACTION
 })
-@JsonTypeName("Abstract.PaymentTerminal.Update")
 
-public class AbstractPaymentTerminalUpdate {
-  public static final String JSON_PROPERTY_NAME = "name";
+public class ChargeAttemptLookupResult {
+  public static final String JSON_PROPERTY_SUCCESSFUL_CHARGE_ATTEMPT = "successfulChargeAttempt";
   @javax.annotation.Nullable
-  private String name;
+  private ChargeAttemptProjection successfulChargeAttempt;
 
-  public AbstractPaymentTerminalUpdate() {
+  public static final String JSON_PROPERTY_TRANSACTION = "transaction";
+  @javax.annotation.Nullable
+  private TransactionProjection transaction;
+
+  public ChargeAttemptLookupResult() {
   }
 
-  public AbstractPaymentTerminalUpdate name(@javax.annotation.Nullable String name) {
+  public ChargeAttemptLookupResult successfulChargeAttempt(@javax.annotation.Nullable ChargeAttemptProjection successfulChargeAttempt) {
     
-    this.name = name;
+    this.successfulChargeAttempt = successfulChargeAttempt;
     return this;
   }
 
   /**
-   * The name used to identify the payment terminal.
-   * @return name
+   * Get successfulChargeAttempt
+   * @return successfulChargeAttempt
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_SUCCESSFUL_CHARGE_ATTEMPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public ChargeAttemptProjection getSuccessfulChargeAttempt() {
+    return successfulChargeAttempt;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_SUCCESSFUL_CHARGE_ATTEMPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
-    this.name = name;
+  public void setSuccessfulChargeAttempt(@javax.annotation.Nullable ChargeAttemptProjection successfulChargeAttempt) {
+    this.successfulChargeAttempt = successfulChargeAttempt;
+  }
+
+  public ChargeAttemptLookupResult transaction(@javax.annotation.Nullable TransactionProjection transaction) {
+    
+    this.transaction = transaction;
+    return this;
+  }
+
+  /**
+   * Get transaction
+   * @return transaction
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TRANSACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TransactionProjection getTransaction() {
+    return transaction;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TRANSACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransaction(@javax.annotation.Nullable TransactionProjection transaction) {
+    this.transaction = transaction;
   }
 
   @Override
@@ -84,20 +115,22 @@ public class AbstractPaymentTerminalUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AbstractPaymentTerminalUpdate abstractPaymentTerminalUpdate = (AbstractPaymentTerminalUpdate) o;
-    return Objects.equals(this.name, abstractPaymentTerminalUpdate.name);
+    ChargeAttemptLookupResult chargeAttemptLookupResult = (ChargeAttemptLookupResult) o;
+    return Objects.equals(this.successfulChargeAttempt, chargeAttemptLookupResult.successfulChargeAttempt) &&
+        Objects.equals(this.transaction, chargeAttemptLookupResult.transaction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(successfulChargeAttempt, transaction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AbstractPaymentTerminalUpdate {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ChargeAttemptLookupResult {\n");
+    sb.append("    successfulChargeAttempt: ").append(toIndentedString(successfulChargeAttempt)).append("\n");
+    sb.append("    transaction: ").append(toIndentedString(transaction)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -145,14 +178,14 @@ public class AbstractPaymentTerminalUpdate {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      try {
-        joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
+    // add `successfulChargeAttempt` to the URL query string
+    if (getSuccessfulChargeAttempt() != null) {
+      joiner.add(getSuccessfulChargeAttempt().toUrlQueryString(prefix + "successfulChargeAttempt" + suffix));
+    }
+
+    // add `transaction` to the URL query string
+    if (getTransaction() != null) {
+      joiner.add(getTransaction().toUrlQueryString(prefix + "transaction" + suffix));
     }
 
     return joiner.toString();

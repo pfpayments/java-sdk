@@ -24,7 +24,7 @@ package ch.postfinancecheckout.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import ch.postfinancecheckout.sdk.model.UserAccountRole;
+import ch.postfinancecheckout.sdk.model.InvoiceReconciliationRecordInvoiceLink;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -40,19 +40,24 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * UserAccountRoleListResponse
+ * InvoiceReconciliationRecordInvoiceLinkSearchResponse
  */
 @JsonPropertyOrder({
-  UserAccountRoleListResponse.JSON_PROPERTY_DATA,
-  UserAccountRoleListResponse.JSON_PROPERTY_HAS_MORE,
-  UserAccountRoleListResponse.JSON_PROPERTY_LIMIT
+  InvoiceReconciliationRecordInvoiceLinkSearchResponse.JSON_PROPERTY_DATA,
+  InvoiceReconciliationRecordInvoiceLinkSearchResponse.JSON_PROPERTY_OFFSET,
+  InvoiceReconciliationRecordInvoiceLinkSearchResponse.JSON_PROPERTY_HAS_MORE,
+  InvoiceReconciliationRecordInvoiceLinkSearchResponse.JSON_PROPERTY_LIMIT
 })
-@JsonTypeName("User_Account_Role_List_Response")
+@JsonTypeName("Invoice_Reconciliation_Record_Invoice_Link_Search_Response")
 
-public class UserAccountRoleListResponse {
+public class InvoiceReconciliationRecordInvoiceLinkSearchResponse {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
-  private List<UserAccountRole> data = new ArrayList<>();
+  private List<InvoiceReconciliationRecordInvoiceLink> data = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_OFFSET = "offset";
+  @javax.annotation.Nullable
+  private Integer offset;
 
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
@@ -62,19 +67,21 @@ public class UserAccountRoleListResponse {
   @javax.annotation.Nullable
   private Integer limit;
 
-  public UserAccountRoleListResponse() {
+  public InvoiceReconciliationRecordInvoiceLinkSearchResponse() {
   }
   /**
    * Constructor with only readonly parameters
    */
   @JsonCreator
-  public UserAccountRoleListResponse(
-    @JsonProperty(JSON_PROPERTY_DATA) List<UserAccountRole> data, 
+  public InvoiceReconciliationRecordInvoiceLinkSearchResponse(
+    @JsonProperty(JSON_PROPERTY_DATA) List<InvoiceReconciliationRecordInvoiceLink> data, 
+    @JsonProperty(JSON_PROPERTY_OFFSET) Integer offset, 
     @JsonProperty(JSON_PROPERTY_HAS_MORE) Boolean hasMore, 
     @JsonProperty(JSON_PROPERTY_LIMIT) Integer limit
   ) {
     this();
     this.data = data;
+    this.offset = offset;
     this.hasMore = hasMore;
     this.limit = limit;
   }
@@ -87,8 +94,22 @@ public class UserAccountRoleListResponse {
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<UserAccountRole> getData() {
+  public List<InvoiceReconciliationRecordInvoiceLink> getData() {
     return data;
+  }
+
+
+
+  /**
+   * The number of skipped objects.
+   * @return offset
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OFFSET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getOffset() {
+    return offset;
   }
 
 
@@ -129,22 +150,24 @@ public class UserAccountRoleListResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserAccountRoleListResponse userAccountRoleListResponse = (UserAccountRoleListResponse) o;
-    return Objects.equals(this.data, userAccountRoleListResponse.data) &&
-        Objects.equals(this.hasMore, userAccountRoleListResponse.hasMore) &&
-        Objects.equals(this.limit, userAccountRoleListResponse.limit);
+    InvoiceReconciliationRecordInvoiceLinkSearchResponse invoiceReconciliationRecordInvoiceLinkSearchResponse = (InvoiceReconciliationRecordInvoiceLinkSearchResponse) o;
+    return Objects.equals(this.data, invoiceReconciliationRecordInvoiceLinkSearchResponse.data) &&
+        Objects.equals(this.offset, invoiceReconciliationRecordInvoiceLinkSearchResponse.offset) &&
+        Objects.equals(this.hasMore, invoiceReconciliationRecordInvoiceLinkSearchResponse.hasMore) &&
+        Objects.equals(this.limit, invoiceReconciliationRecordInvoiceLinkSearchResponse.limit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, hasMore, limit);
+    return Objects.hash(data, offset, hasMore, limit);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserAccountRoleListResponse {\n");
+    sb.append("class InvoiceReconciliationRecordInvoiceLinkSearchResponse {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("}");
@@ -201,6 +224,16 @@ public class UserAccountRoleListResponse {
           joiner.add(getData().get(i).toUrlQueryString(String.format("%sdata%s%s", prefix, suffix,
               "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `offset` to the URL query string
+    if (getOffset() != null) {
+      try {
+        joiner.add(String.format("%soffset%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getOffset()), "UTF-8").replaceAll("\\+", "%20")));
+      } catch (UnsupportedEncodingException e) {
+        // Should never happen, UTF-8 is always supported
+        throw new RuntimeException(e);
       }
     }
 
