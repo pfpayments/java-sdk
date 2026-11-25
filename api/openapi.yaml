@@ -20143,6 +20143,108 @@ paths:
       - Members
       x-accepts:
       - application/json
+  /onboarding/merchant-applications/by-account:
+    get:
+      description: Returns the merchant application for the account specified in the
+        account header.
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#getOnboardingMerchantApplicationsByAccount
+      operationId: getOnboardingMerchantApplicationsByAccount
+      parameters:
+      - explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        style: form
+      - description: Specifies the ID of the account the operation should be executed
+          in.
+        explode: false
+        in: header
+        name: account
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantApplicationDataDto"
+          description: Successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request was not accepted often due to missing or invalid
+            parameters.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The necessary authentication credentials are missing or incorrect.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The application user is missing the required permissions.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The requested resource was not found.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The requested response format is not supported.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request provides unsupported or invalid data.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request is well-formed but contains semantic errors. Check
+            the response body for details.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: Too many requests hit the API too quickly.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: An internal error occurred on the server.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: Error response.
+      summary: Retrieve a merchant application by account
+      tags:
+      - MerchantApplications
+      x-accepts:
+      - application/json
   /onboarding/merchant-applications/{id}/status:
     get:
       externalDocs:
@@ -20585,6 +20687,128 @@ paths:
                 $ref: "#/components/schemas/RestApiErrorResponse"
           description: Error response.
       summary: Create a merchant application
+      tags:
+      - MerchantApplications
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /onboarding/merchant-applications/{id}/submit:
+    post:
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#postOnboardingMerchantApplicationsIdSubmit
+      operationId: postOnboardingMerchantApplicationsIdSubmit
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: expand
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        style: form
+      - description: Specifies the ID of the account the operation should be executed
+          in.
+        explode: false
+        in: header
+        name: account
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MerchantApplicationSubmitRequestDto"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerchantApplicationSubmittedDto"
+          description: Successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request was not accepted often due to missing or invalid
+            parameters.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The necessary authentication credentials are missing or incorrect.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The application user is missing the required permissions.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The requested resource was not found.
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The requested response format is not supported.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request conflicts with another request often because of
+            to optimistic locking.
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request provides unsupported or invalid data.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: The request is well-formed but contains semantic errors. Check
+            the response body for details.
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: Too many requests hit the API too quickly.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: An internal error occurred on the server.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestApiErrorResponse"
+          description: Error response.
+      summary: Submit a merchant application and create an organization
       tags:
       - MerchantApplications
       x-content-type: application/json
@@ -25630,7 +25854,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PaymentTerminal.Update"
+              $ref: "#/components/schemas/PaymentTerminalUpdateRequest"
         required: true
       responses:
         "200":
@@ -45217,7 +45441,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SubscriptionUpdateRequest"
+              $ref: "#/components/schemas/SubscriptionPartialUpdateRequest"
         required: true
       responses:
         "200":
@@ -63783,13 +64007,6 @@ components:
       title: Boarding Strategy Information Request
       type: object
       x-model-type: CREATE
-    BrandLogoDto:
-      externalDocs:
-        url: https://checkout.postfinance.ch/doc/api/web-service#_brandlogodto
-      properties: {}
-      title: Brand Logo Dto
-      type: object
-      x-model-type: CREATE
     CardAuthenticationResponse:
       enum:
       - FULLY_AUTHENTICATED
@@ -66515,6 +66732,11 @@ components:
           state: PROCESSING
           linkedTransaction: 1
           redirectionUrl: redirectionUrl
+          transactionAmounts:
+            completedAmount: 9.369310271410669
+            authorizationAmount: 6.683562403749608
+            currency: currency
+            refundedAmount: 8.762042012749001
           charge:
             plannedPurgeDate: 2000-01-23T04:56:07.000+00:00
             timeZone: timeZone
@@ -68456,6 +68678,14 @@ components:
     ChargeAttemptProjection:
       allOf:
       - $ref: "#/components/schemas/ChargeAttempt"
+      - externalDocs:
+          url: https://checkout.postfinance.ch/doc/api/web-service#_chargeattemptprojection
+        properties:
+          transactionAmounts:
+            $ref: "#/components/schemas/TransactionAmounts"
+        title: Charge Attempt Projection
+        type: object
+        x-model-type: READ
       example:
         language: language
         salesChannel: 6
@@ -68902,6 +69132,11 @@ components:
         state: PROCESSING
         linkedTransaction: 1
         redirectionUrl: redirectionUrl
+        transactionAmounts:
+          completedAmount: 9.369310271410669
+          authorizationAmount: 6.683562403749608
+          currency: currency
+          refundedAmount: 8.762042012749001
         charge:
           plannedPurgeDate: 2000-01-23T04:56:07.000+00:00
           timeZone: timeZone
@@ -83124,6 +83359,7 @@ components:
       - TRACKING
       - FULFILLED
       - FAILED
+      - CANCELED
       externalDocs:
         url: https://checkout.postfinance.ch/doc/api/web-service#_fulfillmentstate
       title: Fulfillment State
@@ -86284,6 +86520,47 @@ components:
       title: Merchant Application Status
       type: object
       x-model-type: READ
+    MerchantApplicationSubmitRequestDto:
+      description: The confirmation required to submit a merchant application.
+      example:
+        acceptedWalleeTerms: true
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_merchantapplicationsubmitrequestdto
+      properties:
+        acceptedWalleeTerms:
+          description: Whether the merchant accepts the terms and conditions required
+            for submission.
+          title: Accepted Wallee Terms
+          type: boolean
+      title: Merchant Application Submit Request
+      type: object
+      x-model-type: UPDATE
+    MerchantApplicationSubmittedDto:
+      description: The result of submitting a merchant application.
+      example:
+        applicationState: DRAFT
+        paymentFacilitatorOrganizationId: 0
+        merchantApplicationId: 6
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_merchantapplicationsubmitteddto
+      properties:
+        applicationState:
+          $ref: "#/components/schemas/MerchantApplicationState"
+        paymentFacilitatorOrganizationId:
+          description: The ID of the organization created by submitting the application.
+          format: int64
+          readOnly: true
+          title: Payment Facilitator Organization Id
+          type: integer
+        merchantApplicationId:
+          description: The ID of the submitted merchant application.
+          format: int64
+          readOnly: true
+          title: Merchant Application Id
+          type: integer
+      title: Merchant Application Submitted
+      type: object
+      x-model-type: READ
     MerchantBankDetailsDto:
       example:
         directAccountOwnershipConfirmed: true
@@ -88668,26 +88945,6 @@ components:
       - configurationVersion
       - locationVersion
       x-model-type: READ
-    PaymentTerminal.Update:
-      externalDocs:
-        url: https://checkout.postfinance.ch/doc/api/web-service#_paymentterminal_update
-      properties:
-        name:
-          description: The name used to identify the payment terminal.
-          maxLength: 100
-          title: Name
-          type: string
-        version:
-          description: The version number indicates the version of the entity. The
-            version is incremented whenever the entity is changed.
-          format: int32
-          title: Version
-          type: integer
-      required:
-      - version
-      title: Terminal
-      type: object
-      x-model-type: UPDATE
     PaymentTerminalActivationStatus:
       example:
         activationCodeActive: true
@@ -89918,6 +90175,33 @@ components:
       - description
       - name
       x-model-type: READ
+    PaymentTerminalUpdateRequest:
+      example:
+        configuration: 0
+        name: name
+        version: 6
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_paymentterminalupdaterequest
+      properties:
+        configuration:
+          description: The configuration that is assigned to the terminal and determines
+            how it works.
+          format: int64
+          title: Payment terminal configuration
+          type: integer
+        name:
+          description: The name used to identify the payment terminal.
+          title: Payment terminal name
+          type: string
+        version:
+          description: The version is used for optimistic locking and incremented
+            whenever the payment terminal is updated.
+          format: int32
+          title: Version
+          type: integer
+      title: Payment Terminal Update Request
+      type: object
+      x-model-type: UPDATE
     Permission:
       example:
         parent: 0
@@ -96713,6 +96997,22 @@ components:
       type: object
       x-model-type: READ
     SpaceAddress.Create:
+      example:
+        country: country
+        mobilePhoneNumber: mobilePhoneNumber
+        organizationName: organizationName
+        city: city
+        givenName: givenName
+        postcode: postcode
+        salesTaxNumber: salesTaxNumber
+        dependentLocality: dependentLocality
+        emailAddress: emailAddress
+        phoneNumber: phoneNumber
+        sortingCode: sortingCode
+        street: street
+        familyName: familyName
+        postalState: postalState
+        salutation: salutation
       externalDocs:
         url: https://checkout.postfinance.ch/doc/api/web-service#_spaceaddress_create
       properties:
@@ -99520,6 +99820,21 @@ components:
       title: Metric Usage Report
       type: object
       x-model-type: CREATE
+    SubscriptionPartialUpdateRequest:
+      example:
+        description: description
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_subscriptionpartialupdaterequest
+      properties:
+        description:
+          description: A description used to identify the subscription.
+          maxLength: 200
+          readOnly: false
+          title: Description
+          type: string
+      title: Subscription Update Request
+      type: object
+      x-model-type: UPDATE
     SubscriptionPeriodBill:
       example:
         linkedSpaceId: 0
@@ -101332,19 +101647,46 @@ components:
       x-model-type: ENUM
     SubscriptionUpdateRequest:
       example:
-        description: description
+        componentConfigurations:
+        - quantity: 0.8008281904610115
+          productComponentReferenceId: 6
+        - quantity: 0.8008281904610115
+          productComponentReferenceId: 6
+        product: 0
+        currency: currency
+        respectTerminationPeriod: true
       externalDocs:
         url: https://checkout.postfinance.ch/doc/api/web-service#_subscriptionupdaterequest
       properties:
-        description:
-          description: A description used to identify the subscription.
-          maxLength: 200
+        componentConfigurations:
+          description: The configurations of the subscription's components.
+          items:
+            $ref: "#/components/schemas/SubscriptionComponentReferenceConfiguration"
           readOnly: false
-          title: Description
+          title: Component Configurations
+          type: array
+          uniqueItems: true
+        product:
+          description: The product to subscribe to.
+          format: int64
+          readOnly: false
+          title: Product
+          type: integer
+        currency:
+          description: The three-letter code (ISO 4217 format) of the currency used
+            to invoice the customer. Must be one of the currencies supported by the
+            product.
+          readOnly: false
+          title: Currency
           type: string
+        respectTerminationPeriod:
+          description: Whether the subscriptions' termination periods should be respected.
+          readOnly: false
+          title: Respect Termination Period
+          type: boolean
       title: Subscription Update Request
       type: object
-      x-model-type: UPDATE
+      x-model-type: CREATE
     SubscriptionVersion:
       example:
         plannedPurgeDate: 2000-01-23T04:56:07.000+00:00
@@ -103794,6 +104136,34 @@ components:
         url: https://checkout.postfinance.ch/doc/api/web-service#_transaction_pending
       title: Transaction
       x-model-type: UPDATE
+    TransactionAmounts:
+      example:
+        completedAmount: 9.369310271410669
+        authorizationAmount: 6.683562403749608
+        currency: currency
+        refundedAmount: 8.762042012749001
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_transactionamounts
+      properties:
+        completedAmount:
+          readOnly: true
+          title: Completed Amount
+          type: number
+        authorizationAmount:
+          readOnly: true
+          title: Authorization Amount
+          type: number
+        currency:
+          readOnly: true
+          title: Currency
+          type: string
+        refundedAmount:
+          readOnly: true
+          title: Refunded Amount
+          type: number
+      title: Transaction Amounts
+      type: object
+      x-model-type: READ
     TransactionClientPlatformInformation:
       example:
         spaceId: 0
@@ -110498,6 +110868,11 @@ components:
           state: PROCESSING
           linkedTransaction: 1
           redirectionUrl: redirectionUrl
+          transactionAmounts:
+            completedAmount: 9.369310271410669
+            authorizationAmount: 6.683562403749608
+            currency: currency
+            refundedAmount: 8.762042012749001
           charge:
             plannedPurgeDate: 2000-01-23T04:56:07.000+00:00
             timeZone: timeZone
@@ -113695,6 +114070,23 @@ components:
       example:
         emailMessage: emailMessage
         partnerAccountId: 0
+        merchantAccountName: merchantAccountName
+        merchantAddress:
+          country: country
+          mobilePhoneNumber: mobilePhoneNumber
+          organizationName: organizationName
+          city: city
+          givenName: givenName
+          postcode: postcode
+          salesTaxNumber: salesTaxNumber
+          dependentLocality: dependentLocality
+          emailAddress: emailAddress
+          phoneNumber: phoneNumber
+          sortingCode: sortingCode
+          street: street
+          familyName: familyName
+          postalState: postalState
+          salutation: salutation
         pricingProfileSellRateId: 6
         subscriptionProductId: 1
         merchantEmailAddress: merchantEmailAddress
@@ -113708,6 +114100,14 @@ components:
           format: int64
           title: Partner Account Id
           type: integer
+        merchantAccountName:
+          description: "The name of the subaccount created for the merchant. Only\
+            \ used for ISV partnerships when a merchant email address is provided.\
+            \ If empty, a generated name is used."
+          title: Merchant Account Name
+          type: string
+        merchantAddress:
+          $ref: "#/components/schemas/SpaceAddress.Create"
         pricingProfileSellRateId:
           format: int64
           title: Pricing Profile Sell Rate Id
@@ -114186,6 +114586,13 @@ components:
           title: Properties
           type: string
       title: Account Web UI Theme
+      type: object
+      x-model-type: CREATE
+    WebUiFormFileInput:
+      externalDocs:
+        url: https://checkout.postfinance.ch/doc/api/web-service#_webuiformfileinput
+      properties: {}
+      title: Web Ui Form File Input
       type: object
       x-model-type: CREATE
     WebhookIdentity:

@@ -37,6 +37,7 @@ import ch.postfinancecheckout.sdk.model.SubscriptionCharge;
 import ch.postfinancecheckout.sdk.model.SubscriptionCreateRequest;
 import ch.postfinancecheckout.sdk.model.SubscriptionInitializeSubscriberPresentRequest;
 import ch.postfinancecheckout.sdk.model.SubscriptionListResponse;
+import ch.postfinancecheckout.sdk.model.SubscriptionPartialUpdateRequest;
 import ch.postfinancecheckout.sdk.model.SubscriptionSearchResponse;
 import ch.postfinancecheckout.sdk.model.SubscriptionSuspension;
 import ch.postfinancecheckout.sdk.model.SubscriptionUpdateRequest;
@@ -457,15 +458,15 @@ public class SubscriptionsService extends BaseApi {
    
    * @param id  (required)
    * @param space Specifies the ID of the space the operation should be executed in. (required)
-   * @param subscriptionUpdateRequest  (required)
+   * @param subscriptionPartialUpdateRequest  (required)
    * @param expand  (optional)
    * @return Subscription
    * @throws ApiException if fails to make API call
    * 
    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#patchSubscriptionsId">Update a subscription Documentation</a>
    */
-  public Subscription patchSubscriptionsId(@javax.annotation.Nonnull Long id, @javax.annotation.Nonnull Long space, @javax.annotation.Nonnull SubscriptionUpdateRequest subscriptionUpdateRequest, @javax.annotation.Nullable Set<String> expand) throws ApiException {
-    return this.patchSubscriptionsId(id, space, subscriptionUpdateRequest, expand, Collections.emptyMap());
+  public Subscription patchSubscriptionsId(@javax.annotation.Nonnull Long id, @javax.annotation.Nonnull Long space, @javax.annotation.Nonnull SubscriptionPartialUpdateRequest subscriptionPartialUpdateRequest, @javax.annotation.Nullable Set<String> expand) throws ApiException {
+    return this.patchSubscriptionsId(id, space, subscriptionPartialUpdateRequest, expand, Collections.emptyMap());
   }
 
 
@@ -475,7 +476,7 @@ public class SubscriptionsService extends BaseApi {
    
    * @param id  (required)
    * @param space Specifies the ID of the space the operation should be executed in. (required)
-   * @param subscriptionUpdateRequest  (required)
+   * @param subscriptionPartialUpdateRequest  (required)
    * @param expand  (optional)
    * @param additionalHeaders The additional headers for this call
    * @return Subscription
@@ -483,8 +484,8 @@ public class SubscriptionsService extends BaseApi {
    * 
    * @see <a href="https://checkout.postfinance.ch/doc/api/web-service#patchSubscriptionsId">Update a subscription Documentation</a>
    */
-  public Subscription patchSubscriptionsId(@javax.annotation.Nonnull Long id, @javax.annotation.Nonnull Long space, @javax.annotation.Nonnull SubscriptionUpdateRequest subscriptionUpdateRequest, @javax.annotation.Nullable Set<String> expand, Map<String, String> additionalHeaders) throws ApiException {
-    Object localVarPostBody = subscriptionUpdateRequest;
+  public Subscription patchSubscriptionsId(@javax.annotation.Nonnull Long id, @javax.annotation.Nonnull Long space, @javax.annotation.Nonnull SubscriptionPartialUpdateRequest subscriptionPartialUpdateRequest, @javax.annotation.Nullable Set<String> expand, Map<String, String> additionalHeaders) throws ApiException {
+    Object localVarPostBody = subscriptionPartialUpdateRequest;
     
     // verify the required parameter 'id' is set
     if (id == null) {
@@ -496,9 +497,9 @@ public class SubscriptionsService extends BaseApi {
       throw new ApiException(400, "Missing the required parameter 'space' when calling patchSubscriptionsId");
     }
     
-    // verify the required parameter 'subscriptionUpdateRequest' is set
-    if (subscriptionUpdateRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'subscriptionUpdateRequest' when calling patchSubscriptionsId");
+    // verify the required parameter 'subscriptionPartialUpdateRequest' is set
+    if (subscriptionPartialUpdateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'subscriptionPartialUpdateRequest' when calling patchSubscriptionsId");
     }
     
     // create path and map variables

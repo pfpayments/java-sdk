@@ -36,74 +36,43 @@ import java.net.URLEncoder;
 import java.util.StringJoiner;
 
 /**
- * PaymentTerminalUpdate
+ * The confirmation required to submit a merchant application.
  */
 @JsonPropertyOrder({
-  PaymentTerminalUpdate.JSON_PROPERTY_NAME,
-  PaymentTerminalUpdate.JSON_PROPERTY_VERSION
+  MerchantApplicationSubmitRequestDto.JSON_PROPERTY_ACCEPTED_WALLEE_TERMS
 })
-@JsonTypeName("PaymentTerminal.Update")
 
-public class PaymentTerminalUpdate {
-  public static final String JSON_PROPERTY_NAME = "name";
+public class MerchantApplicationSubmitRequestDto {
+  public static final String JSON_PROPERTY_ACCEPTED_WALLEE_TERMS = "acceptedWalleeTerms";
   @javax.annotation.Nullable
-  private String name;
+  private Boolean acceptedWalleeTerms;
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  @javax.annotation.Nonnull
-  private Integer version;
-
-  public PaymentTerminalUpdate() {
+  public MerchantApplicationSubmitRequestDto() {
   }
 
-  public PaymentTerminalUpdate name(@javax.annotation.Nullable String name) {
+  public MerchantApplicationSubmitRequestDto acceptedWalleeTerms(@javax.annotation.Nullable Boolean acceptedWalleeTerms) {
     
-    this.name = name;
+    this.acceptedWalleeTerms = acceptedWalleeTerms;
     return this;
   }
 
   /**
-   * The name used to identify the payment terminal.
-   * @return name
+   * Whether the merchant accepts the terms and conditions required for submission.
+   * @return acceptedWalleeTerms
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ACCEPTED_WALLEE_TERMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public Boolean getAcceptedWalleeTerms() {
+    return acceptedWalleeTerms;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ACCEPTED_WALLEE_TERMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
-    this.name = name;
-  }
-
-  public PaymentTerminalUpdate version(@javax.annotation.Nonnull Integer version) {
-    
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * The version number indicates the version of the entity. The version is incremented whenever the entity is changed.
-   * @return version
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Integer getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVersion(@javax.annotation.Nonnull Integer version) {
-    this.version = version;
+  public void setAcceptedWalleeTerms(@javax.annotation.Nullable Boolean acceptedWalleeTerms) {
+    this.acceptedWalleeTerms = acceptedWalleeTerms;
   }
 
   @Override
@@ -114,22 +83,20 @@ public class PaymentTerminalUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaymentTerminalUpdate paymentTerminalUpdate = (PaymentTerminalUpdate) o;
-    return Objects.equals(this.name, paymentTerminalUpdate.name) &&
-        Objects.equals(this.version, paymentTerminalUpdate.version);
+    MerchantApplicationSubmitRequestDto merchantApplicationSubmitRequestDto = (MerchantApplicationSubmitRequestDto) o;
+    return Objects.equals(this.acceptedWalleeTerms, merchantApplicationSubmitRequestDto.acceptedWalleeTerms);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, version);
+    return Objects.hash(acceptedWalleeTerms);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentTerminalUpdate {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("class MerchantApplicationSubmitRequestDto {\n");
+    sb.append("    acceptedWalleeTerms: ").append(toIndentedString(acceptedWalleeTerms)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,20 +144,10 @@ public class PaymentTerminalUpdate {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `name` to the URL query string
-    if (getName() != null) {
+    // add `acceptedWalleeTerms` to the URL query string
+    if (getAcceptedWalleeTerms() != null) {
       try {
-        joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), "UTF-8").replaceAll("\\+", "%20")));
-      } catch (UnsupportedEncodingException e) {
-        // Should never happen, UTF-8 is always supported
-        throw new RuntimeException(e);
-      }
-    }
-
-    // add `version` to the URL query string
-    if (getVersion() != null) {
-      try {
-        joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getVersion()), "UTF-8").replaceAll("\\+", "%20")));
+        joiner.add(String.format("%sacceptedWalleeTerms%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getAcceptedWalleeTerms()), "UTF-8").replaceAll("\\+", "%20")));
       } catch (UnsupportedEncodingException e) {
         // Should never happen, UTF-8 is always supported
         throw new RuntimeException(e);
